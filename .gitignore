@@ -1,0 +1,9 @@
+node_modules
+.sass-cache
+backup
+build
+components
+images
+webfonts
+docs
+.idea
