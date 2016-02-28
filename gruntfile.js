@@ -19,7 +19,21 @@ module.exports = function (grunt) {
                 }]
             }
         },
-
+        /*GRUNTICON*/
+        grunticon: {
+            myIcons: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= dir.assets %>/icons/source',
+                    src: ['*.svg', '*.png'],
+                    dest: '<%= dir.release %>/css/icons'
+                }],
+                options: {
+                    enhanceSVG: false,
+                    compressPNG:true
+                }
+            }
+        },
 
         watch: {
             sass: {
@@ -34,13 +48,10 @@ module.exports = function (grunt) {
             }
         }
     });
-    // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-grunticon');
     // Default task(s).
-    //grunt.registerTask('default', ['clean',"compass:clean_dev",'preprocess:dev','compass:dev','imagemin:dev','watch']);
-    //grunt.registerTask('dev', ['default']);
-    //grunt.registerTask('release', ['clean',"compass:clean_release",'preprocess:release','compass:release','cssmin:release','lib','uglify:release','imagemin:release']);
     grunt.registerTask('css-d', ['sass']);
     grunt.registerTask('default', ['css-d']);
 };
