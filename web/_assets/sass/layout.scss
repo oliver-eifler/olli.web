@@ -1,18 +1,7 @@
 /*
  Test Layout
 */
-@import 'lib/functions';
-@import 'lib/theme';
-
-// Breakpoints
-$panelWidth: 20em;
-$panelHeight: 30em;
-
-$wideLayoutWidth: 60em;
-
-//Colors
-$colors: getColors(#fefeff);
-$color-brand: #6811ff;
+@import 'config';
 
 html {
   background-color:disabled($colors);
@@ -75,11 +64,6 @@ small {font-size:.75em;}
 */
 }
 /* Header-Banner */
-[class*="icon-"] {
-  background-size: cover;
-  background-position: center center;
-}
-
 a.header {
   color:$color-brand;
   &:hover {color:$color-brand;}
@@ -105,18 +89,6 @@ a.header {
 }
 .header-logo {
   margin:0 1em 0 0;
-  .icon-olli {
-    width:5em;
-    height:5em;
-  }
-}
-.gi-svg .header-logo {
-  background-color:divider($colors);
-  border-radius: 50% 0;
-  @include card(2);
-  .icon-olli {
-    margin:.5em 1em;
-  }
 }
 /* Header Links */
 .links {
@@ -127,7 +99,6 @@ a.header {
   }
 }
 .links-cat {display:inline-block;}
-
 
 .content-width {
   margin: 0 auto;
@@ -141,17 +112,13 @@ a.header {
     top:0;
     width: $panelWidth;
     text-align:right;
-    a {display:block;}
-    .gi-svg &:hover .header-logo {
-      border-radius: 0 50%;
-    }
   }
   .header-logo {
-    transition: 1s border-radius;
     margin:0 0 1em 0;
   }
   .links {
     a {
+      display:block;
       padding:.25em 0;
     }
   }
@@ -168,4 +135,13 @@ a.header {
   .panel {
     position: fixed;
   }
+}
+
+.social-icon {
+  display: inline-block;
+  margin-left: 1em;
+  line-height: 2em;
+}
+.social > .social-icon:first-child {
+  margin-left: 0;
 }

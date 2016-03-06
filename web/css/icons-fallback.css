@@ -1,0 +1,80 @@
+/* icons with png urls, px sized */
+/*Olli mixins'*/
+/* Color Contrast
+.my-element {
+    background: $backgroud-color;
+    color: text-contrast($backgroud-color);
+  }
+.my-element {
+    background: $backgroud-color;
+    color: text-contrast($backgroud-color, DarkSalmon);
+  } */
+/**
+ * Computes a top-shadow for a card effect.
+ *
+ * @param {Number} $depth - depth level
+ *
+ * @return {List}
+ */
+/**
+ * Computes a bottom-shadow for a card effect.
+ *
+ * @param {Number} $depth - depth level
+ *
+ * @return {List}
+ */
+/**
+ * Gives a card depth effect.
+ *
+ * @param {Number} $depth - depth level (between 1 and 5)
+ *
+ * @link http://www.google.com/design/spec/layout/layout-principles.html#layout-principles-dimensionality Google Design
+ *
+ * @requires {function} top-shadow
+ * @requires {function} bottom-shadow
+ */
+[class*="icon-"] {
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.icon-codepen {
+  background-image: url("icons/codepen.png");
+  width: 32px;
+  height: 32px; }
+
+.icon-cool {
+  background-image: url("icons/cool.png");
+  width: 16px;
+  height: 16px; }
+
+.icon-facebook {
+  background-image: url("icons/facebook.png");
+  width: 32px;
+  height: 32px; }
+
+.icon-github {
+  background-image: url("icons/github.png");
+  width: 32px;
+  height: 32px; }
+
+.icon-google {
+  background-image: url("icons/google.png");
+  width: 32px;
+  height: 32px; }
+
+.icon-invader {
+  background-image: url("icons/invader.png");
+  width: 16px;
+  height: 16px; }
+
+.icon-olli {
+  background-image: url("icons/olli.png");
+  width: 80px;
+  height: 80px; }
+
+.icon-twitter {
+  background-image: url("icons/twitter.png");
+  width: 32px;
+  height: 32px; }
+
+/*# sourceMappingURL=icons-fallback.css.map */

@@ -1,0 +1,21 @@
+/* icons with svg datauris, em sized */
+@import 'config';
+
+@import 'icons/svg';
+
+.header-logo {
+  background-color:divider($colors);
+  border-radius: 50% 0;
+  @include card(2);
+  .icon-olli {
+    margin:.5em 1em;
+  }
+}
+@media (min-width: $wideLayoutWidth) {
+  .panel:hover .header-logo {
+      border-radius: 0 50%;
+    }
+  .header-logo {
+    transition: 1s border-radius;
+  }
+}

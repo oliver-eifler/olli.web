@@ -97,10 +97,6 @@ small {
 */ }
 
 /* Header-Banner */
-[class*="icon-"] {
-  background-size: cover;
-  background-position: center center; }
-
 a.header {
   color: #6811ff; }
   a.header:hover {
@@ -124,16 +120,6 @@ a.header {
 
 .header-logo {
   margin: 0 1em 0 0; }
-  .header-logo .icon-olli {
-    width: 5em;
-    height: 5em; }
-
-.gi-svg .header-logo {
-  background-color: #e0e0e0;
-  border-radius: 50% 0;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16); }
-  .gi-svg .header-logo .icon-olli {
-    margin: .5em 1em; }
 
 /* Header Links */
 .links {
@@ -157,16 +143,12 @@ a.header {
     top: 0;
     width: 20em;
     text-align: right; }
-    .panel a {
-      display: block; }
-    .gi-svg .panel:hover .header-logo {
-      border-radius: 0 50%; }
 
   .header-logo {
-    transition: 1s border-radius;
     margin: 0 0 1em 0; }
 
   .links a {
+    display: block;
     padding: .25em 0; }
 
   .links-cat {
@@ -178,5 +160,12 @@ a.header {
 @media (min-width: 60em) and (min-height: 30em) {
   .panel {
     position: fixed; } }
+.social-icon {
+  display: inline-block;
+  margin-left: 1em;
+  line-height: 2em; }
+
+.social > .social-icon:first-child {
+  margin-left: 0; }
 
 /*# sourceMappingURL=layout.css.map */
