@@ -100,6 +100,7 @@ a.header {
 }
 .links-cat {display:inline-block;}
 
+
 .content-width {
   margin: 0 auto;
   max-width: 40em;
@@ -124,8 +125,6 @@ a.header {
   }
   .links-cat {display:block;}
 
-
-
   .content {
     margin-right: $panelWidth;
     min-height: $panelHeight;
@@ -137,11 +136,37 @@ a.header {
   }
 }
 
-.social-icon {
-  display: inline-block;
-  margin-left: 1em;
-  line-height: 2em;
+.social {
+  padding-top:1em;
+  line-height:1;
 }
-.social > .social-icon:first-child {
-  margin-left: 0;
+.social-icon {
+  margin:0 .25em;
+  text-align:center;
+  i {
+    opacity: .6;
+    transition: .5s opacity;
+  }
+  i:hover {
+    opacity:1;
+  }
+  span {
+    display:block;
+    font-size:.8em;
+  }
+
+}
+.oi .social-icon span {
+  display: none;
+  text-indent: 9999px;
+}
+
+
+@media (min-width: $wideLayoutWidth) {
+  .social-icon {
+    margin: 0 0 0 .5em;
+  }
+  .social > .social-icon:first-child {
+    margin-left: 0;
+  }
 }

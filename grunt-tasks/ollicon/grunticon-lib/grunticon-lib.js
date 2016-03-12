@@ -110,7 +110,7 @@
 
 		var code = min.join( "\n" );
 		var compressed = jsp.minify(code, {fromString: true}).code;
-		var ret = banner + "\n" + compressed;
+		var ret = /*banner + "\n" + */compressed;
 		return ret;
 	};
 

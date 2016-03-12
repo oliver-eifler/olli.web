@@ -59,7 +59,7 @@
 		
 		// add templatePrepend to the output file
 		fs.appendFileSync( self.output, self.templatePrepend );
-		var prepend = '[class*="'+this.prefix.replace(".","")+'"] {background-repeat:no-repeat;background-position:center center;}\n\n';
+		var prepend = '[class*="'+this.prefix.replace(".","")+'"] {background-repeat:no-repeat;display:inline-block;}\n\n';
 		fs.appendFileSync( self.output, prepend );
 
 
