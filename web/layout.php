@@ -218,11 +218,13 @@
         </article>
     </div>
 </div>
-<footer class="'flex-footer footer">
+<div class="'flex-footer footer">
     <div class="maxfooter">
-        BLA
+    <footer>
+        <i class="icon-invader"></i> made with care by <i class="icon-olli-small"></i> Olli.
+    </footer>
     </div>
-</footer>
+</div>
 <script src="js/async.min.js" async></script>
 </body>
 </html>

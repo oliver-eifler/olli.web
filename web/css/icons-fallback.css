@@ -1,14 +1,5 @@
 /* icons with png urls, px sized */
-/*Olli mixins'*/
-/* Color Contrast
-.my-element {
-    background: $backgroud-color;
-    color: text-contrast($backgroud-color);
-  }
-.my-element {
-    background: $backgroud-color;
-    color: text-contrast($backgroud-color, DarkSalmon);
-  } */
+/*Olli functions*/
 /**
  * Computes a top-shadow for a card effect.
  *
@@ -35,25 +26,20 @@
  */
 [class*="icon-"] {
   background-repeat: no-repeat;
+  background-position: center center;
   display: inline-block;
 }
 
-.icon-codepen {
-  background-image: url("icons/codepen.png");
-  width: 32px;
-  height: 32px;
+.icon-olli {
+  background-image: url("icons/olli-alt.png");
+  width: 112px;
+  height: 112px;
 }
 
-.icon-cool {
-  background-image: url("icons/cool.png");
+.icon-olli-small {
+  background-image: url("icons/olli-small.png");
   width: 16px;
   height: 16px;
-}
-
-.icon-facebook {
-  background-image: url("icons/facebook.png");
-  width: 32px;
-  height: 32px;
 }
 
 .icon-github {
@@ -62,8 +48,20 @@
   height: 32px;
 }
 
-.icon-google {
-  background-image: url("icons/google.png");
+.icon-codepen {
+  background-image: url("icons/codepen.png");
+  width: 32px;
+  height: 32px;
+}
+
+.icon-facebook {
+  background-image: url("icons/facebook.png");
+  width: 32px;
+  height: 32px;
+}
+
+.icon-twitter {
+  background-image: url("icons/twitter.png");
   width: 32px;
   height: 32px;
 }
@@ -72,18 +70,6 @@
   background-image: url("icons/invader.png");
   width: 16px;
   height: 16px;
-}
-
-.icon-olli {
-  background-image: url("icons/olli.png");
-  width: 80px;
-  height: 80px;
-}
-
-.icon-twitter {
-  background-image: url("icons/twitter.png");
-  width: 32px;
-  height: 32px;
 }
 
 /*# sourceMappingURL=icons-fallback.css.map */

@@ -1,16 +1,7 @@
 /*
  Test Layout
 */
-/*Olli mixins'*/
-/* Color Contrast
-.my-element {
-    background: $backgroud-color;
-    color: text-contrast($backgroud-color);
-  }
-.my-element {
-    background: $backgroud-color;
-    color: text-contrast($backgroud-color, DarkSalmon);
-  } */
+/*Olli functions*/
 /**
  * Computes a top-shadow for a card effect.
  *
@@ -36,7 +27,7 @@
  * @requires {function} bottom-shadow
  */
 html {
-  background-color: #b2b2b3;
+  background-color: #444;
   box-sizing: border-box;
 }
 
@@ -50,8 +41,13 @@ body {
   padding: 0;
   font-size: 100%;
   line-height: 1.5;
-  color: #565657;
+  color: #000;
+  color: rgba(0, 0, 0, 0.87);
   background-color: #fefeff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #000;
 }
 
 :link {
@@ -121,6 +117,7 @@ a.header:hover {
   line-height: 1;
 }
 .header h1 {
+  color: #6811ff;
   font-size: 2em;
   margin: 0;
   padding: 0;
@@ -202,7 +199,7 @@ a.header:hover {
   text-align: center;
 }
 .social-icon i {
-  opacity: .6;
+  opacity: 0.54;
   transition: .5s opacity;
 }
 .social-icon i:hover {
@@ -214,8 +211,11 @@ a.header:hover {
 }
 
 .oi .social-icon span {
-  display: none;
-  text-indent: 9999px;
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
 }
 
 @media (min-width: 60em) {
@@ -226,6 +226,12 @@ a.header:hover {
   .social > .social-icon:first-child {
     margin-left: 0;
   }
+}
+.footer i {
+  height: 1.5em;
+  width: 1.5em;
+  opacity: 0.87;
+  vertical-align: top;
 }
 
 /*# sourceMappingURL=layout.css.map */

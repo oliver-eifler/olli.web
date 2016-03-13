@@ -16,3 +16,11 @@ $color-invader: #ff0084;
 $color-github: #333;
 $color-google: #4285f4;
 $color-twitter: #55acee;
+
+@mixin screenHide {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}

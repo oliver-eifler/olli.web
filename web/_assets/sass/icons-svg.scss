@@ -3,6 +3,30 @@
 
 @import 'icons/svg';
 
+[class*="icon-"] {
+  background-repeat: no-repeat;
+  background-position:center center;
+  display: inline-block;
+}
+.icon-olli, .icon-olli-small {
+  @include icon-olli();
+}
+.icon-github {
+  @include icon-github();
+}
+.icon-codepen {
+  @include icon-codepen();
+}
+.icon-facebook {
+  @include icon-facebook();
+}
+.icon-twitter {
+  @include icon-twitter();
+}
+.icon-invader {
+  @include icon-invader();
+}
+
 .header-logo {
   background-color:divider($colors);
   border-radius: 50% 0;

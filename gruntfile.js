@@ -88,12 +88,13 @@ module.exports = function (grunt) {
                     dest: '<%= dir.build %>/icons'
                 }],
                 options: {
+                    cssprefix: '@mixin icon-',
                     datasvgcss: '_svg.scss',
                     datapngcss: '_png.scss',
                     urlpngcss:  '_fallback.scss',
                     pngfolder: 'icons/',
                     enhanceSVG: false,
-                    compressPNG:true
+                    compressPNG:true,optimizationLevel:4
                 }
             }
         },

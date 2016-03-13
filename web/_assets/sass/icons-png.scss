@@ -2,3 +2,32 @@
 @import 'config';
 
 @import 'icons/png';
+.icon-olli-small {
+  @include icon-olli-small();
+}
+[class*="icon-"] {
+  background-repeat: no-repeat;
+  background-position:center center;
+  display: inline-block;
+}
+.icon-olli {
+  @include icon-olli-alt();
+}
+.icon-olli-small {
+  @include icon-olli-small();
+}
+.icon-github {
+  @include icon-github();
+}
+.icon-codepen {
+  @include icon-codepen();
+}
+.icon-facebook {
+  @include icon-facebook();
+}
+.icon-twitter {
+  @include icon-twitter();
+}
+.icon-invader {
+  @include icon-invader();
+}

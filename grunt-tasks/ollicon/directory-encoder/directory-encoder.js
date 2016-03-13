@@ -59,9 +59,10 @@
 		
 		// add templatePrepend to the output file
 		fs.appendFileSync( self.output, self.templatePrepend );
+		/*
 		var prepend = '[class*="'+this.prefix.replace(".","")+'"] {background-repeat:no-repeat;display:inline-block;}\n\n';
 		fs.appendFileSync( self.output, prepend );
-
+		*/
 
 		// append each selector
 		this.files.filter(function( filepath ){
@@ -133,7 +134,7 @@
 			css += this.prefix + name +
 				" { background-image: url('" +
 				datauri +
-				"');";
+				"');\n";
 			if (svg) {
 				css+="width:"+parseInt(width,10)/16+"em;";
 				css+="height:"+parseInt(height,10)/16+"em;";

@@ -1,14 +1,11 @@
-/*Olli mixins'*/
-
-/* Color Contrast
-.my-element {
-    background: $backgroud-color;
-    color: text-contrast($backgroud-color);
+/*Olli functions*/
+@function savemapget($list,$key) {
+  @if not map-has-key($list, $key) {
+    @warn "`#{inspect($list)}` doesn't seem to have a key named `#{key}`.";
   }
-.my-element {
-    background: $backgroud-color;
-    color: text-contrast($backgroud-color, DarkSalmon);
-  } */
+  @return map-get($list, $key);
+}
+
 @function gcd($a, $b) {
   // From: http://rosettacode.org/wiki/Greatest_common_divisor#JavaScript
   @if ($b != 0) {
@@ -21,7 +18,7 @@
 @function pow($base, $exponent, $prec: 12) {
   // Handles decimal exponents by trying to convert them into a fraction and then use a nthRoot-algorithm for parts of the calculation
   @if (floor($exponent) != $exponent) {
-    $prec2 : pow(10, $prec);
+    $prec2: pow(10, $prec);
     $exponent: round($exponent * $prec2);
     $denominator: gcd($exponent, $prec2);
     @return nthRoot(pow($base, $exponent / $denominator), $prec2 / $denominator, $prec);
@@ -51,77 +48,53 @@
 
   @return $x;
 }
-@function luma($color){
-    // Thanks voxpelli for a very concise implementation of luminance measure in sass
-    // Adapted from: https://gist.github.com/voxpelli/6304812
-    $rgba: red($color), green($color), blue($color);
-    $rgba2: ();
-    @for $i from 1 through 3 {
-      $rgb: nth($rgba, $i);
-      $rgb: $rgb / 255;
-      $rgb: if($rgb < .03928, $rgb / 12.92, pow(($rgb + .055) / 1.055, 2.4));
-      $rgba2: append($rgba2, $rgb);
-    }
-    @return (.2126 * nth($rgba2, 1) + .7152 * nth($rgba2, 2) + 0.0722 * nth($rgba2, 3))*100;
-  }
-  @function contrast_ratio($color1, $color2) {
-    $luma1: luma($color1) + 5;
-    $luma2: luma($color2) + 5;
-    $ratio: $luma1 / $luma2;
-    @if $luma1 < $luma2 {
-      $ratio: 1 / $ratio;
-    }
-    @return $ratio;
-  }
 
-  @function text-contrast($color, $bgcolor: $color,$threshold: 4.5) {
-    //$threshold: 4.5; // 4.5 = WCAG AA,7= WCAG AAA
-    $list: 10 20 30 40 50 60 70 80 90 100;
-    @each $percent in $list {
-      $lighter: lighten($bgcolor, $percent);
-      $darker: darken($bgcolor, $percent);
-      $darker-ratio: contrast_ratio($color, $darker);
-      $lighter-ratio: contrast_ratio($color, $lighter);
-      @if($lighter-ratio > $darker-ratio){
-        @if ($lighter-ratio > $threshold){
-          @return $lighter;
-        }
-      }
-      @if($darker-ratio > $lighter-ratio){
-        @if ($darker-ratio > $threshold){
-          @return $darker;
-        }
-      }
-    }
-    @return if(lightness($color) < 51, #FFF, #000)
+@function luma($color) {
+  // Thanks voxpelli for a very concise implementation of luminance measure in sass
+  // Adapted from: https://gist.github.com/voxpelli/6304812
+  $rgba: red($color), green($color), blue($color);
+  $rgba2: ();
+  @for $i from 1 through 3 {
+    $rgb: nth($rgba, $i);
+    $rgb: $rgb / 255;
+    $rgb: if($rgb < .03928, $rgb / 12.92, pow(($rgb + .055) / 1.055, 2.4));
+    $rgba2: append($rgba2, $rgb);
   }
-  @function contrast($color)
-  {
-    @return if(lightness($color) < 51, #FFF, #000)
-  }
-
-@function mix-contrast-2($hilight,$color,$threshold,$per) {
-  //$threshold: 4.5; // 4.5 = WCAG AA,7= WCAG AAA
-  $list: 9 8 7 6 5 4 3 2 1;
-  @each $percent in $list {
-    $_color: mix($hilight, $color,$per - $percent);
-    $_ratio: contrast_ratio($color,$_color);
-    @if ($_ratio > $threshold){
-      @return $_color;
-    }
-  }
-  @return mix($hilight, $color,$per);
+  @return (.2126 * nth($rgba2, 1) + .7152 * nth($rgba2, 2) + 0.0722 * nth($rgba2, 3))*100;
 }
-  @function mix-contrast($hilight,$color,$threshold: 4.5) {
-    //$threshold: 4.5; // 4.5 = WCAG AA,7= WCAG AAA
-    $list: 10 20 30 40 50 60 70 80 90 100;
-    @each $percent in $list {
-      $_color: mix($hilight, $color,$percent);
-      $_ratio: contrast_ratio($color,$_color);
-        @if ($_ratio > $threshold){
-          @return mix-contrast-2($hilight,$color,$threshold,$percent);
-        }
-    }
-    @return if(lightness($color) < 51, #FFF, #000)
-  }
 
+@function contrast_ratio($color1, $color2) {
+  $luma1: luma($color1) + 5;
+  $luma2: luma($color2) + 5;
+  $ratio: $luma1 / $luma2;
+  @if $luma1 < $luma2 {
+    $ratio: 1 / $ratio;
+  }
+  @return $ratio;
+}
+
+@function text-contrast($color, $bgcolor: $color,$threshold: 4.5) {
+  //$threshold: 4.5; // 4.5 = WCAG AA,7= WCAG AAA
+  $list: 10 20 30 40 50 60 70 80 90 100;
+  @each $percent in $list {
+    $lighter: lighten($bgcolor, $percent);
+    $darker: darken($bgcolor, $percent);
+    $darker-ratio: contrast_ratio($color, $darker);
+    $lighter-ratio: contrast_ratio($color, $lighter);
+    @if ($lighter-ratio > $darker-ratio) {
+      @if ($lighter-ratio > $threshold) {
+        @return $lighter;
+      }
+    }
+    @if ($darker-ratio > $lighter-ratio) {
+      @if ($darker-ratio > $threshold) {
+        @return $darker;
+      }
+    }
+  }
+  @return if(lightness($color) < 51, #FFF, #000)
+}
+
+@function contrast($color) {
+  @return if(lightness($color) < 51, #FFF, #000)
+}
