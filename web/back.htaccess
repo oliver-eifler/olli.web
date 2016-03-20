@@ -1,0 +1,100 @@
+AddDefaultCharset utf-8
+<IfModule mod_mime.c>
+    AddType application/json                            json map topojson
+    AddType application/xml                             rdf xml
+    AddType application/javascript                      js
+    AddType audio/mp4                                   f4a f4b m4a
+    AddType audio/ogg                                   oga ogg opus
+    AddType image/bmp                                   bmp
+    AddType image/svg+xml                               svg svgz
+    AddType image/webp                                  webp
+    AddType video/mp4                                   f4v f4p m4v mp4
+    AddType video/ogg                                   ogv
+    AddType video/webm                                  webm
+    AddType video/x-flv                                 flv
+    AddType image/x-icon                                cur ico
+    AddType application/font-woff                       woff
+    AddType application/font-woff2                      woff2
+    AddType application/vnd.ms-fontobject               eot
+    AddType application/x-font-ttf                      ttc ttf
+    AddType font/opentype                               otf
+    AddType text/x-component                            htc
+    AddCharset utf-8 .css .js .json .xml
+</IfModule>
+#
+<IfModule mod_deflate.c>
+    <IfModule mod_setenvif.c>
+        <IfModule mod_headers.c>
+            SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+            RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+        </IfModule>
+    </IfModule>
+    <IfModule mod_filter.c>
+		SetEnv HTTP_MOD_DEFLATE on
+        AddOutputFilterByType DEFLATE "application/javascript" \
+                                      "application/json" \
+                                      "application/vnd.ms-fontobject" \
+                                      "application/x-font-ttf" \
+                                      "application/x-javascript" \
+                                      "application/xhtml+xml" \
+                                      "application/xml" \
+                                      "font/eot" \
+                                      "font/opentype" \
+                                      "image/bmp" \
+                                      "image/svg+xml" \
+                                      "image/vnd.microsoft.icon" \
+                                      "image/x-icon" \
+                                      "text/cache-manifest" \
+                                      "text/css" \
+                                      "text/html" \
+                                      "text/javascript" \
+                                      "text/plain" \
+                                      "text/x-component" \
+                                      "text/xml"
+    </IfModule>
+    <IfModule mod_mime.c>
+        AddEncoding gzip              svgz
+    </IfModule>
+</IfModule>
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+FileETag None
+<IfModule mod_expires.c>
+    ExpiresActive on
+    ExpiresDefault                                      "access plus 1 month"
+</IfModule>
+# BEGIN Olli Framework
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+ErrorDocument 403 /error.php?err=403
+ErrorDocument 404 /error.php?err=404
+
+<IfModule mod_rewrite.c>
+SetEnv HTTP_MOD_REWRITE on
+RewriteEngine On
+Options +FollowSymLinks
+RewriteBase /
+#
+#
+RewriteRule ^error\.php$ - [QSA,L]
+RewriteRule ^template\.php$ - [QSA,L]
+RewriteRule ^offline\.php$ - [QSA,L]
+RewriteRule ^php/(.*).php$ / [L,R=404]
+#
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)\_([0-9-]+)\.(js|css|png|jpe?g|gif|svg)$ $1.$3?m=$2 [QSA,L]
+RewriteRule ^(.*)\.(js|css|png|jp?g|gif|svg)$ - [QSA,L]
+#
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /template.php [QSA]
+# remove trailing /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [L,R=301]
+
+</IfModule>
+# END Olli Framework
