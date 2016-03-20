@@ -14,7 +14,12 @@
     <header>
         <a class="header" href='#'>
             <div class="header-logo">
-            <i class="icon-olli avatar"></i>
+            <span class="avatar">
+            <i class="icon-olli"></i>
+            <i class="icon-olli-s2"></i>
+            <i class="icon-olli-s3"></i>
+            <i class="icon-olli-s4"></i>
+            </span>
             </div>
             <div class="header-text">
                 <h1>Oliver Jean Eifler</h1>

@@ -1,6 +1,5 @@
 /* icons with png urls, px sized */
 @import 'config';
-
 @import 'icons/fallback';
 
 [class*="icon-"] {
@@ -9,23 +8,38 @@
   display: inline-block;
 }
 .icon-olli {
-  @include icon-olli-alt();
+  background-image: url($icon-olli-alt-url);
+  width: $icon-olli-alt-width;
+  height: $icon-olli-alt-height;
 }
 .icon-olli-small {
-  @include icon-olli-small();
+  background-image: url($icon-olli-small-url);
+  width: $icon-olli-small-width;
+  height: $icon-olli-small-height;
 }
 .icon-github {
-  @include icon-github();
+  background-image: url($icon-github-url);
+  width: $icon-github-width;
+  height: $icon-github-height;
 }
 .icon-codepen {
-  @include icon-codepen();
+  background-image: url($icon-codepen-url);
+  width: $icon-codepen-width;
+  height: $icon-codepen-height;
 }
 .icon-facebook {
-  @include icon-facebook();
+  background-image: url($icon-facebook-url);
+  width: $icon-facebook-width;
+  height: $icon-facebook-height;
 }
 .icon-twitter {
-  @include icon-twitter();
+  background-image: url($icon-twitter-url);
+  width: $icon-twitter-width;
+  height: $icon-twitter-height;
 }
+
 .icon-invader {
-  @include icon-invader();
+  background-image: url($icon-invader-url);
+  width: $icon-invader-width;
+  height: $icon-invader-height;
 }

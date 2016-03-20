@@ -1,30 +1,65 @@
-@mixin icon-codepen { background-image: url('icons/codepen.png');
-width:32px;height:32px;}
+$icon-codepen-url: 'icons/codepen.png';
+$icon-codepen-width: 32px;
+$icon-codepen-height: 32px;
 
-@mixin icon-cool { background-image: url('icons/cool.png');
-width:16px;height:16px;}
 
-@mixin icon-facebook { background-image: url('icons/facebook.png');
-width:32px;height:32px;}
+$icon-cool-url: 'icons/cool.png';
+$icon-cool-width: 16px;
+$icon-cool-height: 16px;
 
-@mixin icon-github { background-image: url('icons/github.png');
-width:32px;height:32px;}
 
-@mixin icon-google { background-image: url('icons/google.png');
-width:32px;height:32px;}
+$icon-facebook-url: 'icons/facebook.png';
+$icon-facebook-width: 32px;
+$icon-facebook-height: 32px;
 
-@mixin icon-invader { background-image: url('icons/invader.png');
-width:16px;height:16px;}
 
-@mixin icon-olli-alt { background-image: url('icons/olli-alt.png');
-width:112px;height:112px;}
+$icon-github-url: 'icons/github.png';
+$icon-github-width: 32px;
+$icon-github-height: 32px;
 
-@mixin icon-olli-small { background-image: url('icons/olli-small.png');
-width:16px;height:16px;}
 
-@mixin icon-olli { background-image: url('icons/olli.png');
-width:80px;height:80px;}
+$icon-google-url: 'icons/google.png';
+$icon-google-width: 32px;
+$icon-google-height: 32px;
 
-@mixin icon-twitter { background-image: url('icons/twitter.png');
-width:32px;height:32px;}
+
+$icon-invader-url: 'icons/invader.png';
+$icon-invader-width: 16px;
+$icon-invader-height: 16px;
+
+
+$icon-olli-alt-url: 'icons/olli-alt.png';
+$icon-olli-alt-width: 96px;
+$icon-olli-alt-height: 96px;
+
+
+$icon-olli-f1-url: 'icons/olli-f1.png';
+$icon-olli-f1-width: 80px;
+$icon-olli-f1-height: 80px;
+
+
+$icon-olli-f2-url: 'icons/olli-f2.png';
+$icon-olli-f2-width: 80px;
+$icon-olli-f2-height: 80px;
+
+
+$icon-olli-f3-url: 'icons/olli-f3.png';
+$icon-olli-f3-width: 80px;
+$icon-olli-f3-height: 80px;
+
+
+$icon-olli-small-url: 'icons/olli-small.png';
+$icon-olli-small-width: 16px;
+$icon-olli-small-height: 16px;
+
+
+$icon-olli-url: 'icons/olli.png';
+$icon-olli-width: 80px;
+$icon-olli-height: 5317px;
+
+
+$icon-twitter-url: 'icons/twitter.png';
+$icon-twitter-width: 32px;
+$icon-twitter-height: 32px;
+
 

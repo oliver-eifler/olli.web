@@ -88,7 +88,7 @@ module.exports = function (grunt) {
                     dest: '<%= dir.build %>/icons'
                 }],
                 options: {
-                    cssprefix: '@mixin icon-',
+                    cssprefix: '$icon-',
                     datasvgcss: '_svg.scss',
                     datapngcss: '_png.scss',
                     urlpngcss:  '_fallback.scss',
@@ -98,7 +98,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-
         watch: {
             sass: {
                 files: ['<%= dir.assets %>/sass/**/*.{scss,sass}'],

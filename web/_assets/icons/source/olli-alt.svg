@@ -1,80 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   version="1.1"
-   width="112"
-   height="112"
-   viewBox="0 0 350 350"
-   id="svg3049">
-  <defs
-     id="defs3051">
-    <g
-       id="s1">
-      <path
-         d="M 185,230 H 65 V 220 H 45 V 210 H 25 V 190 H 5 V 70 h 20 v 20 h 40 v 10 H 185 V 90 h 40 V 70 h 20 v 120 h -20 v 20 h -20 v 10 h -20 v 10 z M 65,210 h 120 v -20 h 20 v -20 h 20 V 110 H 25 v 60 h 20 v 20 h 20 v 20 z"
-         id="path3054"
-         style="fill:#6811ff" />
-      <path
-         d="m 65,25 h 40 m 40,0 h 40 M 45,35 h 20 m 40,0 h 40 m 40,0 h 20"
-         id="path3056"
-         style="fill:#ff0000" />
-      <path
-         d="M 205,40 H 185 V 30 H 145 V 20 h 40 v 10 h 20 v 10 z m -60,0 H 105 V 30 H 65 V 20 h 40 v 10 h 40 V 40 z M 65,40 H 45 V 30 h 20 v 10 z"
-         id="path3058"
-         style="fill:#ff0000" />
-      <polygon
-         points="85,170 85,160 105,160 105,150 145,150 145,160 165,160 165,170 145,170 145,180 105,180 105,170 "
-         id="polygon3060"
-         style="fill:#ff0000" />
-      <path
-         d="M 185,100 H 165 V 80 H 145 V 60 h 40 v 40 z M 85,100 H 65 V 60 h 40 V 80 H 85 v 20 z"
-         id="path3062"
-         style="fill:#ffffff" />
-      <path
-         d="m 185,210 h -40 v -30 h 20 v 10 h 20 v 20 z m -80,0 H 65 v -20 h 20 v -10 h 20 v 30 z m 80,-70 h -20 v -30 h 40 v 20 h -20 v 10 z M 85,140 H 65 V 130 H 45 v -20 h 40 v 30 z"
-         id="path3064"
-         style="fill:#ffffff" />
-      <path
-         d="M 165,100 H 145 V 80 h 20 v 20 z m -60,0 H 85 V 80 h 20 v 20 z"
-         id="path3066"
-         style="fill:#000000" />
-      <path
-         d="m 25,115 h 20 m 40,0 h 80 m 40,0 h 20 M 25,125 h 20 m 40,0 h 80 m 40,0 h 20 M 25,135 h 40 m 20,0 h 80 m 20,0 h 40 M 25,145 H 225 M 25,155 h 80 m 40,0 h 80 M 25,165 h 60 m 80,0 h 60 M 45,175 h 60 m 40,0 h 60 M 45,185 h 40 m 20,0 h 40 m 20,0 h 40 m -100,10 h 40 m -40,10 h 40"
-         id="path3068"
-         style="fill:#000000" />
-      <polygon
-         points="145,180 145,210 105,210 105,180 85,180 85,190 45,190 45,170 25,170 25,110 45,110 45,130 65,130 65,140 85,140 85,110 165,110 165,140 185,140 185,130 205,130 205,110 225,110 225,170 205,170 205,190 165,190 165,180 145,180 145,170 165,170 165,160 145,160 145,150 105,150 105,160 85,160 85,170 105,170 105,180 "
-         id="polygon3070"
-         style="fill:#000000" />
-    </g>
-  </defs>
-  <path
-     d="m 93.898304,47.35593 a 46.271187,44.237289 0 1 1 -92.5423737,0 46.271187,44.237289 0 1 1 92.5423737,0 z"
-     transform="matrix(3.6460328,0,0,3.8136665,1.3499687,-5.5997251)"
-     id="path3084"
-     style="fill:#e0e0e0;fill-opacity:1;stroke:#000000;stroke-width:0.83804703;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-  <use
-     transform="translate(50,50)"
-     id="use3074"
-     style="stroke:#000000;stroke-width:11"
-     x="0"
-     y="0"
-     width="250"
-     height="250"
-     xlink:href="#s1" />
-  <use
-     transform="translate(50,50)"
-     id="use3076"
-     x="0"
-     y="0"
-     width="250"
-     height="250"
-     xlink:href="#s1" />
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="96" width="96" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 68 68">
+ <ellipse stroke-linecap="square" rx="32" ry="32" stroke="#000" cy="34" cx="34" stroke-width="2" fill="#ccc"/>
+ <path stroke-width="3" d="m34 51h-4v-3-3h-2-2v1 1h-4-4v-2-2h-2-2v-6-6h2 2v2 2h2 2v1 1h2 2v-3-3h8 8v3 3h2 2v-1-1h2 2v-2-2h2 2v6 6h-2-2v2 2h-4-4v-1-1h-2-2v3 3h-4zm0-6h4v-1-1h2 2v-1-1h-2-2v-1-1h-4-4v1 1h-2-2v1 1h2 2v1 1h4zm-6-16h-2v-2-2h2 2v2 2h-2zm12 0h-2v-2-2h2 2v2 2h-2zm-6 16h-4v-1-1h-2-2v-1-1h2 2v-1-1h4 4v1 1h2 2v1 1h-2-2v1 1h-4zm0 10h-12v-1-1h-2-2v-1-1h-2-2v-2-2h-2-2v-12-12h2 2v2 2h4 4v1 1h12 12v-1-1h4 4v-2-2h2 2v12 12h-2-2v2 2h-2-2v1 1h-2-2v1 1h-12zm0-4h12v-2-2h2 2v-2-2h2 2v-6-6h-20-20v6 6h2 2v2 2h2 2v2 2h12zm-14-34h-2v-1-1h2 2v-1-1h4 4v1 1h4 4v-1-1h4 4v1 1h2 2v1 1h-2-2v-1-1h-4-4v1 1h-4-4v-1-1h-4-4v1 1h-2zm6 34h-4v-2-2h2 2v-1-1h2 2v3 3h-4zm16 0h-4v-3-3h2 2v1 1h2 2v2 2h-4zm-18-14h-2v-1-1h-2-2v-2-2h4 4v3 3h-2zm20 0h-2v-3-3h4 4v2 2h-2-2v1 1h-2zm-20-8h-2v-4-4h4 4v2 2h-2-2v2 2h-2zm20 0h-2v-2-2h-2-2v-2-2h4 4v4 4h-2z" stroke="#000"/>
+ <path fill="#6e3c85" d="m34 55h-12v-1-1h-2-2v-1-1h-2-2v-2-2h-2-2v-12-12h2 2v2 2h4 4v1 1h12 12v-1-1h4 4v-2-2h2 2v12 12h-2-2v2 2h-2-2v1 1h-2-2v1 1h-12zm0-4h12v-2-2h2 2v-2-2h2 2v-6-6h-20-20v6 6h2 2v2 2h2 2v2 2h12z"/>
+ <path fill="#fff" d="m26 51h-4v-2-2h2 2v-1-1h2 2v3 3h-4zm16 0h-4v-3-3h2 2v1 1h2 2v2 2h-4zm-18-14h-2v-1-1h-2-2v-2-2h4 4v3 3h-2zm20 0h-2v-3-3h4 4v2 2h-2-2v1 1h-2zm-20-8h-2v-4-4h4 4v2 2h-2-2v2 2h-2zm20 0h-2v-2-2h-2-2v-2-2h4 4v4 4h-2z"/>
+ <path fill="#ff0" d="m20 17h-2v-1-1h2 2v-1-1h4 4v1 1h4 4v-1-1h4 4v1 1h2 2v1 1h-2-2v-1-1h-4-4v1 1h-4-4v-1-1h-4-4v1 1h-2z"/>
+ <path fill="#f00" d="m34 45h-4v-1-1h-2-2v-1-1h2 2v-1-1h4 4v1 1h2 2v1 1h-2-2v1 1h-4z"/>
 </svg>

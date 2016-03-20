@@ -26,6 +26,7 @@
  * @requires {function} top-shadow
  * @requires {function} bottom-shadow
  */
+/*$color-brand: #6811ff;*/
 html {
   background-color: #444;
   box-sizing: border-box;
@@ -107,17 +108,17 @@ small {
 
 /* Header-Banner */
 a.header {
-  color: #6811ff;
+  color: #6e3c85;
 }
 a.header:hover {
-  color: #6811ff;
+  color: #6e3c85;
 }
 
 .header {
   line-height: 1;
 }
 .header h1 {
-  color: #6811ff;
+  color: #6e3c85;
   font-size: 2em;
   margin: 0;
   padding: 0;

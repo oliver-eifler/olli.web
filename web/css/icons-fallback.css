@@ -24,6 +24,7 @@
  * @requires {function} top-shadow
  * @requires {function} bottom-shadow
  */
+/*$color-brand: #6811ff;*/
 [class*="icon-"] {
   background-repeat: no-repeat;
   background-position: center center;
@@ -32,8 +33,8 @@
 
 .icon-olli {
   background-image: url("icons/olli-alt.png");
-  width: 112px;
-  height: 112px;
+  width: 96px;
+  height: 96px;
 }
 
 .icon-olli-small {

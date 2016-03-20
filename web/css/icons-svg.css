@@ -24,6 +24,7 @@
  * @requires {function} top-shadow
  * @requires {function} bottom-shadow
  */
+/*$color-brand: #6811ff;*/
 [class*="icon-"] {
   background-repeat: no-repeat;
   background-position: center center;
@@ -31,9 +32,20 @@
 }
 
 .icon-olli, .icon-olli-small {
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20viewBox%3D%220%200%20250%20250%22%3E%3Cdefs%3E%3Cg%20id%3D%22a%22%3E%3Cpath%20d%3D%22M185%20230H65v-10H45v-10H25v-20H5V70h20v20h40v10h120V90h40V70h20v120h-20v20h-20v10h-20v10zM65%20210h120v-20h20v-20h20v-60H25v60h20v20h20v20z%22%20class%3D%22main%22%20fill%3D%22%236811ff%22%2F%3E%3Cpath%20d%3D%22M65%2025h40m40%200h40M45%2035h20m40%200h40m40%200h20M205%2040h-20V30h-40V20h40v10h20v10zm-60%200h-40V30H65V20h40v10h40v10zm-80%200H45V30h20v10zM105%20170H85v-10h20v-10h40v10h20v10h-20v10h-40z%22%20fill%3D%22red%22%2F%3E%3Cpath%20d%3D%22M185%20100h-20V80h-20V60h40v40zm-100%200H65V60h40v20H85v20zM185%20210h-40v-30h20v10h20v20zm-80%200H65v-20h20v-10h20v30zm80-70h-20v-30h40v20h-20v10zm-100%200H65v-10H45v-20h40v30z%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M165%20100h-20V80h20v20zm-60%200H85V80h20v20zM25%20115h20m40%200h80m40%200h20M25%20125h20m40%200h80m40%200h20M25%20135h40m20%200h80m20%200h40M25%20145h200M25%20155h80m40%200h80M25%20165h60m80%200h60M45%20175h60m40%200h60M45%20185h40m20%200h40m20%200h40m-100%2010h40m-40%2010h40M105%20180H85v10H45v-20H25v-60h20v20h20v10h20v-30h80v30h20v-10h20v-20h20v60h-20v20h-40v-10h-20v-10h20v-10h-20v-10h-40v10H85v10h20v10h40v30h-40z%22%2F%3E%3C%2Fg%3E%3C%2Fdefs%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%20stroke%3D%22%23000%22%20stroke-width%3D%2211%22%2F%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%2F%3E%3C%2Fsvg%3E");
-  width: 5em;
-  height: 5em;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2052%2044%22%3E%3Cpath%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20d%3D%22M26%2039h-4v-6h-4v2h-8v-4H6V19h4v4h4v2h4v-6h16v6h4v-2h4v-4h4v12h-4v4h-8v-2h-4v6h-4zm0-6h4v-2h4v-2h-4v-2h-8v2h-4v2h4v2h4zm-6-16h-2v-4h4v4h-2zm12%200h-2v-4h4v4h-2zm-6%2016h-4v-2h-4v-2h4v-2h8v2h4v2h-4v2h-4zm0%2010H14v-2h-4v-2H6v-4H2V11h4v4h8v2h24v-2h8v-4h4v24h-4v4h-4v2h-4v2H26zm0-4h12v-4h4v-4h4V19H6v12h4v4h4v4h12zM12%205h-2V3h4V1h8v2h8V1h8v2h4v2h-4V3h-8v2h-8V3h-8v2h-2zm6%2034h-4v-4h4v-2h4v6h-4zm16%200h-4v-6h4v2h4v4h-4zM16%2025h-2v-2h-4v-4h8v6h-2zm20%200h-2v-6h8v4h-4v2h-2zm-20-8h-2V9h8v4h-4v4h-2zm20%200h-2v-4h-4V9h8v8h-2z%22%2F%3E%3Cpath%20fill%3D%22%236e3c85%22%20d%3D%22M26%2043H14v-2h-4v-2H6v-4H2V11h4v4h8v2h24v-2h8v-4h4v24h-4v4h-4v2h-4v2H26zm0-4h12v-4h4v-4h4V19H6v12h4v4h4v4h12z%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M18%2039h-4v-4h4v-2h4v6h-4zm16%200h-4v-6h4v2h4v4h-4zM16%2025h-2v-2h-4v-4h8v6h-2zm20%200h-2v-6h8v4h-4v2h-2zm-20-8h-2V9h8v4h-4v4h-2zm20%200h-2v-4h-4V9h8v8h-2z%22%2F%3E%3Cpath%20fill%3D%22%23ff0%22%20d%3D%22M12%205h-2V3h4V1h8v2h8V1h8v2h4v2h-4V3h-8v2h-8V3h-8v2h-2z%22%2F%3E%3Cpath%20fill%3D%22red%22%20d%3D%22M26%2033h-4v-2h-4v-2h4v-2h8v2h4v2h-4v2h-4z%22%2F%3E%3C%2Fsvg%3E");
+}
+
+.icon-olli-s2, .icon-olli-s4 {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2052%2044%22%3E%3Cpath%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20d%3D%22M26%2033h-4v-4h-4v2h-8v-4H6v-8h4v4h4v2h4v-6h16v6h4v-2h4v-4h4v8h-4v4h-8v-2h-4v4h-4zm0-4h4v-4h-8v4h4zm-6-12h-2v-4h4v4h-2zm12%200h-2v-4h4v4h-2zm-6%2012h-4v-4h8v4h-4zm0%2010h-8v-2h-8v-2H6v-4H2V11h4v4h8v2h24v-2h8v-4h4v20h-4v4h-4v2h-8v2h-8zm-8-4h4v-2h8v2h8v-4h4v-4h4v-8H6v8h4v4h4v4h4zM12%207h-2V5h4V3h8v2h8V3h8v2h4v2h-4V5h-8v2h-8V5h-8v2h-2zm6%2028h-4v-4h4v-2h4v6h-4zm16%200h-4v-6h4v2h4v4h-4zM16%2025h-2v-2h-4v-4h8v6h-2zm20%200h-2v-6h8v4h-4v2h-2zm-20-8h-2V9h8v4h-4v4h-2zm20%200h-2v-4h-4V9h8v8h-2z%22%2F%3E%3Cpath%20fill%3D%22%236e3c85%22%20d%3D%22M26%2039h-8v-2h-8v-2H6v-4H2V11h4v4h8v2h24v-2h8v-4h4v20h-4v4h-4v2h-8v2h-8zm-8-4h4v-2h8v2h8v-4h4v-4h4v-8H6v8h4v4h4v4h4z%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M18%2035h-4v-4h4v-2h4v6h-4zm16%200h-4v-6h4v2h4v4h-4zM16%2025h-2v-2h-4v-4h8v6h-2zm20%200h-2v-6h8v4h-4v2h-2zm-20-8h-2V9h8v4h-4v4h-2zm20%200h-2v-4h-4V9h8v8h-2z%22%2F%3E%3Cpath%20fill%3D%22%23ff0%22%20d%3D%22M12%207h-2V5h4V3h8v2h8V3h8v2h4v2h-4V5h-8v2h-8V5h-8v2h-2z%22%2F%3E%3Cpath%20fill%3D%22red%22%20d%3D%22M26%2029h-4v-4h8v4h-4z%22%2F%3E%3C%2Fsvg%3E");
+}
+
+.icon-olli-s3 {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2052%2044%22%3E%3Cpath%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20d%3D%22M20%2027h-2v-8h16v8h-4v-2h-8v2h-2zm-8-2h-2v-2H6v-4h4v4h4v2h-2zm28%200h-2v-2h4v-4h4v4h-4v2h-2zm-20-8h-2v-4h4v4h-2zm12%200h-2v-4h4v4h-2zm-6%2012h-4v-4h8v4h-4zm0%204h-8v-2h-8v-2H6v-2H2V11h4v4h8v2h24v-2h8v-4h4v16h-4v2h-4v2h-8v2h-8zm0-4h4v-2h4v-2h8v-2h4v-4H6v4h4v2h8v2h4v2h4zM12%209h-2V7h4V5h8v2h8V5h8v2h4v2h-4V7h-8v2h-8V7h-8v2h-2zm4%2016h-2v-2h-4v-4h8v6h-2zm20%200h-2v-6h8v4h-4v2h-2zm-20-8h-2V9h8v4h-4v4h-2zm20%200h-2v-4h-4V9h8v8h-2z%22%2F%3E%3Cpath%20fill%3D%22%236e3c85%22%20d%3D%22M26%2033h-8v-2h-8v-2H6v-2H2V11h4v4h8v2h24v-2h8v-4h4v16h-4v2h-4v2h-8v2h-8zm0-4h4v-2h4v-2h8v-2h4v-4H6v4h4v2h8v2h4v2h4z%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M16%2025h-2v-2h-4v-4h8v6h-2zm20%200h-2v-6h8v4h-4v2h-2zm-20-8h-2V9h8v4h-4v4h-2zm20%200h-2v-4h-4V9h8v8h-2z%22%2F%3E%3Cpath%20fill%3D%22%23ff0%22%20d%3D%22M12%209h-2V7h4V5h8v2h8V5h8v2h4v2h-4V7h-8v2h-8V7h-8v2h-2z%22%2F%3E%3Cpath%20fill%3D%22red%22%20d%3D%22M26%2029h-4v-4h8v4h-4z%22%2F%3E%3C%2Fsvg%3E");
+}
+
+.icon-olli-small {
+  width: 1em;
+  height: 1em;
 }
 
 .icon-github {
@@ -61,7 +73,7 @@
 }
 
 .icon-invader {
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2033%2032%22%20fill%3D%22rgba%280%2C0%2C0%2C.87%29%22%3E%3Cpath%20d%3D%22M29.963%2024.982v-5.947h-2.91v5.97h-3.037v2.952h-7.048v-2.975h7.048V22.01H9.026v2.973l6.03.02v2.974H9.003v-2.95H5.968v-6.01h-2.91v5.946H0V15.96h2.995v-2.892h2.973V10.01h3.057V7.018h2.994v3.003l8.982.024V7.017h2.994v3.036h3.057v2.974h2.953V16h3.014v8.982h-3.057zM12.02%2013.005H9.024V16h2.994v-2.995zm11.976%200h-2.994V16h2.994v-2.995zM5.968%204.023h3.057v2.994H5.968V4.023zm21.085%200v2.994h-3.057V4.023h3.057z%22%2F%3E%3C%2Fsvg%3E");
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2033%2032%22%3E%3Cpath%20d%3D%22M29.963%2024.982v-5.947h-2.91v5.97h-3.037v2.952h-7.048v-2.975h7.048V22.01H9.026v2.973l6.03.02v2.974H9.003v-2.95H5.968v-6.01h-2.91v5.946H0V15.96h2.995v-2.892h2.973V10.01h3.057V7.018h2.994v3.003l8.982.024V7.017h2.994v3.036h3.057v2.974h2.953V16h3.014v8.982h-3.057zM12.02%2013.005H9.024V16h2.994v-2.995zm11.976%200h-2.994V16h2.994v-2.995zM5.968%204.023h3.057v2.994H5.968V4.023zm21.085%200v2.994h-3.057V4.023h3.057z%22%2F%3E%3C%2Fsvg%3E");
   width: 1em;
   height: 1em;
 }
@@ -71,18 +83,85 @@
   border-radius: 50% 0;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
 }
-.header-logo .icon-olli {
-  margin: .5em 1em;
-}
 
 @media (min-width: 60em) {
-  .panel:hover .header-logo {
-    border-radius: 0 50%;
-  }
-
   .header-logo {
     transition: 1s border-radius;
   }
+
+  .panel:hover .header-logo {
+    border-radius: 0 50%;
+  }
+}
+/*animations*/
+@keyframes step1 {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+}
+@keyframes step2 {
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes step3 {
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+}
+@keyframes step4 {
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.avatar {
+  display: inline-block;
+  margin: .5em 1em;
+  position: relative;
+  width: 5em;
+  height: 5em;
+}
+
+.avatar > * {
+  opacity: 0;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.avatar > :nth-child(1) {
+  opacity: 1;
+}
+
+.panel:hover .avatar > :nth-child(1) {
+  opacity: 1;
+  animation-name: step1;
+}
+.panel:hover .avatar > :nth-child(2) {
+  animation-name: step2;
+}
+.panel:hover .avatar > :nth-child(3) {
+  animation-name: step3;
+}
+.panel:hover .avatar > :nth-child(4) {
+  animation-name: step4;
 }
 
 /*# sourceMappingURL=icons-svg.css.map */

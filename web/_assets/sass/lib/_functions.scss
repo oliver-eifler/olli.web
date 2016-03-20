@@ -98,3 +98,17 @@
 @function contrast($color) {
   @return if(lightness($color) < 51, #FFF, #000)
 }
+
+@function strip-unit ($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@function px2em ($pixels,$base: 16) {
+
+  // $base could be in em or px (no unit = px).
+  // Adjust accordingly to create a $divisor that
+  // serves as context for $pixels.
+  $multiplier: if(unit($base) == em, 16, 1);
+  $divisor: strip-unit($base) * $multiplier;
+  @return (strip-unit($pixels) / $divisor) * 1em;
+}

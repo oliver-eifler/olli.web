@@ -9,7 +9,6 @@
   "author": "Oliver Jean Eifler",
   "license": "MIT",
   "devDependencies": {
-    "cheerio": "^0.20.0",
     "grunt": "^0.4.5",
     "grunt-contrib-concat": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",

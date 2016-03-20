@@ -126,24 +126,9 @@
 		if( this.template ){
 			css = this.template( data );
 		} else {
-			for( var i in data.customselectors ){
-				if( data.customselectors.hasOwnProperty( i ) ){
-					css += data.customselectors[i] + ",\n";
-				}
-			}
-			css += this.prefix + name +
-				" { background-image: url('" +
-				datauri +
-				"');\n";
-			if (svg) {
-				css+="width:"+parseInt(width,10)/16+"em;";
-				css+="height:"+parseInt(height,10)/16+"em;";
-			}
-			else  {
-				css+="width:"+parseInt(width,10)+"px;";
-				css+="height:"+parseInt(height,10)+"px;";
-			}
-			css +="}";
+			css += this.prefix + name + "-url: '"+datauri+"';\n";
+			css += this.prefix + name + "-width: "+width+";\n";
+			css += this.prefix + name + "-height: "+height+";\n";
 		}
 
 		return css;

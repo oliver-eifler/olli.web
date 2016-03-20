@@ -8,38 +8,118 @@
   background-position:center center;
   display: inline-block;
 }
-.icon-olli, .icon-olli-small {
-  @include icon-olli();
+.icon-olli,.icon-olli-small {
+  background-image: url($icon-olli-f3-url);
+}
+.icon-olli-s2,.icon-olli-s4 {
+  background-image: url($icon-olli-f2-url);
+}
+.icon-olli-s3 {
+  background-image: url($icon-olli-f1-url);
+}
+
+
+
+.icon-olli-small {
+  width: px2em($icon-olli-small-width);
+  height: px2em($icon-olli-small-height);
 }
 .icon-github {
-  @include icon-github();
+  background-image: url($icon-github-url);
+  width: px2em($icon-github-width);
+  height: px2em($icon-github-height);
 }
 .icon-codepen {
-  @include icon-codepen();
+  background-image: url($icon-codepen-url);
+  width: px2em($icon-codepen-width);
+  height: px2em($icon-codepen-height);
 }
 .icon-facebook {
-  @include icon-facebook();
+  background-image: url($icon-facebook-url);
+  width: px2em($icon-facebook-width);
+  height: px2em($icon-facebook-height);
 }
 .icon-twitter {
-  @include icon-twitter();
+  background-image: url($icon-twitter-url);
+  width: px2em($icon-twitter-width);
+  height: px2em($icon-twitter-height);
 }
+
 .icon-invader {
-  @include icon-invader();
+  background-image: url($icon-invader-url);
+  width: px2em($icon-invader-width);
+  height: px2em($icon-invader-height);
 }
 
 .header-logo {
   background-color:divider($colors);
   border-radius: 50% 0;
   @include card(2);
-  .icon-olli {
-    margin:.5em 1em;
-  }
 }
 @media (min-width: $wideLayoutWidth) {
-  .panel:hover .header-logo {
-      border-radius: 0 50%;
-    }
   .header-logo {
     transition: 1s border-radius;
+  }
+  .panel:hover {
+    .header-logo {
+      border-radius: 0 50%;
+    }
+  }
+}
+/*animations*/
+@keyframes step1 {
+  0% {opacity:1}
+  25% {opacity:0;}
+}
+@keyframes step2 {
+  25% {opacity:1}
+  50% {opacity:0;}
+}
+@keyframes step3 {
+  50% {opacity:1}
+  75% {opacity:0;}
+}
+@keyframes step4 {
+  75% {opacity:1}
+  100% {opacity:0;}
+}
+
+
+
+
+.avatar {
+  display:inline-block;
+  margin:.5em 1em;
+  position:relative;
+  width: px2em($icon-olli-f3-width);
+  height: px2em($icon-olli-f3-height);
+}
+.avatar > * {
+  opacity: 0;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1);
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+}
+.avatar > :nth-child(1) {
+  opacity:1;
+}
+.panel:hover {
+  .avatar > :nth-child(1) {
+    opacity: 1;
+    animation-name: step1;
+  }
+  .avatar > :nth-child(2) {
+    animation-name: step2;
+  }
+  .avatar > :nth-child(3) {
+    animation-name: step3;
+  }
+  .avatar > :nth-child(4) {
+    animation-name: step4;
   }
 }
