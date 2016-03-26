@@ -32,6 +32,7 @@ module.exports = function (grunt) {
                     '<%= dir.assets %>/js/async/loadCSS.js',
                     '<%= dir.assets %>/js/async/onloadCSS.js',
                     '<%= dir.assets %>/js/async/grunticon-loader.js',
+                    '<%= dir.assets %>/js/async/lazy-loader.js',
                     '<%= dir.assets %>/js/async/async.js'
                 ],
                 dest: '<%= dir.release %>/js/async.js'

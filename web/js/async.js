@@ -1,4 +1,4 @@
-/*! olli.web - v0.0.1 - 2016-03-20
+/*! olli.web - v0.0.1 - 2016-03-26
 * https://github.com/oliver-eifler/olli.web#readme
 * Copyright (c) 2016 Oliver Jean Eifler; MIT License */
 
@@ -154,6 +154,45 @@ function onloadCSS( ss, callback ) {
 	window.grunticon = grunticon;
 }(this));
 
+(function(window) {
+    function loadImage(imageContainer) {
+
+            //var imageVersion = getImageVersion();
+
+            if (!imageContainer || !imageContainer.children) {
+                return;
+            }
+            var img = imageContainer.children[0];
+
+            if (img) {
+                /*
+                var imgSRC = img.getAttribute("data-src-" + imageVersion);
+                var altTxt = img.getAttribute("data-alt");
+                */
+                var imgSRC = img.getAttribute("data-src"),
+                    altTxt = img.getAttribute("data-alt");
+                if (imgSRC) {
+                    var imageElement = new Image();
+                    imageElement.setAttribute("alt", altTxt ? altTxt : "");
+                    imageElement.setAttribute("data-src", "");
+
+                    imageContainer.appendChild(imageElement);
+                    imageContainer.setAttribute("data-olli", "");
+                    imageElement.onload = function() {
+                        imageElement.removeAttribute("data-src");
+                    };
+                    imageElement.src = imgSRC;
+                }
+            }
+    };
+    var lazyload = function(images) {
+        for (var i = 0; i < images.length; i++) {
+            loadImage(images[i]);
+        }
+    };
+    window.lazyload = lazyload;
+}(this));
 (function( doc ) {
-    grunticon(["css/icons-svg.min.css", "css/icons-png.min.css", "css/icons-fallback.min.css"] );
+    grunticon(["css/icons-svg.min.css", "css/icons-png.min.css", "css/icons-fallback.min.css"],
+        function() {lazyload(doc.getElementsByClassName("lazy"));});
 })( document );

@@ -155,7 +155,6 @@ a.header:hover {
 .content-width {
   margin: 0 auto;
   max-width: 40em;
-  border: 1px solid #000;
 }
 
 @media (min-width: 60em) {
@@ -233,6 +232,19 @@ a.header:hover {
   width: 1.5em;
   opacity: 0.87;
   vertical-align: top;
+}
+
+.bio > * {
+  margin: 0;
+}
+
+.bio > * + * {
+  margin-top: .5em;
+}
+
+.bio {
+  font-size: 2em;
+  text-align: center;
 }
 
 /*# sourceMappingURL=layout.css.map */

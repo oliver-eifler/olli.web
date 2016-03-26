@@ -4,6 +4,7 @@ _backup
 build
 components
 images
+web/images
 webfonts
 docs
 .idea

@@ -109,7 +109,6 @@ a.header {
 .content-width {
   margin: 0 auto;
   max-width: 40em;
-  border:1px solid #000;
 }
 @media (min-width: $wideLayoutWidth) {
   .panel {
@@ -179,4 +178,15 @@ a.header {
   width:1.5em;
   opacity: opacity(text($colors));
   vertical-align:top;
+}
+
+.bio > * {
+  margin:0;
+}.bio > * + *{
+   margin-top:.5em;
+ }
+.bio {
+  font-size:2em;
+  text-align:center;
+
 }
