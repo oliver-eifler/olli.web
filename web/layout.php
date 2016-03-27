@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=yes'/>
+    <meta name='format-detection' content='telephone=no'/>
     <title>oliver-eifler.info</title>
     <style>
         <?php include('css/layout.min.css');?>
-        .lazy {
+        .pic {
             position:relative;
             display:block;
             height:0;
@@ -13,10 +15,10 @@
             background:#888;
             overflow:hidden;
         }
-        .lazy img {
+        .pic img {
             position:absolute;
             width:100%;
-            height:100%;
+            height:auto;
             left:0;top:0;
             opacity: 1;
             transition: opacity 1s;
@@ -76,7 +78,8 @@
 <div class="flex-content content" role="main">
     <div class="content-width">
     <article class="bio">
-        <div class="lazy" style="padding-bottom:<?=1149*100/1920?>%;">
+
+        <div class="lazy pic" style="padding-bottom:<?=1149*100/1920?>%;">
             <noscript data-src="images/welpe.jpg" data-alt="Welpe">
                 <img src="images/welpe.jpg">
             </noscript>
@@ -86,7 +89,7 @@
         <strong>Programmierer. Techniker. Künstler.</strong>
             <p>Erinnerungen, Prophezeiungen, Fantasiegespinste und Liebe, Vergangenheit, Zukunft und der Augenblick des Traums dazwischen -&nbsp;sie alle schaffen ein Land, das einen einzigen, unsterblichen Tag lang existiert.</p>
             <p>Das zu wissen, ist Weisheit. Das zu nutzen, ist <strong>'Kunst'</strong>.</p>
-        <div class="lazy" style="padding-bottom:<?=840*100/560?>%;">
+        <div class="lazy pic" style="padding-bottom:<?=840*100/560?>%;">
             <noscript data-src="images/faultier.jpg" data-alt="Faultier">
             <img src="images/faultier.jpg">
             </noscript>
@@ -103,6 +106,26 @@
 
             To use it is the Art.”
         </p>
+        <div class="lazy pic" style="padding-bottom:<?=480*100/640?>%;">
+            <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1000,9999)?>" data-alt="Faultier">
+                <img src="images/faultier.jpg">
+            </noscript>
+        </div>
+        <div class="lazy pic" style="padding-bottom:<?=480*100/640?>%;">
+            <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1000,9999)?>" data-alt="Faultier">
+                <img src="images/faultier.jpg">
+            </noscript>
+        </div>
+        <div class="lazy pic" style="padding-bottom:<?=480*100/640?>%;">
+            <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1000,9999)?>" data-alt="Faultier">
+                <img src="images/faultier.jpg">
+            </noscript>
+        </div>
+        <div class="lazy pic" style="padding-bottom:<?=480*100/640?>%;">
+            <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1000,9999)?>" data-alt="Faultier">
+                <img src="images/faultier.jpg">
+            </noscript>
+        </div>
     </article>
     </div>
 </div>
@@ -113,6 +136,6 @@
     </footer>
     </div>
 </div>
-<script src="js/async.min.js" async></script>
+<script src="js/async.js" async></script>
 </body>
 </html>

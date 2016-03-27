@@ -1,4 +1,4 @@
-/*! olli.web - v0.0.1 - 2016-03-26
+/*! olli.web - v0.0.1 - 2016-03-27
 * https://github.com/oliver-eifler/olli.web#readme
 * Copyright (c) 2016 Oliver Jean Eifler; MIT License */
 
@@ -155,20 +155,16 @@ function onloadCSS( ss, callback ) {
 }(this));
 
 (function(window) {
-    function loadImage(imageContainer) {
+    var loadImage=function(imageContainer) {
 
             //var imageVersion = getImageVersion();
 
-            if (!imageContainer || !imageContainer.children) {
+            if (!imageContainer || !imageContainer.children || imageContainer.$loaded === true) {
                 return;
             }
+            imageContainer.$loaded = true;
             var img = imageContainer.children[0];
-
             if (img) {
-                /*
-                var imgSRC = img.getAttribute("data-src-" + imageVersion);
-                var altTxt = img.getAttribute("data-alt");
-                */
                 var imgSRC = img.getAttribute("data-src"),
                     altTxt = img.getAttribute("data-alt");
                 if (imgSRC) {
@@ -177,22 +173,199 @@ function onloadCSS( ss, callback ) {
                     imageElement.setAttribute("data-src", "");
 
                     imageContainer.appendChild(imageElement);
-                    imageContainer.setAttribute("data-olli", "");
                     imageElement.onload = function() {
                         imageElement.removeAttribute("data-src");
                     };
                     imageElement.src = imgSRC;
+                    console.log("loading"+imageElement.src);
                 }
             }
     };
-    var lazyload = function(images) {
-        for (var i = 0; i < images.length; i++) {
-            loadImage(images[i]);
-        }
-    };
-    window.lazyload = lazyload;
+    this.loadImage = loadImage;
 }(this));
-(function( doc ) {
-    grunticon(["css/icons-svg.min.css", "css/icons-png.min.css", "css/icons-fallback.min.css"],
-        function() {lazyload(doc.getElementsByClassName("lazy"));});
-})( document );
+(function (w, d, n) {
+  'use strict';
+
+
+  var Sloth=(function() {
+    var windowHeight = w.innerHeight || d.documentElement.clientHeight,
+        // When resizing or scrolling, hundreds to thousands events can be send.
+        // Instead of executing the listeners on every single event, we only
+        // execute the logic every X miliseconds the configured values are
+        // determined based on the research results from Ph.D. Steven C. Seow.
+        resizeTimeout    = null,
+        scrollTimeout    = null,
+        resizeHandlerSet = false,
+        scrollHandlerSet = false,
+        listeners = {},
+        listenersDone = 0,
+        listenerCount = 0,
+
+        addEventListener = (function () {
+          var overwrite;
+          if (w.addEventListener) {
+            overwrite = function(type, listener, element) {
+              element.addEventListener(type, listener, false);
+            };
+          } else if (w.attachEvent) {
+            overwrite = function(type, listener, element) {
+              element.attachEvent('on' + type, listener);
+            };
+          }
+
+          return overwrite;
+        })(),
+
+        removeEventListener = (function () {
+          var overwrite;
+          if (w.removeEventListener) {
+            overwrite = function(type, listener, element) {
+              element.removeEventListener(type, listener, false);
+            };
+          } else if (w.detachEvent) {
+            overwrite = function(type, listener, element) {
+              element.detachEvent('on' + type, listener);
+            };
+          }
+
+          return overwrite;
+        })(),
+
+        isInViewport = function(el) {
+          var rect = el.getBoundingClientRect();
+          return !(rect.bottom+20 < 0 || rect.top-20 > windowHeight);
+        },
+        /*
+         function isElementOutViewport (el) {
+         var rect = el.getBoundingClientRect();
+         return rect.bottom < 0 || rect.right < 0 || rect.left > window.innerWidth || rect.top > window.innerHeight;
+         }
+         */
+        updateListeners = function () {
+          if (listenerCount < 1) {
+            return;
+          }
+
+          var scrollTop = w.pageYOffset || d.documentElement.scrollTop,
+              listenerIndex,
+              listener;
+
+          for (listenerIndex in listeners) {
+            if (listeners.hasOwnProperty(listenerIndex)) {
+              listener = listeners[listenerIndex];
+
+              if (!listener.handled && isInViewport(listener.elem)) {
+                listenersDone += 1;
+                listener.handled = true;
+
+                listener.onready(listener.elem);
+              }
+            }
+          }
+
+          if (listenersDone === listenerCount) {
+            removeEventListener('scroll', onScrollHandler, w);
+            removeEventListener('resize', resetWindowHeight, w);
+            scrollHandlerSet = false;
+            resizeHandlerSet = false;
+            listenerCount = 0;
+          }
+
+          scrollTimeout = null;
+        },
+
+        onScrollHandler = function () {
+          // Prevent massive js execution on fast/long scrolling.
+          if (null === scrollTimeout) {
+            scrollTimeout = w.setTimeout(function () {
+              updateListeners();
+            }, 50);// Fairly unnoticable number.
+          }
+        },
+
+        resetWindowHeight = function () {
+          if (null === resizeTimeout) {
+            resizeTimeout = w.setTimeout(function () {
+              windowHeight = w.innerHeight || d.documentElement.clientHeight;
+              resizeTimeout = null;
+              // Check if something became visible after the resize.
+              onScrollHandler();
+            }, 100);
+          }
+        },
+
+        addScrollListener = function (element, listener) {
+          listenerCount += 1;
+          listeners[listenerCount] = {
+            elem: element,
+            onready: listener
+          };
+
+          if (false === resizeHandlerSet) {
+            addEventListener('resize', resetWindowHeight, w);
+            resizeHandlerSet = true;
+          }
+
+          if (false === scrollHandlerSet) {
+            if (n.userAgent.match(/webkit/i) && n.userAgent.match(/mobile/i)) {
+              // iPad, iPhone, Android etc.
+              addEventListener('touchmove', onScrollHandler, w);
+            } else {
+              addEventListener('scroll', onScrollHandler, w);
+            }
+
+            scrollHandlerSet = true;
+          }
+
+          // Directly check if the element is visible once added.
+          onScrollHandler();
+
+          return element;
+        };
+
+    return addScrollListener;
+
+  })();
+  w.Sloth = Sloth;
+
+})(window, window.document, window.navigator);
+
+(function (doc) {
+    grunticon(["css/icons-svg.min.css", "css/icons-png.min.css", "css/icons-fallback.min.css"]);
+    //ElementyByClassName function
+    function elementsByClassName(search) {
+        if (doc.getElementsByClassName)
+            return doc.getElementsByClassName(search);
+        if (doc.querySelectorAll) { // IE8
+            return doc.querySelectorAll("." + search);
+        }
+        var elements, pattern, i, results = [];
+        if (doc.evaluate) { // IE6, IE7
+            pattern = ".//*[contains(concat(' ', @class, ' '), ' " + search + " ')]";
+            elements = doc.evaluate(pattern, doc, null, 0, null);
+            while ((i = elements.iterateNext())) {
+                results.push(i);
+            }
+        } else {
+            elements = doc.getElementsByTagName("*");
+            pattern = new RegExp("(^|\\s)" + search + "(\\s|$)");
+            for (i = 0; i < elements.length; i++) {
+                if (pattern.test(elements[i].className)) {
+                    results.push(elements[i]);
+                }
+            }
+        }
+        return results;
+    }
+    //LayLoad Images on Scroll using Sloth (Faultier)
+    var i,
+        images = elementsByClassName('lazy');
+    for (i = 0; i < images.length; i++) {
+        var image = images[i];
+        if (!image.$sloth) {
+            image.$sloth = true;
+            Sloth(image, loadImage);
+        }
+    }
+})(document);
+

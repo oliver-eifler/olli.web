@@ -2,20 +2,16 @@
  * Created by darkwolf on 26.03.2016.
  */
 (function(window) {
-    function loadImage(imageContainer) {
+    var loadImage=function(imageContainer) {
 
             //var imageVersion = getImageVersion();
 
-            if (!imageContainer || !imageContainer.children) {
+            if (!imageContainer || !imageContainer.children || imageContainer.$loaded === true) {
                 return;
             }
+            imageContainer.$loaded = true;
             var img = imageContainer.children[0];
-
             if (img) {
-                /*
-                var imgSRC = img.getAttribute("data-src-" + imageVersion);
-                var altTxt = img.getAttribute("data-alt");
-                */
                 var imgSRC = img.getAttribute("data-src"),
                     altTxt = img.getAttribute("data-alt");
                 if (imgSRC) {
@@ -24,7 +20,6 @@
                     imageElement.setAttribute("data-src", "");
 
                     imageContainer.appendChild(imageElement);
-                    imageContainer.setAttribute("data-olli", "");
                     imageElement.onload = function() {
                         imageElement.removeAttribute("data-src");
                     };
@@ -32,10 +27,5 @@
                 }
             }
     };
-    var lazyload = function(images) {
-        for (var i = 0; i < images.length; i++) {
-            loadImage(images[i]);
-        }
-    };
-    window.lazyload = lazyload;
+    this.loadImage = loadImage;
 }(this));
