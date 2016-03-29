@@ -7,27 +7,6 @@
     <title>oliver-eifler.info</title>
     <style>
         <?php include('css/layout.min.css');?>
-        .pic {
-            position:relative;
-            display:block;
-            height:0;
-            width:100%;
-            background:#888;
-            overflow:hidden;
-        }
-        .pic img {
-            position:absolute;
-            width:100%;
-            height:auto;
-            left:0;top:0;
-            opacity: 1;
-            transition: opacity 1s;
-        }
-        img[data-src] {
-            opacity: 0;
-        }
-
-
     </style>
     <script>/* initial script*/</script>
     <noscript><link href="css/icons-fallback.min.css" rel="stylesheet"></noscript>
@@ -79,8 +58,8 @@
     <div class="content-width">
     <article class="bio">
 
-        <div class="lazy pic" style="padding-bottom:<?=1149*100/1920?>%;">
-            <noscript data-src="images/welpe.jpg" data-alt="Welpe">
+        <div class="sloth pic" style="padding-bottom:<?=1149*100/1920?>%;" data-alt="Picture: a nice pic of my dog">
+            <noscript data-src="images/welpe.jpg">
                 <img src="images/welpe.jpg">
             </noscript>
         </div>
@@ -89,7 +68,7 @@
         <strong>Programmierer. Techniker. Künstler.</strong>
             <p>Erinnerungen, Prophezeiungen, Fantasiegespinste und Liebe, Vergangenheit, Zukunft und der Augenblick des Traums dazwischen -&nbsp;sie alle schaffen ein Land, das einen einzigen, unsterblichen Tag lang existiert.</p>
             <p>Das zu wissen, ist Weisheit. Das zu nutzen, ist <strong>'Kunst'</strong>.</p>
-        <div class="lazy pic" style="padding-bottom:<?=840*100/560?>%;">
+        <div class="sloth pic" style="padding-bottom:<?=840*100/560?>%;">
             <noscript data-src="images/faultier.jpg" data-alt="Faultier">
             <img src="images/faultier.jpg">
             </noscript>
@@ -106,23 +85,23 @@
 
             To use it is the Art.”
         </p>
-        <div class="lazy pic" style="padding-bottom:<?=480*100/640?>%;">
-            <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1000,9999)?>" data-alt="Faultier">
+        <div class="sloth pic" style="padding-bottom:<?=480*100/640?>%;">
+            <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>" data-alt="Faultier">
                 <img src="images/faultier.jpg">
             </noscript>
         </div>
-        <div class="lazy pic" style="padding-bottom:<?=480*100/640?>%;">
-            <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1000,9999)?>" data-alt="Faultier">
+        <div class="sloth pic" style="padding-bottom:<?=480*100/640?>%;">
+            <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>" data-alt="Faultier">
                 <img src="images/faultier.jpg">
             </noscript>
         </div>
-        <div class="lazy pic" style="padding-bottom:<?=480*100/640?>%;">
-            <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1000,9999)?>" data-alt="Faultier">
+        <div class="sloth pic" style="padding-bottom:<?=480*100/640?>%;">
+            <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>" data-alt="Faultier">
                 <img src="images/faultier.jpg">
             </noscript>
         </div>
-        <div class="lazy pic" style="padding-bottom:<?=480*100/640?>%;">
-            <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1000,9999)?>" data-alt="Faultier">
+        <div class="sloth pic" style="padding-bottom:<?=480*100/640?>%;">
+            <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>" data-alt="Faultier">
                 <img src="images/faultier.jpg">
             </noscript>
         </div>

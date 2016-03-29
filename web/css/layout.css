@@ -247,4 +247,43 @@ a.header:hover {
   text-align: center;
 }
 
+.pic {
+  position: relative;
+  display: block;
+  height: 0;
+  width: 100%;
+  background: #e0e0e0;
+  color: #6e3c85;
+  overflow: hidden;
+}
+
+.pic:before {
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  width: 80%;
+  display: block;
+  content: attr(data-alt);
+  font-size: 75%;
+  padding: 4px;
+  text-align: center;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  transform: translate(0, -50%);
+}
+
+.pic img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+img[data-src] {
+  opacity: 0;
+}
+
 /*# sourceMappingURL=layout.css.map */

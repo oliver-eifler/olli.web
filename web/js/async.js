@@ -1,4 +1,4 @@
-/*! olli.web - v0.0.1 - 2016-03-27
+/*! olli.web - v0.0.1 - 2016-03-28
 * https://github.com/oliver-eifler/olli.web#readme
 * Copyright (c) 2016 Oliver Jean Eifler; MIT License */
 
@@ -159,25 +159,25 @@ function onloadCSS( ss, callback ) {
 
             //var imageVersion = getImageVersion();
 
-            if (!imageContainer || !imageContainer.children || imageContainer.$loaded === true) {
+            if (!imageContainer || !imageContainer.children || imageContainer.getAttribute("data-img")) {
                 return;
             }
-            imageContainer.$loaded = true;
+
+            imageContainer.setAttribute("data-img","loading");
             var img = imageContainer.children[0];
             if (img) {
-                var imgSRC = img.getAttribute("data-src"),
-                    altTxt = img.getAttribute("data-alt");
+                var imgSRC = img.getAttribute("data-src");
+                    //altTxt = imageContainer.getAttribute("data-alt") || img.getAttribute("data-alt");
                 if (imgSRC) {
                     var imageElement = new Image();
-                    imageElement.setAttribute("alt", altTxt ? altTxt : "");
+                    //imageElement.setAttribute("alt", altTxt ? altTxt : "");
                     imageElement.setAttribute("data-src", "");
-
                     imageContainer.appendChild(imageElement);
                     imageElement.onload = function() {
                         imageElement.removeAttribute("data-src");
+                        imageContainer.setAttribute("data-img","loaded");
                     };
                     imageElement.src = imgSRC;
-                    console.log("loading"+imageElement.src);
                 }
             }
     };
@@ -233,7 +233,7 @@ function onloadCSS( ss, callback ) {
 
         isInViewport = function(el) {
           var rect = el.getBoundingClientRect();
-          return !(rect.bottom+20 < 0 || rect.top-20 > windowHeight);
+          return !(rect.bottom < 0 || rect.top > windowHeight);
         },
         /*
          function isElementOutViewport (el) {
@@ -332,6 +332,11 @@ function onloadCSS( ss, callback ) {
 
 (function (doc) {
     grunticon(["css/icons-svg.min.css", "css/icons-png.min.css", "css/icons-fallback.min.css"]);
+    function hasAttrib(element, attributeName) {
+        return (typeof element.attributes[attributeName] == 'undefined') ? 'no' : 'yes';
+        //return (typeof element.attributes[attributeName] != 'undefined');
+    }
+
     //ElementyByClassName function
     function elementsByClassName(search) {
         if (doc.getElementsByClassName)
@@ -359,11 +364,11 @@ function onloadCSS( ss, callback ) {
     }
     //LayLoad Images on Scroll using Sloth (Faultier)
     var i,
-        images = elementsByClassName('lazy');
+        images = elementsByClassName('sloth');
     for (i = 0; i < images.length; i++) {
         var image = images[i];
-        if (!image.$sloth) {
-            image.$sloth = true;
+        if (!image.getAttribute("data-sloth")) {
+            image.setAttribute("data-sloth","true")
             Sloth(image, loadImage);
         }
     }
