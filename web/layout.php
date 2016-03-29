@@ -8,7 +8,7 @@
     <style>
         <?php include('css/layout.min.css');?>
     </style>
-    <script>/* initial script*/</script>
+    <script></script>
     <noscript><link href="css/icons-fallback.min.css" rel="stylesheet"></noscript>
 </head>
 <body class="flex">

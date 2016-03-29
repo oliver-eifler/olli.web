@@ -31,8 +31,8 @@ module.exports = function (grunt) {
                 src: [
                     '<%= dir.assets %>/js/async/loadCSS.js',
                     '<%= dir.assets %>/js/async/onloadCSS.js',
-                    '<%= dir.assets %>/js/async/grunticon-loader.js',
-                    '<%= dir.assets %>/js/async/image-loader.js',
+                    '<%= dir.assets %>/js/async/grunticon.js',
+                    '<%= dir.assets %>/js/async/loadimage.js',
                     '<%= dir.assets %>/js/async/sloth.js',
                     '<%= dir.assets %>/js/async/async.js'
                 ],
@@ -40,12 +40,24 @@ module.exports = function (grunt) {
             }
             // CSS concat handled by SASS
         },
+        rollup: {
+            options: {
+                format: 'iife',
+                banner: '<%= banner %>',
+                globals: {
+                }
+            },
+            jsAsync: {
+                'dest':'<%= dir.release %>/js/async.js',
+                'src' :'<%= dir.assets %>/js/async.js' // Only one source file is permitted
+            }
+        },
         uglify: {
             options: {
                 //banner: '<%= banner %>'
             },
             jsAsync: {
-                src: '<%= concat.jsAsync.dest %>',
+                src: '<%= rollup.jsAsync.dest %>',
                 dest: '<%= dir.release %>/js/async.min.js'
             }
         },
@@ -116,13 +128,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-rollup');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadTasks('grunt-tasks/ollicon');
     // Default task(s).
     grunt.registerTask('icons', ['ollicon:icons','copy:icons']);
-    grunt.registerTask('js', ['concat','uglify']);
+    grunt.registerTask('js', ['rollup','uglify']);
     grunt.registerTask('css', ['sass','cssmin']);
 
     grunt.registerTask('default', ['icons','css','js']);
