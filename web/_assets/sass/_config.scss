@@ -25,3 +25,10 @@ $color-twitter: #55acee;
   overflow: hidden;
   clip: rect(1px, 1px, 1px, 1px);
 }
+@mixin screenShow($position: static) {
+  position: $position;
+  height: auto;
+  width: auto;
+  overflow: visible;
+  clip: auto;
+}

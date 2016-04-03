@@ -37,9 +37,17 @@
   width: $icon-twitter-width;
   height: $icon-twitter-height;
 }
+.social-icon span {
+  @include screenShow();
+}
 
 .icon-invader {
   background-image: url($icon-invader-url);
   width: $icon-invader-width;
   height: $icon-invader-height;
+}
+.avatar {
+  margin:0;
+  width: $icon-olli-alt-width;
+  height: $icon-olli-alt-height;
 }

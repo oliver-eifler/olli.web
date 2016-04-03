@@ -39,6 +39,12 @@ function ready( cb ){
 ready(function() {
     grunticon(["css/icons-svg.min.css", "css/icons-png.min.css", "css/icons-fallback.min.css"], updateSloth);
     if (win.history && win.history.pushState) {
-        loadJS("js/page.js");
+        var js = [];
+        if (!win.Promise)
+            js.push("js/promise.min.js");
+
+        js.push("js/page.min.js");
+
+        loadJS("bundle/"+js.join(","));
     }
 });

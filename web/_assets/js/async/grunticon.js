@@ -1,7 +1,8 @@
 /*global loadCSS:true*/
 import {win,doc} from '../globals.js';
-import loadCSS from '../async/loadCSS.js';
-import onloadCSS from '../async/onloadCSS.js';
+//import loadCSS from '../async/loadCSS.js';
+//import onloadCSS from '../async/onloadCSS.js';
+import loadCSS from '../async/ajaxCSS.js';
 
 var grunticon = function (css, onload) {
     // expects a css array with 3 items representing CSS paths to datasvg, datapng, urlpng
@@ -24,8 +25,8 @@ var grunticon = function (css, onload) {
         /* Images disabled */
         //grunticon.method = "png";
         //grunticon.href = css[2];
-        loadCSS(css[2]);
-        onload();
+        loadCSS("bundle/"+css[2],onload);
+        //onload();
     };
 
     img.onload = function () {
@@ -42,7 +43,13 @@ var grunticon = function (css, onload) {
         }*/
 
         //grunticon.href = href;
-        onloadCSS(loadCSS(href), function () {
+        /*
+        onloadCSS(loadCSS("bundle/"+href), function () {
+            doc.documentElement.className += " oi oi-" + method;
+            onload();
+        });
+        */
+        loadCSS("bundle/"+href, function () {
             doc.documentElement.className += " oi oi-" + method;
             onload();
         });

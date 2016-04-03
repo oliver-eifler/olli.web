@@ -27,7 +27,7 @@ module.exports = function (grunt) {
                 banner: '<%= banner %>',
                 stripBanners: true
             },
-            jsAsync: {
+            jsPromise: {
                 src: [
                     '<%= dir.assets %>/js/async/loadCSS.js',
                     '<%= dir.assets %>/js/async/onloadCSS.js',
@@ -50,6 +50,14 @@ module.exports = function (grunt) {
             jsAsync: {
                 'dest':'<%= dir.release %>/js/async.js',
                 'src' :'<%= dir.assets %>/js/async.js' // Only one source file is permitted
+            },
+            jsPage: {
+                'dest':'<%= dir.release %>/js/page.js',
+                'src' :'<%= dir.assets %>/js/page.js' // Only one source file is permitted
+            },
+            jsPromise: {
+                'dest':'<%= dir.release %>/js/promise.js',
+                'src' :'<%= dir.assets %>/js/promise.js' // Only one source file is permitted
             }
         },
         uglify: {
@@ -59,6 +67,14 @@ module.exports = function (grunt) {
             jsAsync: {
                 src: '<%= rollup.jsAsync.dest %>',
                 dest: '<%= dir.release %>/js/async.min.js'
+            },
+            jsPage: {
+                src: '<%= rollup.jsPage.dest %>',
+                dest: '<%= dir.release %>/js/page.min.js'
+            },
+            jsPromise: {
+                src: '<%= rollup.jsPromise.dest %>',
+                dest: '<%= dir.release %>/js/promise.min.js'
             }
         },
 

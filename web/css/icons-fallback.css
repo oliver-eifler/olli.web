@@ -67,10 +67,24 @@
   height: 32px;
 }
 
+.social-icon span {
+  position: static;
+  height: auto;
+  width: auto;
+  overflow: visible;
+  clip: auto;
+}
+
 .icon-invader {
   background-image: url("icons/invader.png");
   width: 16px;
   height: 16px;
+}
+
+.avatar {
+  margin: 0;
+  width: 96px;
+  height: 96px;
 }
 
 /*# sourceMappingURL=icons-fallback.css.map */

@@ -1,4 +1,4 @@
-/*! olli.web - v0.0.1 - 2016-03-29
+/*! olli.web - v0.0.1 - 2016-04-03
 * https://github.com/oliver-eifler/olli.web#readme
 * Copyright (c) 2016 Oliver Jean Eifler; MIT License */
 
@@ -13,84 +13,39 @@
     var doc = win.document;
     var lib = win.Olli||{};
 
-    function loadCSS (href, media) {
-        // Arguments explained:
-        // `href` [REQUIRED] is the URL for your CSS file.
-        // `before` [OPTIONAL] is the element the script should use as a reference for injecting our stylesheet <link> before
-        // By default, loadCSS attempts to inject the link after the last stylesheet or script in the DOM. However, you might desire a more specific location in your document.
-        // `media` [OPTIONAL] is the media type or query of the stylesheet. By default it will be 'all'
-        var refs = (doc.body||doc.getElementsByTagName("head")[0] ).childNodes;
-        var ref = refs[refs.length - 1];
-        var ss = doc.createElement("link");
+    function loadCSS (href, cb, media) {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0] ).childNodes,
+        ref = refs[refs.length - 1];
+        if (!href || href=="")
+            return;
+        cb = cb||function(){};
+        function addcss(css){
+            var ss = doc.createElement('style');
+            ss.setAttribute('type', 'text/css');
+            ss.setAttribute('media', media || "all");
+            ss.setAttribute('data-src', href);
+            if (ss.styleSheet) {   // IE
+                ss.styleSheet.cssText = css;
+            } else {                // the world
+                ss.appendChild(document.createTextNode(css));
+            }
+            ref.parentNode.insertBefore(ss, ref.nextSibling);
+            cb();
+        }
+        var req = new XMLHttpRequest();
+        req.open('GET', href);
+        req.onreadystatechange = function () {
+            if (req.readyState === 4) {
+                var status = (req.status === 1223 ? 204 : req.status);
 
-        var sheets = doc.styleSheets;
-        ss.rel = "stylesheet";
-        ss.href = href;
-        // temporarily set media to something inapplicable to ensure it'll fetch without blocking render
-        ss.media = "only x";
+                if (status >= 200 && status < 300 || status === 304) {
+                    addcss(req.responseText);
 
-        // A method (exposed on return object for external use) that mimics onload by polling until document.styleSheets until it includes the new sheet.
-        var onloadcssdefined = function (cb) {
-            var resolvedHref = ss.href;
-            var i = sheets.length;
-            while (i--) {
-                if (sheets[i].href === resolvedHref) {
-                    return cb();
                 }
             }
-            setTimeout(function () {
-                onloadcssdefined(cb);
-            });
         };
-
-        function loadCB() {
-            if (ss.addEventListener) {
-                ss.removeEventListener("load", loadCB);
-            }
-            ss.media = media || "all";
-        }
-
-        // once loaded, set link's media back to `all` so that the stylesheet applies once it loads
-        if (ss.addEventListener) {
-            ss.addEventListener("load", loadCB);
-        }
-        ss.onloadcssdefined = onloadcssdefined;
-        onloadcssdefined(loadCB);
-
-        ref.parentNode.insertBefore(ss, ref.nextSibling);
-        return ss;
-    }
-
-    /*! onloadCSS: adds onload support for asynchronous stylesheets loaded with loadCSS. [c]2016 @zachleat, Filament Group, Inc. Licensed MIT */
-    /* global navigator */
-    /* exported onloadCSS */
-    function onloadCSS (ss, callback) {
-        var called;
-
-        function newcb() {
-            if (!called && callback) {
-                called = true;
-                callback.call(ss);
-            }
-        }
-
-        if (ss.addEventListener) {
-            ss.addEventListener("load", newcb);
-        }
-        if (ss.attachEvent) {
-            ss.attachEvent("onload", newcb);
-        }
-
-        // This code is for browsers that don’t support onload
-        // No support for onload (it'll bind but never fire):
-        //	* Android 4.3 (Samsung Galaxy S4, Browserstack)
-        //	* Android 4.2 Browser (Samsung Galaxy SIII Mini GT-I8200L)
-        //	* Android 2.3 (Pantech Burst P9070)
-
-        // Weak inference targets Android < 4.4
-        if ("isApplicationInstalled" in navigator && "onloadcssdefined" in ss) {
-            ss.onloadcssdefined(newcb);
-        }
+        // Make the request
+        req.send();
     }
 
     var grunticon = function (css, onload) {
@@ -114,8 +69,8 @@
             /* Images disabled */
             //grunticon.method = "png";
             //grunticon.href = css[2];
-            loadCSS(css[2]);
-            onload();
+            loadCSS("bundle/"+css[2],onload);
+            //onload();
         };
 
         img.onload = function () {
@@ -132,7 +87,13 @@
             }*/
 
             //grunticon.href = href;
-            onloadCSS(loadCSS(href), function () {
+            /*
+            onloadCSS(loadCSS("bundle/"+href), function () {
+                doc.documentElement.className += " oi oi-" + method;
+                onload();
+            });
+            */
+            loadCSS("bundle/"+href, function () {
                 doc.documentElement.className += " oi oi-" + method;
                 onload();
             });
@@ -391,7 +352,13 @@
     ready(function() {
         grunticon(["css/icons-svg.min.css", "css/icons-png.min.css", "css/icons-fallback.min.css"], updateSloth);
         if (win.history && win.history.pushState) {
-            loadJS("js/page.js");
+            var js = [];
+            if (!win.Promise)
+                js.push("js/promise.min.js");
+
+            js.push("js/page.min.js");
+
+            loadJS("bundle/"+js.join(","));
         }
     });
 

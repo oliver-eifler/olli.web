@@ -5,11 +5,8 @@
     <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=yes'/>
     <meta name='format-detection' content='telephone=no'/>
     <title>oliver-eifler.info</title>
-    <style>
-        <?php include('css/layout.min.css');?>
-    </style>
-    <script></script>
-    <noscript><link href="css/icons-fallback.min.css" rel="stylesheet"></noscript>
+    <style><?php include('css/layout.min.css');?></style>
+    <noscript><link href="bundle/css/icons-fallback.min.css" rel="stylesheet"></noscript>
 </head>
 <body class="flex">
 <div class="flex-header panel">
@@ -34,13 +31,13 @@
             <div class="navigation">
                 <div class="links">
                     <div class="links-cat">
-                        <a href="#">Home</a>
-                        <a href="#">Articles</a>
-                        <a href="#">Misc</a>
+                        <a href="#Home" data-observe="ajax">Home</a>
+                        <a href="#Articles" data-observe="ajax">Articles</a>
+                        <a href="#Misc" data-observe="ajax">Misc</a>
                     </div>
                     <div class="links-cat">
-                        <a href="#">About</a>
-                        <a href="#">Contact</a>
+                        <a href="#About">About</a>
+                        <a href="#Contact">Contact</a>
                     </div>
                 </div>
                 <div class="social">
@@ -57,8 +54,16 @@
 <div class="flex-content content" role="main">
     <div class="content-width">
     <article class="bio">
+        <p>
+        <ul>
+            <li>Mod_DEFLATE: <?=getenv("HTTP_MOD_DEFLATE")?></li>
+            <li>Mod_Rewrite: <?=getenv("HTTP_MOD_REWRITE")?></li>
+        </ul>
 
-        <div class="sloth pic" style="padding-bottom:<?=1149*100/1920?>%;" data-alt="Picture: a nice pic of my dog">
+
+        </p>
+        <div class="pic" style="padding-bottom:<?=1149*100/1920?>%;" data-alt="Picture: a nice pic of my dog">
+            <img src="images/welpe.jpg">
             <noscript data-src="images/welpe.jpg">
                 <img src="images/welpe.jpg">
             </noscript>
@@ -115,6 +120,6 @@
     </footer>
     </div>
 </div>
-<script src="js/async.js" async></script>
+<script src='bundle/js/async.min.js' async='true'></script>
 </body>
 </html>
