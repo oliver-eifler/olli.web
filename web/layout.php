@@ -71,8 +71,8 @@
 
         <h1>Oliver Jean Eifler</h1>
         <strong>Programmierer. Techniker. Künstler.</strong>
-            <p>Erinnerungen, Prophezeiungen, Fantasiegespinste und Liebe, Vergangenheit, Zukunft und der Augenblick des Traums dazwischen -&nbsp;sie alle schaffen ein Land, das einen einzigen, unsterblichen Tag lang existiert.</p>
-            <p>Das zu wissen, ist Weisheit. Das zu nutzen, ist <strong>'Kunst'</strong>.</p>
+            <p>Erinnerungen, <a href='#'>Prophezeiungen</a>, Fantasiegespinste und <a href='#'>Liebe</a>, Vergangenheit, Zukunft und der Augenblick des Traums dazwischen -&nbsp;sie alle schaffen ein Land, das einen einzigen, unsterblichen Tag lang existiert.</p>
+            <p>Das zu wissen, ist <a href='#'>Weisheit</a>. Das zu nutzen, ist <a href='#'><strong>'Kunst'</strong></a>.</p>
         <div class="sloth pic" style="padding-bottom:<?=840*100/560?>%;">
             <noscript data-src="images/faultier.jpg" data-alt="Faultier">
             <img src="images/faultier.jpg">

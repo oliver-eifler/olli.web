@@ -44,26 +44,22 @@ body {
   line-height: 1.5;
   color: #000;
   color: rgba(0, 0, 0, 0.87);
-  background-color: #fefeff;
+  background-color: #fffffa;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: #000;
 }
 
-:link {
-  color: #67a281;
+a {
+  color: #2164f4;
+  text-decoration: none;
 }
-
-:visited {
-  color: #3c624b;
+a:visited {
+  color: #2164f4;
 }
-
-:link:active,
-:link:hover,
-:link:focus,
-:visited:hover {
-  color: #d94625;
+a:hover, a:focus, a:active {
+  color: #F10087 !important;
 }
 
 small {
@@ -99,26 +95,20 @@ small {
 
 .panel a {
   display: inline-block;
-  text-decoration: none;
-  /*
-  color:info($colors);
-  &:hover {color:hilight($colors);}
-*/
+  color: #FF8A00;
+}
+.panel a:visited {
+  color: #FF8A00;
 }
 
 /* Header-Banner */
-a.header {
-  color: #6e3c85;
-}
-a.header:hover {
-  color: #6e3c85;
-}
-
 .header {
   line-height: 1;
 }
+.header h1, .header small {
+  color: #6e3c85 !important;
+}
 .header h1 {
-  color: #6e3c85;
   font-size: 2em;
   margin: 0;
   padding: 0;
@@ -136,7 +126,11 @@ a.header:hover {
 }
 
 .header-logo {
-  margin: 0 1em 0 0;
+  margin: 0 .5em;
+}
+
+.header-text {
+  margin: .5em 0 0 0;
 }
 
 /* Header Links */
@@ -168,7 +162,7 @@ a.header:hover {
   }
 
   .header-logo {
-    margin: 0 0 1em 0;
+    margin: 0;
   }
 
   .links a {
@@ -246,7 +240,7 @@ a.header:hover {
   display: block;
   height: 0;
   width: 100%;
-  background: #e0e0e0;
+  background: #e0e0dc;
   color: #6e3c85;
   overflow: hidden;
 }

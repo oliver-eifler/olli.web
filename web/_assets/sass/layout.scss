@@ -25,17 +25,17 @@ body {
 h1,h2,h3,h4,h5,h6 {
   color: hilight($colors);
 }
-:link {
-  color: #67a281;
-}
-:visited {
-  color: #3c624b;
-}
-:link:active,
-:link:hover,
-:link:focus,
-:visited:hover {
-  color: #d94625;
+a {
+  color: $color-link;
+  text-decoration: none;
+  &:visited {
+    color: $color-link-visited;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color-link-hover !important;
+  }
 }
 small {font-size:.75em;}
 
@@ -62,21 +62,16 @@ small {font-size:.75em;}
 }
 .panel a {
   display:inline-block;
-  text-decoration:none;
-  /*
-  color:info($colors);
-  &:hover {color:hilight($colors);}
-*/
+  color:$color-extra;
+  &:visited {color:$color-extra;}
 }
 /* Header-Banner */
-a.header {
-  color:$color-brand;
-  &:hover {color:$color-brand;}
-}
 .header {
+  h1,small {
+    color:$color-brand !important;
+  }
   line-height: 1;
   h1 {
-    color:$color-brand;
     font-size: 2em;
     margin: 0;
     padding: 0;
@@ -94,7 +89,10 @@ a.header {
   }
 }
 .header-logo {
-  margin:0 1em 0 0;
+  margin:0 .5em;
+}
+.header-text {
+  margin:.5em 0 0 0;
 }
 /* Header Links */
 .links {
@@ -121,7 +119,7 @@ a.header {
     text-align:right;
   }
   .header-logo {
-    margin:0 0 1em 0;
+    margin:0;
   }
   .links {
     a {

@@ -8,9 +8,28 @@ $panelHeight: 30em;
 $wideLayoutWidth: 60em;
 
 //Colors
-$colors: getColors(#fefeff);
+$color-page: #fffffa;
+$colors: getColors($color-page);
 /*$color-brand: #6811ff;*/
 $color-brand: #6e3c85;
+$color-brand-lighter: #B393C2;
+$color-brand-light: #8C61A0;
+$color-brand-dark: #54226C;
+$color-brand-darkest: #390C4E;
+
+$color-extra: #FF8A00;
+$color-hover: #F10087;
+
+
+//$color-link: #67a281;
+$color-link: #2164f4;
+
+$color-link-hover: $color-hover;
+
+//$color-link-visited: #3c624b;
+$color-link-visited: #2164f4;
+
+
 $color-codepen: #000;
 $color-facebook: #3b5998;
 $color-invader: #ff0084;
