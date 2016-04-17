@@ -1,4 +1,4 @@
-/*! olli.web - v0.0.1 - 2016-04-03
+/*! olli.web - v0.0.1 - 2016-04-17
 * https://github.com/oliver-eifler/olli.web#readme
 * Copyright (c) 2016 Oliver Jean Eifler; MIT License */
 
@@ -11,7 +11,7 @@
      */
     var win = window;
     var doc = win.document;
-    var lib = win.Olli||{};
+    var lib = win["olli"]||{};
 
     function loadCSS (href, cb, media) {
         var refs = (doc.body || doc.getElementsByTagName("head")[0] ).childNodes,
@@ -338,7 +338,6 @@
     lib.grunticon = grunticon;
     lib.updateSloth = updateSloth;
     win["olli"] = lib;
-
     // wait until body is defined before injecting links/scripts. This ensures a non-blocking load in IE11.
     function ready( cb ){
         if( doc.body ){

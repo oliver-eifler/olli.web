@@ -1,11 +1,22 @@
 @import 'lib/functions';
 @import 'lib/theme';
 
+
+$baseFontSize:16; // in pixels. This would result in 22px on desktop
+$baseLineHeight:1.5; // how large the line height is as a multiple of font size
+$leading:$baseLineHeight * 1rem;
+// Rate of growth for headings
+// I actually like this to be slightly smaller then the leading. Makes for tight headings.
+$scale:1.414;
+
 // Breakpoints
 $panelWidth: 20em;
 $panelHeight: 30em;
 
-$wideLayoutWidth: 60em;
+$pageWidth: 40em;
+$pageMargin: 1em;
+
+$wideLayoutWidth: $pageWidth+$panelWidth;
 
 //Colors
 $color-page: #fffffa;
@@ -36,6 +47,11 @@ $color-invader: #ff0084;
 $color-github: #333;
 $color-google: #4285f4;
 $color-twitter: #55acee;
+
+$monospaceFont:  Consolas,monaco,monospace;
+$sansSerifFont: Verdana,Geneva,sans-serif;
+$serifFont: Georgia, Georgia,Times,Times New Roman,serif;
+
 
 @mixin screenHide {
   position: absolute;

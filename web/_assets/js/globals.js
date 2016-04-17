@@ -4,6 +4,6 @@
 export var win = window;
 export var doc = win.document;
 export var html = doc.documentElement;
-export var lib = win.Olli||{};
+export var lib = win["olli"]||{};
 
 

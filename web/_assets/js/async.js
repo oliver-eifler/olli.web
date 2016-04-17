@@ -25,7 +25,6 @@ function updateSloth() {
 lib.grunticon = grunticon;
 lib.updateSloth = updateSloth;
 win["olli"] = lib;
-
 // wait until body is defined before injecting links/scripts. This ensures a non-blocking load in IE11.
 function ready( cb ){
     if( doc.body ){

@@ -83,25 +83,46 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     style: 'expanded',
-                    sourcemap: 'file'
+                    sourcemap: 'none'
                 },
                 files: [{
                     expand: true,
                     cwd: '<%= dir.assets %>/sass',
                     src: ['*.scss'],
-                    dest: '<%= dir.release %>/css',
+                    dest: '<%= dir.build %>/css',
                     ext: '.css'
                 }]
             }
         },
-        cssmin: {
-            dist: {
+        /*POSTCSS*/
+        postcss: {
+            options: {
+                map: false
+            },
+            dev: {
                 options: {
-                    //banner: '<%= banner %>'
+                    processors: [
+                        require('pixrem')() // rem to pixel the result
+                    ]
                 },
                 files: [{
                     expand: true,
-                    cwd: '<%= dir.release %>/css',
+                    cwd: '<%= dir.build %>/css',
+                    src: ['*.css','!*.min.css'],
+                    dest: '<%= dir.release %>/css',
+                    ext: '.css'
+                }]
+            },
+            dist: {
+                options: {
+                    processors: [
+                        require('pixrem')(), // rem to pixel the result
+                        require('cssnano')() // minify the result
+                    ]
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= dir.build %>/css',
                     src: ['*.css','!*.min.css'],
                     dest: '<%= dir.release %>/css',
                     ext: '.min.css'
@@ -148,11 +169,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-postcss');
     grunt.loadTasks('grunt-tasks/ollicon');
     // Default task(s).
     grunt.registerTask('icons', ['ollicon:icons','copy:icons']);
     grunt.registerTask('js', ['rollup','uglify']);
-    grunt.registerTask('css', ['sass','cssmin']);
+    grunt.registerTask('css', ['sass','postcss']);
 
     grunt.registerTask('default', ['icons','css','js']);
 };

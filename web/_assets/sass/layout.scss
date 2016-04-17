@@ -13,18 +13,25 @@ html {
 }
 
 body {
+  font-family: $sansSerifFont;
+  font-size: $baseFontSize / 16 * 100%;
+  // Make everything look a little nicer in webkit
+  -webkit-font-smoothing: antialiased;
+
   position:relative;
   margin:0;
   padding:0;
-  font-size:100%;
-  line-height:1.5;
   color: #000;
   color: text($colors);
   background-color:base($colors);
 }
+@import 'lib/typo';
+/*USed for font-resize*/
 h1,h2,h3,h4,h5,h6 {
+  font-family: $serifFont;
   color: hilight($colors);
 }
+
 a {
   color: $color-link;
   text-decoration: none;
@@ -38,6 +45,14 @@ a {
   }
 }
 small {font-size:.75em;}
+.text-center {text-align:center;}
+.text-smart {
+  text-align:center;
+  & > * {
+    display:inline-block;
+    text-align:left;
+  }
+}
 
 .flex {
   display:flex;
@@ -51,9 +66,6 @@ small {font-size:.75em;}
   flex: 1 0 auto; /* min-height = content; */
 }
 /* FOR LAYOUT ONLY */
-.footer {
-  background-color:#eee;
-}
 .panel {
   position:relative;
   display:block;
@@ -70,9 +82,10 @@ small {font-size:.75em;}
   h1,small {
     color:$color-brand !important;
   }
-  line-height: 1;
+  line-height: 1 !important;
   h1 {
     font-size: 2em;
+    line-height: 1;
     margin: 0;
     padding: 0;
     font-variant: small-caps;
@@ -107,8 +120,19 @@ small {font-size:.75em;}
 
 
 .content-width {
-  margin: 0 auto;
-  max-width: 40em;
+  margin: 0 auto 1.5*3em auto;
+  max-width: $pageWidth;
+}
+@media (min-width: 320px) {
+  .content-width {
+    margin: 0 $pageMargin/2 1.5*3em $pageMargin/2;
+  }
+}
+
+@media (min-width: $pageWidth+$pageMargin) {
+  .content-width {
+    margin: 0 auto 1.5*3em auto;
+  }
 }
 @media (min-width: $wideLayoutWidth) {
   .panel {
@@ -117,6 +141,7 @@ small {font-size:.75em;}
     top:0;
     width: $panelWidth;
     text-align:right;
+    padding-left:4em;
   }
   .header-logo {
     margin:0;
@@ -130,10 +155,26 @@ small {font-size:.75em;}
   }
   .links-cat {display:block;}
 
-  .content {
+  //.content-container,.
+  .footer-container {
     margin-right: $panelWidth;
+  }
+  .content-container {
     min-height: $panelHeight;
   }
+  .content-width {
+    margin: 0 0 1.5*3em $pageMargin/2;
+  }
+}
+@media (min-width: $wideLayoutWidth+$pageMargin) {
+  .content-width {
+    margin: 0 auto 1.5*3em auto;
+  }
+  .content-container {
+    margin-right: $panelWidth;
+  }
+
+
 }
 @media (min-width: $wideLayoutWidth) and (min-height: $panelHeight) {
   .panel {
@@ -168,12 +209,6 @@ small {font-size:.75em;}
   .social > .social-icon:first-child {
     margin-left: 0;
   }
-}
-.footer i {
-  height:1.5em;
-  width:1.5em;
-  opacity: opacity(text($colors));
-  vertical-align:top;
 }
 
 .bio > * {
@@ -222,7 +257,7 @@ img[data-src] {
 }
 .zombie.pic {display:none;}
 
-/*ICONS above the FOLD*/
+/*ICONS above the FOLD
 [class*="icon-"] {
   background-repeat: no-repeat;
   background-position:center center;
@@ -232,9 +267,11 @@ img[data-src] {
   width: px2em($icon-github-width);
   height: px2em($icon-github-height);
 }
+*/
 .social-icon span {
   @include screenHide();
 }
+
 .avatar {
   display:inline-block;
   margin:.5em 1em;
@@ -249,3 +286,45 @@ img[data-src] {
   width:100%;
   height:100%;
 }
+
+.footer-container {
+  position:relative;
+  background:mix(hilight($colors),base($colors),opacity(divider($colors))*100%);/*Real Color for background*/
+}
+@media (min-width: $wideLayoutWidth) {
+  .footer-container:after {
+    content: "";
+    position:absolute;
+    display:block;
+    width:4em;
+    height:100%;
+    left:100%;
+    top:0;
+    background-color:inherit;
+    border-radius: 0 2em 2em 0;
+  }
+}
+.footer-width {
+  margin: 0 auto;
+}
+.footer {
+  font-family: $monospaceFont;
+  padding:0.25em 0.25em 0 .25em;
+  & > * {margin:0 .5em;line-height:1.5;}
+  & > *+* {margin-top:1em;}
+}
+.footer i {
+  height:1.5em;
+  opacity: opacity(text($colors));
+  vertical-align:top;
+}
+.legende {
+  margin:0;
+  padding: 0 .5em;
+  border-top:1px solid;
+  color:info($colors);
+  text-align:right;
+}
+/* Kunstbühne IBerl die alte
+Wilhelm Leibl Str.
+18:00 */

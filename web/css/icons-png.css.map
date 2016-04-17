@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;AAIA,gBAAiB;EACf,iBAAiB,EAAE,SAAS;EAC5B,mBAAmB,EAAC,aAAa;EACjC,OAAO,EAAE,YAAY;;;AAEvB,UAAW;EACT,gBAAgB,EAAE,6xIAAuB;EACzC,KAAK,ECoBe,IAAI;EDnBxB,MAAM,ECoBe,IAAI;;;ADlB3B,gBAAiB;EACf,gBAAgB,EAAE,6+BAAyB;EAC3C,KAAK,ECmCiB,IAAI;EDlC1B,MAAM,ECmCiB,IAAI;;;ADjC7B,YAAa;EACX,gBAAgB,EAAE,qxCAAqB;EACvC,KAAK,ECLa,IAAI;EDMtB,MAAM,ECLa,IAAI;;;ADOzB,aAAc;EACZ,gBAAgB,EAAE,qxCAAsB;EACxC,KAAK,ECzBc,IAAI;ED0BvB,MAAM,ECzBc,IAAI;;;AD2B1B,cAAe;EACb,gBAAgB,EAAE,6XAAuB;EACzC,KAAK,ECpBe,IAAI;EDqBxB,MAAM,ECpBe,IAAI;;;ADsB3B,aAAc;EACZ,gBAAgB,EAAE,qjCAAsB;EACxC,KAAK,ECyBc,IAAI;EDxBvB,MAAM,ECyBc,IAAI;;;ADtB1B,aAAc;EACZ,gBAAgB,EAAE,6eAAsB;EACxC,KAAK,EChBc,IAAI;EDiBvB,MAAM,EChBc,IAAI;;;ADkB1B,OAAQ;EACN,MAAM,EAAC,CAAC;EACR,KAAK,EChBe,IAAI;EDiBxB,MAAM,EChBe,IAAI",
-"sources": ["file:///D:/web_dev/Olli%20Framework/olli.web/web/_assets/sass/icons-png.scss","file:///D:/web_dev/Olli%20Framework/olli.web/web/_assets/sass/icons/_png.scss"],
-"names": [],
-"file": "icons-png.css"
-}
