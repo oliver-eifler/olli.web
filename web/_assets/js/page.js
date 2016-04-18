@@ -1,6 +1,8 @@
 import {lib,doc,win,html} from './globals'
 import ActionObserver from './page/action-observer.js';
+import FontSizeObserver from './page/fontsize-observer.js';
 import XHR from './page/better-xhr.js';
+
 function gaussRound(num, decimalPlaces) {
     var d = decimalPlaces || 0,
         m = Math.pow(10, d),
@@ -10,7 +12,39 @@ function gaussRound(num, decimalPlaces) {
         r = (f > 0.5 - e && f < 0.5 + e) ?
             ((i % 2 == 0) ? i : i + 1) : Math.round(n);
     return d ? r / m : r;
-}/*
+}
+function _$ (selector, el) {
+     if (!el) {el = document;}
+     return el.querySelector(selector);
+};
+function _$$ (selector, el) {
+     if (!el) {el = document;}
+     //return el.querySelectorAll(selector);
+     // Note: the returned object is a NodeList.
+     // If you'd like to convert it to a Array for convenience, use this instead:
+     return Array.prototype.slice.call(el.querySelectorAll(selector));
+};
+
+/*PAGE SETUP*/
+var lineSize = 1.5;
+var contentchilds = _$$(".content > div",html); //UPDATE after every page change
+
+
+function rythmn(element,baseline) {
+    var rect=element.getBoundingClientRect()
+        ,height=rect.bottom-rect.top
+        ,leftover = (height%baseline);
+    element.style.marginBottom = ""+gaussRound(baseline-leftover)+"px";
+};
+function adjustVerticalRythmn(baseline) {
+    contentchilds.forEach(function(element){
+        rythmn(element,baseline);
+    });
+};
+
+
+adjustVerticalRythmn(FontSizeObserver.fontSize()*lineSize);
+/*
 var p1=XHR.get("images/faultier.jp").then(function(s){console.log("1 Loaded")}).catch(function(err){console.log("1 Error: "+err.message);}).then(function() {console.log("1 finished")});
 var p2=XHR.get("images/pult.jpg");p2.then(function(s){console.log("2 Loaded")}).catch(function(err){console.log("2 Error: "+err.message);}).then(function() {console.log("2 finished")});
 p2[0].abort();
@@ -19,48 +53,8 @@ var p3=XHR.get("images/welpe.jpg").then(function(s){console.log("3 Loaded")}).ca
 ActionObserver.bind("ajax",function(event,element) {
     event.stopPropagation();
     event.preventDefault();
-
     console.log("Ajax: "+this.href);
 });
-var fontsizer = doc.createElement("div");
-fontsizer.style.cssText = "position:absolute;width:1.5em;height:1em;left;-2em;top:-2em;transition:font-size 1ms linear";
-html.getElementsByTagName("body")[0].appendChild(fontsizer);
-var rect = fontsizer.getBoundingClientRect(),
-    fontsize = rect.bottom-rect.top,
-    linesize = rect.right-rect.left;
-
-
-
-
-console.log(fontsize);
-console.log(linesize);
-
-
-
-function rythmn(element,linesize) {
-
-    var rect=element.getBoundingClientRect()
-    ,height=rect.bottom-rect.top
-        , leftover = (height%linesize);
-    element.style.marginBottom = ""+gaussRound(linesize-leftover)+"px";
-}
-var pics= html.querySelectorAll(".content > *");//html.getElementsByClassName("pic");
-for (var i=0;i<pics.length;i++) {
-    rythmn(pics[i],linesize);
-
-}
-fontsizer.addEventListener("transitionend",function(event) {
-    var node = event.target;
-    var rect = node.getBoundingClientRect(),
-        fontsize = rect.bottom-rect.top,
-        linesize = rect.right-rect.left;
-        console.log("changed fontsize:" +fontsize+":"+linesize);
-        var pics= html.querySelectorAll(".content > *");//html.getElementsByClassName("pic");
-        for (var i=0;i<pics.length;i++) {
-            rythmn(pics[i],linesize);
-
-        }
-
-
-
-},false);
+FontSizeObserver.bind("page",function(size){
+    adjustVerticalRythmn(size*lineSize);
+});

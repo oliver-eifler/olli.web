@@ -4,7 +4,6 @@
             linear-gradient(to top, #00f 1px, transparent 1px);
     background-size: 100% $leading;
 }
-
 /* Setup */
 p {
     line-height: $leading;
@@ -84,7 +83,6 @@ code {
     vertical-align: bottom;
 }
 /* Leading paragraph text */
-
 .lead {
     font-size: $scale * 1rem;
 }

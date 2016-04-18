@@ -9,7 +9,6 @@
     <noscript><link href="bundle/css/icons-fallback.min.css" rel="stylesheet"></noscript>
 </head>
 <body class="flex">
-<div id="fs"></div>
 <div class="flex-header panel">
     <header>
         <a class="header" href='#'>
@@ -55,13 +54,11 @@
 <article class="flex-content">
 <div class="content-container baseline">
     <div class="content content-width">
-        <p>
         <ul>
             <li>Mod_DEFLATE: <?=getenv("HTTP_MOD_DEFLATE")?></li>
             <li>Mod_Rewrite: <?=getenv("HTTP_MOD_REWRITE")?></li>
         </ul>
-        </p>
-        <div class="vr pic" style="padding-bottom:<?=1149*100/1920?>%;" data-alt="Picture: a nice pic of my dog">
+        <div class="pic" style="padding-bottom:<?=1149*100/1920?>%;" data-alt="Picture: a nice pic of my dog">
             <img src="images/welpe.jpg">
             <noscript data-src="images/welpe.jpg">
                 <img src="images/welpe.jpg">
@@ -69,12 +66,12 @@
         </div>
 
         <h1>Oliver Jean Eifler</h1>
-        <div class="vr pic" style="padding-bottom:133px" data-alt="noop">
+        <div class="pic" style="padding-bottom:133px" data-alt="noop">
         </div>
         <h3 class="hug">Programmierer. Techniker. Künstler.</h3>
             <p>Erinnerungen, <a href='#'>Prophezeiungen</a>, Fantasiegespinste und <a href='#'>Liebe</a>, Vergangenheit, Zukunft und der Augenblick des Traums dazwischen -&nbsp;sie alle schaffen ein Land, das einen einzigen, unsterblichen Tag lang existiert.</p>
             <p>Das zu wissen, ist <a href='#'>Weisheit</a>. Das zu nutzen, ist <a href='#'><strong>'Kunst'</strong></a>.</p>
-        <div class="sloth pic gap" style="padding-bottom:<?=840*100/560?>%;">
+        <div class="sloth pic" style="padding-bottom:<?=840*100/560?>%;">
             <noscript data-src="images/faultier.jpg" data-alt="Faultier">
             <img src="images/faultier.jpg">
             </noscript>
@@ -88,22 +85,22 @@
             Living one immortal day.
         </p>
         <p>To know that is Wisdom. To use it is the Art.</p>
-        <div class="sloth vr pic gap" style="padding-bottom:<?=480*100/640?>%;">
+        <div class="sloth pic" style="padding-bottom:<?=480*100/640?>%;">
             <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>" data-alt="Faultier">
                 <img src="images/faultier.jpg">
             </noscript>
         </div>
-        <div class="sloth vr pic" style="padding-bottom:<?=480*100/640?>%;">
+        <div class="sloth pic" style="padding-bottom:<?=480*100/640?>%;">
             <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>" data-alt="Faultier">
                 <img src="images/faultier.jpg">
             </noscript>
         </div>
-        <div class="sloth vr pic" style="padding-bottom:<?=480*100/640?>%;">
+        <div class="sloth pic" style="padding-bottom:<?=480*100/640?>%;">
             <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>" data-alt="Faultier">
                 <img src="images/faultier.jpg">
             </noscript>
         </div>
-        <div class="sloth vr pic" style="padding-bottom:<?=480*100/640?>%;">
+        <div class="sloth pic" style="padding-bottom:<?=480*100/640?>%;">
             <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>" data-alt="Faultier">
                 <img src="images/faultier.jpg">
             </noscript>
@@ -111,10 +108,11 @@
     </div>
 </div>
 </article>
-<?=SiteFooter()?>
+<?=SiteFooter();?>
 <script src='bundle/js/async.min.js' async='true'></script>
 </body>
 </html>
+
 <?php
 function SiteFooter()
 {
@@ -133,7 +131,7 @@ function SiteFooter()
     $html .= "<p class='legende'><small>*Not recommended for or tested with IE 9- or any other legacy browser</small></p>";
     $html .= "</div>";
     $html .= "</div>";
-    $html .= "<footer>";
+    $html .= "</footer>";
 
     return $html;
 }
