@@ -25,6 +25,11 @@ body {
   color: text($colors);
   background-color:base($colors);
 }
+@media only screen and (max-width:320px) {
+  @-ms-viewport { width:320px; }
+  @viewport { width:320px; }
+}
+
 @import 'lib/typo';
 /*USed for font-resize*/
 h1,h2,h3,h4,h5,h6 {
@@ -118,20 +123,22 @@ small {font-size:.75em;}
 }
 .links-cat {display:inline-block;}
 
-
+.content-container {
+  padding-bottom:1.5*3em;
+}
 .content-width {
-  margin: 0 auto 1.5*3em auto;
+  margin: 0 auto;
   max-width: $pageWidth;
 }
 @media (min-width: 320px) {
   .content-width {
-    margin: 0 $pageMargin/2 1.5*3em $pageMargin/2;
+    margin: 0 $pageMargin/2;
   }
 }
 
 @media (min-width: $pageWidth+$pageMargin) {
   .content-width {
-    margin: 0 auto 1.5*3em auto;
+    margin: 0 auto;
   }
 }
 @media (min-width: $wideLayoutWidth) {
@@ -161,20 +168,8 @@ small {font-size:.75em;}
   }
   .content-container {
     min-height: $panelHeight;
+    margin-right: $panelWidth - $pageMargin;
   }
-  .content-width {
-    margin: 0 0 1.5*3em $pageMargin/2;
-  }
-}
-@media (min-width: $wideLayoutWidth+$pageMargin) {
-  .content-width {
-    margin: 0 auto 1.5*3em auto;
-  }
-  .content-container {
-    margin-right: $panelWidth;
-  }
-
-
 }
 @media (min-width: $wideLayoutWidth) and (min-height: $panelHeight) {
   .panel {

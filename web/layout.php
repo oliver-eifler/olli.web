@@ -66,17 +66,19 @@
         </div>
 
         <h1>Oliver Jean Eifler</h1>
-        <div class="pic" style="padding-bottom:133px" data-alt="noop">
+        <div class="pic" style="padding-bottom:<?=100*100/640?>%;" data-alt="noop">
         </div>
         <h3 class="hug">Programmierer. Techniker. Künstler.</h3>
             <p>Erinnerungen, <a href='#'>Prophezeiungen</a>, Fantasiegespinste und <a href='#'>Liebe</a>, Vergangenheit, Zukunft und der Augenblick des Traums dazwischen -&nbsp;sie alle schaffen ein Land, das einen einzigen, unsterblichen Tag lang existiert.</p>
             <p>Das zu wissen, ist <a href='#'>Weisheit</a>. Das zu nutzen, ist <a href='#'><strong>'Kunst'</strong></a>.</p>
-        <div class="sloth pic" style="padding-bottom:<?=840*100/560?>%;">
-            <noscript data-src="images/faultier.jpg" data-alt="Faultier">
-            <img src="images/faultier.jpg">
-            </noscript>
-        </div>
-
+        <figure style="display:block;max-width:560px;width:100%;margin:0 auto">
+            <div class="sloth pic" style="padding-bottom:<?=840*100/560?>%;">
+                <noscript data-src="images/faultier.jpg" data-alt="Faultier">
+                    <img src="images/faultier.jpg">
+                </noscript>
+            </div>
+            <figcaption><cite>Depression</cite>. By: Darren Harris</figcaption>
+        </figure>
         <p>
             Memory, prophecy, and fantasy—
             The past, the future, and

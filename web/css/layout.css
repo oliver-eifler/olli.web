@@ -49,6 +49,14 @@ body {
   background-color: #fffffa;
 }
 
+@media only screen and (max-width: 320px) {
+  @-ms-viewport {
+    width: 320px;
+  }
+  @viewport {
+    width: 320px;
+  }
+}
 /*! Typebase.scss v0.1.0 | MIT License */
 .baseline {
   background-image: linear-gradient(to top, #00f 1px, transparent 1px);
@@ -287,19 +295,23 @@ small {
   display: inline-block;
 }
 
+.content-container {
+  padding-bottom: 4.5em;
+}
+
 .content-width {
-  margin: 0 auto 4.5em auto;
+  margin: 0 auto;
   max-width: 40em;
 }
 
 @media (min-width: 320px) {
   .content-width {
-    margin: 0 0.5em 4.5em 0.5em;
+    margin: 0 0.5em;
   }
 }
 @media (min-width: 41em) {
   .content-width {
-    margin: 0 auto 4.5em auto;
+    margin: 0 auto;
   }
 }
 @media (min-width: 60em) {
@@ -332,19 +344,7 @@ small {
 
   .content-container {
     min-height: 30em;
-  }
-
-  .content-width {
-    margin: 0 0 4.5em 0.5em;
-  }
-}
-@media (min-width: 61em) {
-  .content-width {
-    margin: 0 auto 4.5em auto;
-  }
-
-  .content-container {
-    margin-right: 20em;
+    margin-right: 19em;
   }
 }
 @media (min-width: 60em) and (min-height: 30em) {

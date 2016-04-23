@@ -8,7 +8,8 @@ export default (function () {
         listeners = {},
         fontnode,
         eventType,
-        transitionStyle;
+        transitionStyle,
+        fontSize;
     //Find prefixed transitionend event and transition style
     var transitions = {
         'transition': 'transitionend',
@@ -27,7 +28,7 @@ export default (function () {
     function getNode() {
         if (!fontnode) {
             fontnode = doc.createElement("div");
-            fontnode.style.cssText = "position:absolute;width:1em;height:1em;left;-2em;top:-2em;";
+            fontnode.style.cssText = "position:absolute;width:1rem;height:1rem;left;-1rem;top:-1rem;";
             if (transitionStyle)
                 fontnode.style[transitionStyle] = "font-size 1ms linear";
             html.getElementsByTagName("body")[0].appendChild(fontnode);
@@ -36,6 +37,7 @@ export default (function () {
     }
 
     function getSize() {
+        //return getNode().clientHeight;
         var rect = getNode().getBoundingClientRect();
         return rect.bottom - rect.top;
     }
@@ -56,25 +58,28 @@ export default (function () {
     FontSizeObserver.enable = function () {
         eventType && fontnode && fontnode.addEventListener(eventType, onEvent, false);
     };
+    FontSizeObserver.fontSize = function() {return fontSize;};
+
     function onEvent(event) {
         //if (event.target !== fontnode)
         //    return;
-        var height = getSize(), fn, key;
+        fontSize = getSize();
+        var fn, key;
         for (key in listeners) {
             if (listeners.hasOwnProperty(key)) {
                 fn = listeners[key].fn;
                 if (fn) {
-                    fn.call(fontnode, height);
+                    fn.call(null, fontSize);
                 }
             }
         }
     }
-
+    //Init
+    fontSize = getSize();
     eventType && getNode().addEventListener(eventType, onEvent, false);
     /**
      * Expose 'FontSizeObserver'
      */
-    FontSizeObserver.fontSize = getSize;
     return FontSizeObserver;
 
 })();
