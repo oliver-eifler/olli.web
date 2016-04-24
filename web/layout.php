@@ -58,20 +58,38 @@
             <li>Mod_DEFLATE: <?=getenv("HTTP_MOD_DEFLATE")?></li>
             <li>Mod_Rewrite: <?=getenv("HTTP_MOD_REWRITE")?></li>
         </ul>
-        <div class="pic" style="padding-bottom:<?=1149*100/1920?>%;" data-alt="Picture: a nice pic of my dog">
+        <div data-reflow class="pic" style="padding-bottom:<?=1149*100/1920?>%;" data-alt="Picture: a nice pic of my dog">
             <img src="images/welpe.jpg">
             <noscript data-src="images/welpe.jpg">
                 <img src="images/welpe.jpg">
             </noscript>
         </div>
+        <figure data-reflow style="background:#ff0;overflow:scroll;">
+            <pre>
+                <code>
+                    function adjustVerticalRythmn() {
+                    var size = FontSizeObserver.fontSize() * lineSize,
+                    childs = content.children,
+                    i,node;
+                    for (i = 0; i < childs.length,node=childs[i]; i++) {
+                    if (node.hasAttribute("data-reflow")) {
+                    rythmnMargin(node, size);
+                    }
+                    }
+                    return;
+                    contentchilds.forEach(function (element) {
+                    rythmnMargin(element, FontSizeObserver.fontSize() * lineSize);
+                    });
+                    };
+                </code>
+            </pre>
+        </figure>
 
         <h1>Oliver Jean Eifler</h1>
-        <div class="pic" style="padding-bottom:<?=100*100/640?>%;" data-alt="noop">
-        </div>
         <h3 class="hug">Programmierer. Techniker. Künstler.</h3>
             <p>Erinnerungen, <a href='#'>Prophezeiungen</a>, Fantasiegespinste und <a href='#'>Liebe</a>, Vergangenheit, Zukunft und der Augenblick des Traums dazwischen -&nbsp;sie alle schaffen ein Land, das einen einzigen, unsterblichen Tag lang existiert.</p>
             <p>Das zu wissen, ist <a href='#'>Weisheit</a>. Das zu nutzen, ist <a href='#'><strong>'Kunst'</strong></a>.</p>
-        <figure style="display:block;max-width:560px;width:100%;margin:0 auto">
+        <figure class='center' data-reflow style="display:block;max-width:560px;width:100%;">
             <div class="sloth pic" style="padding-bottom:<?=840*100/560?>%;">
                 <noscript data-src="images/faultier.jpg" data-alt="Faultier">
                     <img src="images/faultier.jpg">
@@ -87,22 +105,22 @@
             Living one immortal day.
         </p>
         <p>To know that is Wisdom. To use it is the Art.</p>
-        <div class="sloth pic" style="padding-bottom:<?=480*100/640?>%;">
+        <div data-reflow class="sloth pic" style="padding-bottom:<?=250*100/640?>%;">
+            <noscript data-src="http://lorempixel.com/640/250/?v=<?=rand(1,99)?>" data-alt="Faultier">
+                <img src="images/faultier.jpg">
+            </noscript>
+        </div>
+        <div data-reflow class="sloth pic" style="padding-bottom:<?=480*100/640?>%;">
             <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>" data-alt="Faultier">
                 <img src="images/faultier.jpg">
             </noscript>
         </div>
-        <div class="sloth pic" style="padding-bottom:<?=480*100/640?>%;">
+        <div data-reflow class="sloth pic" style="padding-bottom:<?=480*100/640?>%;">
             <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>" data-alt="Faultier">
                 <img src="images/faultier.jpg">
             </noscript>
         </div>
-        <div class="sloth pic" style="padding-bottom:<?=480*100/640?>%;">
-            <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>" data-alt="Faultier">
-                <img src="images/faultier.jpg">
-            </noscript>
-        </div>
-        <div class="sloth pic" style="padding-bottom:<?=480*100/640?>%;">
+        <div data-reflow class="sloth pic" style="padding-bottom:<?=480*100/640?>%;">
             <noscript data-src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>" data-alt="Faultier">
                 <img src="images/faultier.jpg">
             </noscript>

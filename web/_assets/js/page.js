@@ -26,17 +26,9 @@ function _$$(selector, el) {
     if (!el) {
         el = document;
     }
-    //return el.querySelectorAll(selector);
-    // Note: the returned object is a NodeList.
-    // If you'd like to convert it to a Array for convenience, use this instead:
     return Array.prototype.slice.call(el.querySelectorAll(selector));
 };
 
-/*PAGE SETUP*/
-var lineSize = 1.5;
-var contentchilds = _$$(".content > figure,.content > .pic", html); //UPDATE after every page change
-var content = _$(".content");
-var contentWidth = content.clientWidth;
 
 function nextTopMargin(element) {
     var node = element.nextElementSibling,
@@ -48,25 +40,35 @@ function nextTopMargin(element) {
     return top;
 
 }
-function rythmnMargin(element, baseline) {
+function rythmnMargin(element, lineHeight) {
     fastdom.measure(function () {
         var rect = element.getBoundingClientRect()
             , height = rect.bottom - rect.top
-            , leftover = (height % baseline)
+            , leftover = gaussRound(height % lineHeight,4)
         /* add siblings top margin to avoid margin collapse */
-            , m = leftover ? (baseline - leftover) + nextTopMargin(element) : 0;
+            , m = leftover ? (lineHeight - leftover) + nextTopMargin(element) : 0;
         fastdom.mutate(function () {
-            element.style.marginBottom = m ? "" + m + "px" : "";
+            element.style.marginBottom = (m) ? "" + m + "px" : "";
         });
     })
 };
-function adjustVerticalRythmn() {
-    contentchilds.forEach(function (element) {
-        rythmnMargin(element, FontSizeObserver.fontSize() * lineSize);
-    });
+function adjustVerticalRythmn(parent) {
+        var lineHeight = parseFloat(win.getComputedStyle(parent,':after').height) || 24,
+            childs = parent.children,
+            i, node;
+        for (i = 0; i < childs.length, node = childs[i]; i++) {
+            if (node.hasAttribute("data-reflow")) {
+                rythmnMargin(node,lineHeight);
+            }
+        }
 };
 
-adjustVerticalRythmn();
+/* Start Page */
+/*PAGE SETUP*/
+var content = _$(".content");
+var contentWidth = content.clientWidth;
+
+adjustVerticalRythmn(content);
 
 /*
  var p1=XHR.get("images/faultier.jp").then(function(s){console.log("1 Loaded")}).catch(function(err){console.log("1 Error: "+err.message);}).then(function() {console.log("1 finished")});
@@ -79,15 +81,15 @@ ActionObserver.bind("ajax", function (event, element) {
     event.preventDefault();
     console.log("Ajax: " + this.href);
 });
-FontSizeObserver.bind("page", function (size) {
-    adjustVerticalRythmn();
+FontSizeObserver.bind("page", function () {
+    adjustVerticalRythmn(content);
 });
-ResizeObserver.bind("page", function (width, height) {
+ResizeObserver.bind("rythmn", function () {
 
     fastdom.measure(function () {
         var width = content.clientWidth;
         if (width != contentWidth) {
-            adjustVerticalRythmn();
+            adjustVerticalRythmn(content);
             contentWidth = width;
         }
     });

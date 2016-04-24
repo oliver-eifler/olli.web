@@ -58,6 +58,10 @@ small {font-size:.75em;}
     text-align:left;
   }
 }
+.center {
+  margin-left:auto;
+  margin-right:auto;
+}
 
 .flex {
   display:flex;
@@ -206,18 +210,7 @@ small {font-size:.75em;}
   }
 }
 
-.bio > * {
-  margin:0;
-}.bio > * + *{
-   margin-top:.5em;
- }
-.bio {
-  font-size:2em;
-  text-align:center;
-
-}
 .pic {
-  margin-top: $leading;
   position:relative;
   display:block;
   height:0;

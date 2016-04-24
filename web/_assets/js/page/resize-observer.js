@@ -73,6 +73,7 @@ export default (function () {
         height = curHeight;
         var curOrientation = getOrientation();
         if (curOrientation !== orientation) {
+            clearTimeout(timeoutid);
             callbacks();
             return orientation = curOrientation;
         }
