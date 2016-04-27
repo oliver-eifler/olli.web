@@ -3,10 +3,18 @@
   background-image: linear-gradient(to top, #00f 1px, transparent 1px);
   background-size: 100% $leading;
 }
+/*
+@media (min-width: 320px) {
+  .baseline {
+    //margin: 0 $pageMargin/2;
+    background-position: 0 strip_unit($pageMargin/2)*1rem;
+}}
+*/
 
 /* Setup */
 .content {
   line-height: $baseLineHeight;
+  /* for measuring line height for javascript verticalRythmn */
   &::after {
     content: "";
     display:block;

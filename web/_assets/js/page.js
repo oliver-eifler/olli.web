@@ -43,24 +43,24 @@ function nextTopMargin(element) {
 function rythmnMargin(element, lineHeight) {
     fastdom.measure(function () {
         var rect = element.getBoundingClientRect()
-            , height = rect.bottom - rect.top
-            , leftover = gaussRound(height % lineHeight,4)
+            ,height = rect.bottom - rect.top
+            ,leftover = height % lineHeight
         /* add siblings top margin to avoid margin collapse */
-            , m = leftover ? (lineHeight - leftover) + nextTopMargin(element) : 0;
+            ,m = leftover >= 0.05 ? (lineHeight - leftover) + nextTopMargin(element) : 0;
         fastdom.mutate(function () {
-            element.style.marginBottom = (m) ? "" + m + "px" : "";
+            element.style.marginBottom = "" + m + "px";
         });
     })
 };
 function adjustVerticalRythmn(parent) {
-        var lineHeight = parseFloat(win.getComputedStyle(parent,':after').height) || 24,
-            childs = parent.children,
-            i, node;
-        for (i = 0; i < childs.length, node = childs[i]; i++) {
-            if (node.hasAttribute("data-reflow")) {
-                rythmnMargin(node,lineHeight);
-            }
+    var lineHeight = parseFloat(win.getComputedStyle(parent, ':after').height) || 24,
+        childs = parent.children,
+        i, node;
+    for (i = 0; i < childs.length, node = childs[i]; i++) {
+        if (node.hasAttribute("data-reflow")) {
+            rythmnMargin(node, lineHeight);
         }
+    }
 };
 
 /* Start Page */

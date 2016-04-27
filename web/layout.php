@@ -53,17 +53,24 @@
 </div>
 <article class="flex-content">
 <div class="content-container baseline">
+    <div class="hero-container bumper">
+        <div class="hero">
+            <div class="text-smart">
+            <h1>Oliver Jean Eifler</h1>
+        <h3 class="hug">Programmierer. Techniker. Künstler.</h3>
+                </div>
+        <p>Um was geht's eigentlich</p>
+        </div>
+    </div>
     <div class="content content-width">
-        <ul>
-            <li>Mod_DEFLATE: <?=getenv("HTTP_MOD_DEFLATE")?></li>
-            <li>Mod_Rewrite: <?=getenv("HTTP_MOD_REWRITE")?></li>
-        </ul>
         <div data-reflow class="pic" style="padding-bottom:<?=1149*100/1920?>%;" data-alt="Picture: a nice pic of my dog">
             <img src="images/welpe.jpg">
             <noscript data-src="images/welpe.jpg">
                 <img src="images/welpe.jpg">
             </noscript>
         </div>
+        <p>Erinnerungen, <a href='#'>Prophezeiungen</a>, Fantasiegespinste und <a href='#'>Liebe</a>, Vergangenheit, Zukunft und der Augenblick des Traums dazwischen -&nbsp;sie alle schaffen ein Land, das einen einzigen, unsterblichen Tag lang existiert.</p>
+        <p>Das zu wissen, ist <a href='#'>Weisheit</a>. Das zu nutzen, ist <a href='#'><strong>'Kunst'</strong></a>.</p>
         <figure data-reflow style="background:#ff0;overflow:scroll;">
             <pre>
                 <code>
@@ -85,10 +92,6 @@
             </pre>
         </figure>
 
-        <h1>Oliver Jean Eifler</h1>
-        <h3 class="hug">Programmierer. Techniker. Künstler.</h3>
-            <p>Erinnerungen, <a href='#'>Prophezeiungen</a>, Fantasiegespinste und <a href='#'>Liebe</a>, Vergangenheit, Zukunft und der Augenblick des Traums dazwischen -&nbsp;sie alle schaffen ein Land, das einen einzigen, unsterblichen Tag lang existiert.</p>
-            <p>Das zu wissen, ist <a href='#'>Weisheit</a>. Das zu nutzen, ist <a href='#'><strong>'Kunst'</strong></a>.</p>
         <figure class='center' data-reflow style="display:block;max-width:560px;width:100%;">
             <div class="sloth pic" style="padding-bottom:<?=840*100/560?>%;">
                 <noscript data-src="images/faultier.jpg" data-alt="Faultier">
@@ -141,8 +144,8 @@ function SiteFooter()
     $Year = $fromYear . (($fromYear != $thisYear) ? '-' . $thisYear : '');
     $html = "";
     $html .= "<footer class='flex-footer'>";
-    $html .= "<div class='footer-container'>";
-    $html .= "<div class='footer footer-width'>";
+    $html .= "<div class='footer-container bumper'>";
+    $html .= "<div class='footer'>";
     $html .= "<p class='text-smart licence'><small>";
     $html .= "Except as otherwise noted, the content of this page is licensed under the <a href='#'>Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href='#'>Apache 2.0 License</a>.";
     $html .= "</small></p>";

@@ -48,15 +48,15 @@ module.exports = function (grunt) {
                 }
             },
             jsAsync: {
-                'dest':'<%= dir.release %>/js/async.js',
+                'dest':'<%= dir.build %>/js/async.js',
                 'src' :'<%= dir.assets %>/js/async.js' // Only one source file is permitted
             },
             jsPage: {
-                'dest':'<%= dir.release %>/js/page.js',
+                'dest':'<%= dir.build %>/js/page.js',
                 'src' :'<%= dir.assets %>/js/page.js' // Only one source file is permitted
             },
             jsPromise: {
-                'dest':'<%= dir.release %>/js/promise.js',
+                'dest':'<%= dir.build %>/js/promise.js',
                 'src' :'<%= dir.assets %>/js/promise.js' // Only one source file is permitted
             }
         },
@@ -64,17 +64,56 @@ module.exports = function (grunt) {
             options: {
                 //banner: '<%= banner %>'
             },
-            jsAsync: {
-                src: '<%= rollup.jsAsync.dest %>',
-                dest: '<%= dir.release %>/js/async.min.js'
+            dist: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= dir.build %>/js',
+                        src: ['*.js','!*.min.js','!*.cc.js'],
+                        dest: '<%= dir.release %>/js',
+                        ext: '.min.js'
+                    }
+                ]
             },
-            jsPage: {
-                src: '<%= rollup.jsPage.dest %>',
-                dest: '<%= dir.release %>/js/page.min.js'
+            dev: {
+                options: {
+                    mangle:false,
+                    compress:false,
+                    beautify: true,
+                    banner: '<%= banner %>'
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= dir.build %>/js',
+                        src: ['*.js','!*.min.js','!*.cc.js'],
+                        dest: '<%= dir.release %>/js',
+                        ext: '.js'
+                    }
+                ]
+            }
+
+
+        },
+        /*Closure Compiler */
+        closureCompiler: {
+            options: {
+                compilerFile: 'components/compiler.jar',
+
+                compilerOpts: {
+                    create_source_map: null
+      }
             },
-            jsPromise: {
-                src: '<%= rollup.jsPromise.dest %>',
-                dest: '<%= dir.release %>/js/promise.min.js'
+            minify: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= dir.release %>/js',
+                        src: ['*.js','!*.min.js','!*.cc.js'],
+                        dest: '<%= dir.release %>/js',
+                        ext: '.cc.js'
+                    }
+                ]
             }
         },
 
@@ -167,6 +206,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-rollup');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-closure-tools');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-postcss');

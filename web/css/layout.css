@@ -63,9 +63,17 @@ body {
   background-size: 100% 1.5rem;
 }
 
+/*
+@media (min-width: 320px) {
+  .baseline {
+    //margin: 0 $pageMargin/2;
+    background-position: 0 strip_unit($pageMargin/2)*1rem;
+}}
+*/
 /* Setup */
 .content {
   line-height: 1.5;
+  /* for measuring line height for javascript verticalRythmn */
 }
 .content::after {
   content: "";
@@ -264,6 +272,8 @@ small {
   position: relative;
   display: block;
   padding: 1em;
+  padding-bottom: 0;
+  margin-bottom: 1em;
   text-align: center;
 }
 
@@ -323,17 +333,25 @@ small {
 }
 
 .content-container {
-  padding-bottom: 4.5em;
+  padding-bottom: 4em;
 }
 
 .content-width {
   margin: 0 auto;
-  max-width: 40em;
+  max-width: 41em;
+  position: relative;
+  background: #fffffa;
 }
 
 @media (min-width: 320px) {
   .content-width {
-    margin: 0 0.5em;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
+  }
+  .content-width > *:first-child {
+    margin-top: 0;
+    /* $leading - strip_unit($pageMargin/2)*/
   }
 }
 @media (min-width: 41em) {
@@ -488,13 +506,16 @@ img[data-src] {
 }
 
 .footer-container {
-  position: relative;
   background: #e0e0dc;
   /*Real Color for background*/
 }
 
+.bumper {
+  position: relative;
+}
+
 @media (min-width: 60em) {
-  .footer-container:after {
+  .bumper:after {
     content: "";
     position: absolute;
     display: block;
@@ -506,11 +527,8 @@ img[data-src] {
     border-radius: 0 2em 2em 0;
   }
 }
-.footer-width {
-  margin: 0 auto;
-}
-
 .footer {
+  margin: 0 auto;
   font-family: Consolas, monaco, monospace;
   padding: 0.25em 0.25em 0 .25em;
 }
@@ -539,3 +557,23 @@ img[data-src] {
 /* Kunstb├╝hne IBerl die alte
 Wilhelm Leibl Str.
 18:00 */
+.hero-container {
+  margin: 0 auto;
+  padding: 24px 0.5em 144px 0.5em;
+  padding: 1.5rem 0.5em 9rem 0.5em;
+  background-color: #6e3c85;
+  margin-bottom: -128px;
+  margin-bottom: -8rem;
+}
+
+.hero {
+  max-width: 60em;
+  margin: 0 auto;
+  color: #e4d4ec;
+}
+.hero *:first-child {
+  margin-top: 0;
+}
+.hero h1, .hero h2, .hero h3 {
+  color: #e4d4ec;
+}

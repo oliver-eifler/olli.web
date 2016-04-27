@@ -1,13 +1,20 @@
 @import 'lib/functions';
 @import 'lib/theme';
 
+@function scut-strip-unit (
+  $num
+) {
 
-$baseFontSize:16; // in pixels. This would result in 16px on desktop
-$baseLineHeight:1.5; // how large the line height is as a multiple of font size
-$leading:$baseLineHeight * 1rem;
+  @return $num / ($num * 0 + 1);
+
+}
+
+$baseFontSize: 16; // in pixels. This would result in 16px on desktop
+$baseLineHeight: 1.5; // how large the line height is as a multiple of font size
+$leading: $baseLineHeight * 1rem;
 // Rate of growth for headings
 // I actually like this to be slightly smaller then the leading. Makes for tight headings.
-$scale:1.414;
+$scale: 1.414;
 
 // Breakpoints
 $panelWidth: 20em;
@@ -31,7 +38,6 @@ $color-brand-darkest: #390C4E;
 $color-extra: #FF8A00;
 $color-hover: #F10087;
 
-
 //$color-link: #67a281;
 $color-link: #2164f4;
 
@@ -40,7 +46,6 @@ $color-link-hover: $color-hover;
 //$color-link-visited: #3c624b;
 $color-link-visited: #2164f4;
 
-
 $color-codepen: #000;
 $color-facebook: #3b5998;
 $color-invader: #ff0084;
@@ -48,9 +53,9 @@ $color-github: #333;
 $color-google: #4285f4;
 $color-twitter: #55acee;
 
-$monospaceFont:  Consolas,monaco,monospace;
-$sansSerifFont: Verdana,Geneva,sans-serif;
-$serifFont: Georgia, Georgia,Times,Times New Roman,serif;
+$monospaceFont: Consolas, monaco, monospace;
+$sansSerifFont: Verdana, Geneva, sans-serif;
+$serifFont: Georgia, Georgia, Times, Times New Roman, serif;
 
 
 @mixin screenHide {
@@ -60,6 +65,7 @@ $serifFont: Georgia, Georgia,Times,Times New Roman,serif;
   overflow: hidden;
   clip: rect(1px, 1px, 1px, 1px);
 }
+
 @mixin screenShow($position: static) {
   position: $position;
   height: auto;
