@@ -7,15 +7,19 @@
   background-position:center center;
   display: inline-block;
 }
+i[class*="icon-"] {
+  height:1em;
+  vertical-align:text-top;
+}
 .icon-olli {
   background-image: url($icon-olli-alt-url);
   width: $icon-olli-alt-width;
   height: $icon-olli-alt-height;
 }
-.icon-olli-small {
-  background-image: url($icon-olli-small-url);
-  width: $icon-olli-small-width;
-  height: $icon-olli-small-height;
+.icon-cool {
+  background-image: url($icon-cool-url);
+  width: $icon-cool-width;
+  height: $icon-cool-height;
 }
 .icon-github {
   background-image: url($icon-github-url);

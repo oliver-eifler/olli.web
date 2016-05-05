@@ -1,7 +1,5 @@
 /**
  * Created by darkwolf on 02.04.2016.
+ * Promise Polyfill, only loaded on demand
  */
-import {win} from './globals'
-import promisedef from './polyfills/npo.js'
-var name="Promise";
-win[name] = win[name] || promisedef();
+import './polyfills/npo.js'

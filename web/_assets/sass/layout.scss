@@ -51,6 +51,7 @@ a {
 }
 small {font-size:.75em;}
 .text-center {text-align:center;}
+.text-right {text-align:right;}
 .text-smart {
   text-align:center;
   & > * {
@@ -58,6 +59,7 @@ small {font-size:.75em;}
     text-align:left;
   }
 }
+
 .center {
   margin-left:auto;
   margin-right:auto;
@@ -229,7 +231,7 @@ small {font-size:.75em;}
   color: $color-brand;
   overflow:hidden;
 }
-.pic:before {
+.pic[data-alt]:before {
   position:absolute;
   left:10%;
   top:50%;
@@ -310,15 +312,17 @@ img[data-src] {
   font-family: $monospaceFont;
   padding:0.25em 0.25em 0 .25em;
   & > * {margin:0 .5em;line-height:1.5;}
-  & > *+* {margin-top:1em;}
 }
+/*
 .footer i {
   height:1.5em;
-  opacity: opacity(text($colors));
   vertical-align:top;
 }
+*/
+.licence {
+  margin-bottom:1em;
+}
 .legende {
-  margin:0;
   padding: 0 .5em;
   border-top:1px solid;
   color:info($colors);

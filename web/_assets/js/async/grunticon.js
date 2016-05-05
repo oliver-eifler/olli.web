@@ -1,7 +1,5 @@
 /*global loadCSS:true*/
 import {win,doc} from '../globals.js';
-//import loadCSS from '../async/loadCSS.js';
-//import onloadCSS from '../async/onloadCSS.js';
 import loadCSS from '../async/ajaxCSS.js';
 
 var grunticon = function (css, onload) {
@@ -22,11 +20,7 @@ var grunticon = function (css, onload) {
     var img = new Image();
 
     img.onerror = function () {
-        /* Images disabled */
-        //grunticon.method = "png";
-        //grunticon.href = css[2];
         loadCSS("bundle/"+css[2],onload);
-        //onload();
     };
 
     img.onload = function () {
@@ -38,19 +32,10 @@ var grunticon = function (css, onload) {
             method = "svg";
         } else if (data) {
             method = "datapng";
-        } /*else {
-            grunticon.method = "png";
-        }*/
-
-        //grunticon.href = href;
-        /*
-        onloadCSS(loadCSS("bundle/"+href), function () {
+        }
+        var stylesheet=loadCSS("bundle/"+href, function () {
             doc.documentElement.className += " oi oi-" + method;
-            onload();
-        });
-        */
-        loadCSS("bundle/"+href, function () {
-            doc.documentElement.className += " oi oi-" + method;
+            stylesheet.setAttribute("data-oi-method",method);
             onload();
         });
     };

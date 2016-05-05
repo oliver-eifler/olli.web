@@ -11,7 +11,7 @@ module.exports = function (grunt) {
         dir: {
             release: 'web',
             build: 'build',
-            assets: 'web/_assets',
+            assets: 'web/_assets'
         },
         //copy files
         copy: {
@@ -22,31 +22,23 @@ module.exports = function (grunt) {
                   {expand: true,cwd: '<%= dir.build %>/icons',src: ['*.scss'],dest: '<%= dir.assets %>/sass/icons'}
           ]}
         },
-        concat: {
-            options: {
-                banner: '<%= banner %>',
-                stripBanners: true
-            },
-            jsPromise: {
-                src: [
-                    '<%= dir.assets %>/js/async/loadCSS.js',
-                    '<%= dir.assets %>/js/async/onloadCSS.js',
-                    '<%= dir.assets %>/js/async/grunticon.js',
-                    '<%= dir.assets %>/js/async/loadimage.js',
-                    '<%= dir.assets %>/js/async/sloth.js',
-                    '<%= dir.assets %>/js/async/async.js'
-                ],
-                dest: '<%= dir.release %>/js/async.js'
-            }
-            // CSS concat handled by SASS
-        },
         rollup: {
             options: {
                 format: 'iife',
                 banner: '<%= banner %>',
                 globals: {
+                    olli: 'olli'
                 }
             },
+            /*
+            jsInline: {
+                options: {
+                    format: 'es6'
+                },
+                'dest':'<%= dir.build %>/js/inline.js',
+                'src' :'<%= dir.assets %>/js/inline.js' // Only one source file is permitted
+            },
+            */
             jsAsync: {
                 'dest':'<%= dir.build %>/js/async.js',
                 'src' :'<%= dir.assets %>/js/async.js' // Only one source file is permitted
@@ -56,6 +48,9 @@ module.exports = function (grunt) {
                 'src' :'<%= dir.assets %>/js/page.js' // Only one source file is permitted
             },
             jsPromise: {
+                options: {
+                    format: 'es6'
+                },
                 'dest':'<%= dir.build %>/js/promise.js',
                 'src' :'<%= dir.assets %>/js/promise.js' // Only one source file is permitted
             }
@@ -65,28 +60,36 @@ module.exports = function (grunt) {
                 //banner: '<%= banner %>'
             },
             dist: {
+                options: {
+                    compress: {
+                        drop_console:true,
+                        global_defs: {
+                        'DEBUG': false
+                        },
+                        dead_code: true}
+                },
                 files: [
                     {
                         expand: true,
                         cwd: '<%= dir.build %>/js',
-                        src: ['*.js','!*.min.js','!*.cc.js'],
+                        src: ['*.js','!*.min.js'],
                         dest: '<%= dir.release %>/js',
-                        ext: '.min.js'
+                        ext: '.js'
                     }
                 ]
             },
             dev: {
                 options: {
                     mangle:false,
-                    compress:false,
+                    compress: false,
                     beautify: true,
-                    banner: '<%= banner %>'
+                    banner: '<%= banner %>\nvar DEBUG = true;\n'
                 },
                 files: [
                     {
                         expand: true,
                         cwd: '<%= dir.build %>/js',
-                        src: ['*.js','!*.min.js','!*.cc.js'],
+                        src: ['*.js','!*.min.js'],
                         dest: '<%= dir.release %>/js',
                         ext: '.js'
                     }
@@ -95,28 +98,6 @@ module.exports = function (grunt) {
 
 
         },
-        /*Closure Compiler */
-        closureCompiler: {
-            options: {
-                compilerFile: 'components/compiler.jar',
-
-                compilerOpts: {
-                    create_source_map: null
-      }
-            },
-            minify: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: '<%= dir.release %>/js',
-                        src: ['*.js','!*.min.js','!*.cc.js'],
-                        dest: '<%= dir.release %>/js',
-                        ext: '.cc.js'
-                    }
-                ]
-            }
-        },
-
         /* Compile SASS to CSS */
         sass: {
             dist: {
@@ -164,7 +145,7 @@ module.exports = function (grunt) {
                     cwd: '<%= dir.build %>/css',
                     src: ['*.css','!*.min.css'],
                     dest: '<%= dir.release %>/css',
-                    ext: '.min.css'
+                    ext: '.css'
                 }]
             }
         },
@@ -202,19 +183,19 @@ module.exports = function (grunt) {
         }
     });
     grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-rollup');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-closure-tools');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadTasks('grunt-tasks/ollicon');
     // Default task(s).
     grunt.registerTask('icons', ['ollicon:icons','copy:icons']);
-    grunt.registerTask('js', ['rollup','uglify']);
-    grunt.registerTask('css', ['sass','postcss']);
+    grunt.registerTask('dev-js', ['rollup','uglify:dev']);
+    grunt.registerTask('dist-js', ['rollup','uglify:dist']);
+    grunt.registerTask('dev-css', ['sass','postcss:dev']);
+    grunt.registerTask('dist-css', ['sass','postcss:dist']);
 
-    grunt.registerTask('default', ['icons','css','js']);
+    grunt.registerTask('default', ['icons','dist-css','dist-js']);
 };

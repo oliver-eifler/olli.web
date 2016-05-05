@@ -7,8 +7,14 @@
   background-repeat: no-repeat;
   background-position:center center;
   display: inline-block;
+  svg {width:100%;height:100%;}
+  vertical-align:text-top;
 }
-.icon-olli,.icon-olli-small {
+i[class*="icon-"] {
+  width:1em;
+  height:1em;
+}
+.icon-olli {
   background-image: url($icon-olli-f3-url);
 }
 .icon-olli-s2,.icon-olli-s4 {
@@ -20,9 +26,10 @@
 
 
 
-.icon-olli-small {
-  width: px2em($icon-olli-small-width);
-  height: px2em($icon-olli-small-height);
+.icon-cool {
+  background-image: url($icon-cool-url);
+  width: px2em($icon-cool-width);
+  height: px2em($icon-cool-height);
 }
 .icon-github {
   background-image: url($icon-github-url);

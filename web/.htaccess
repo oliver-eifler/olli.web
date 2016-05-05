@@ -337,6 +337,7 @@ Options +FollowSymLinks
 RewriteBase /
 #
 RewriteRule ^bundle/(.*) /quickconcat.php?files=$1
+#RewriteRule ^piclet/(.*) /pic.php?file=$1
 #
 </IfModule>
 # END Olli Framework

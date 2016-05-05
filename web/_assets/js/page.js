@@ -1,4 +1,5 @@
-import {lib,doc,win,html} from './globals'
+import lib from 'olli'
+import {doc,win,html} from './globals'
 import ActionObserver from './page/action-observer.js';
 import FontSizeObserver from './page/fontsize-observer.js';
 import ResizeObserver from './page/resize-observer.js';

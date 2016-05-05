@@ -3,14 +3,14 @@
  */
 import {win,doc} from '../globals';
 
-export default function (href, cb, media) {
+export default function ajaxCSS(href, cb, media) {
     var refs = (doc.body || doc.getElementsByTagName("head")[0] ).childNodes,
     ref = refs[refs.length - 1];
     if (!href || href=="")
         return;
+    var ss = doc.createElement('style');
     cb = cb||function(){};
     function addcss(css){
-        var ss = doc.createElement('style');
         ss.setAttribute('type', 'text/css');
         ss.setAttribute('media', media || "all");
         ss.setAttribute('data-src', href);
@@ -36,4 +36,5 @@ export default function (href, cb, media) {
     };
     // Make the request
     req.send();
+    return ss;
 }

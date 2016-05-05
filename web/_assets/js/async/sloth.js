@@ -6,7 +6,7 @@
  */
 import {win,doc} from '../globals';
 
-export default (function (navigator) {
+export default (function(navigator) {
     var windowHeight = win.innerHeight || doc.documentElement.clientHeight,
     // When resizing or scrolling, hundreds to thousands events can be send.
     // Instead of executing the listeners on every single event, we only
@@ -112,7 +112,7 @@ export default (function (navigator) {
             }
         };
 
-    return function (element, listener) {
+    return function Sloth(element, listener) {
         listenerCount += 1;
         listeners[listenerCount] = {
             elem: element,

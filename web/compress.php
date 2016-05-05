@@ -13,8 +13,9 @@ if( ! function_exists('curl_init') ) {
 } else if( php_sapi_name() == 'cli' ) {
 	die('This script must be invoked via a web browser.');
 }
-check('http://'.$_SERVER["SERVER_NAME"].'/css/icons-fallback.min.css');
-check('http://'.$_SERVER["SERVER_NAME"].'/css/icons-png.min.css');
+check('http://'.$_SERVER["SERVER_NAME"]);
+check('http://'.$_SERVER["SERVER_NAME"].'/css/icons-fallback.css');
+check('http://'.$_SERVER["SERVER_NAME"].'/css/icons-png.css');
 check('http://'.$_SERVER["SERVER_NAME"].'/bundle/js/promise.js,js/page.js');
 function check($uri)
 {
@@ -47,7 +48,6 @@ function check($uri)
 	echo '<pre>';
     echo "url: ".$info["url"];
     echo "\n";
-    echo $return."\n";
 	if( ! (is_null($recv_enc) || $recv_enc == 'identity') ) {
 		echo 'Received Content-Encoding: ' . $recv_enc;
 	} else {

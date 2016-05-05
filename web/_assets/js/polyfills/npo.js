@@ -2,7 +2,15 @@
     v0.8.0-a (c) Kyle Simpson
     MIT License: http://getify.mit-license.org
 */
-export default function(){
+
+(function UMD(name,context,definition){
+	// special form of UMD for polyfilling across evironments
+	context[name] = context[name] || definition();
+	/* Olli: don't need any module definition, using native ES6 Modules
+	if (typeof module != "undefined" && module.exports) { module.exports = context[name]; }
+	else if (typeof define == "function" && define.amd) { define(function $AMD$(){ return context[name]; }); }
+	*/
+})("Promise",this,function DEF(){
 	/*jshint validthis:true */
 	"use strict";
 
@@ -12,9 +20,6 @@ export default function(){
 			function timer(fn) { return setImmediate(fn); } :
 			setTimeout
 	;
-	function isFunction(obj) {return (typeof obj === "function")}
-	var isArray = Array.isArray;
-
 
 	// dammit, IE8.
 	try {
@@ -86,7 +91,7 @@ export default function(){
 		) {
 			_then = o.then;
 		}
-		return isFunction(_then) ? _then : false;
+		return typeof _then == "function" ? _then : false;
 	}
 
 	function notify() {
@@ -222,7 +227,7 @@ export default function(){
 	}
 
 	function Promise(executor) {
-		if (!isFunction(executor)) {
+		if (typeof executor != "function") {
 			throw TypeError("Not a function");
 		}
 
@@ -238,14 +243,14 @@ export default function(){
 
 		this["then"] = function then(success,failure) {
 			var o = {
-				success: isFunction(success) ? success : true,
-				failure: isFunction(failure) ? failure : false
+				success: typeof success == "function" ? success : true,
+				failure: typeof failure == "function" ? failure : false
 			};
 			// Note: `then(..)` itself can be borrowed to be used against
 			// a different promise constructor for making the chained promise,
 			// by substituting a different `this` binding.
 			o.promise = new this.constructor(function extractChain(resolve,reject) {
-				if (!isFunction(resolve) || !isFunction(reject)) {
+				if (typeof resolve != "function" || typeof reject != "function") {
 					throw TypeError("Not a function");
 				}
 
@@ -302,7 +307,7 @@ export default function(){
 		}
 
 		return new Constructor(function executor(resolve,reject){
-			if (!isFunction(resolve) || !isFunction(reject)) {
+			if (typeof resolve != "function" || typeof reject != "function") {
 				throw TypeError("Not a function");
 			}
 
@@ -312,7 +317,7 @@ export default function(){
 
 	builtInProp(Promise,"reject",function Promise$reject(msg) {
 		return new this(function executor(resolve,reject){
-			if (!isFunction(resolve) || !isFunction(reject)) {
+			if (typeof resolve != "function" || typeof reject != "function") {
 				throw TypeError("Not a function");
 			}
 
@@ -324,7 +329,7 @@ export default function(){
 		var Constructor = this;
 
 		// spec mandated checks
-		if (!isArray(arr)) {
+		if (ToString.call(arr) != "[object Array]") {
 			return Constructor.reject(TypeError("Not an array"));
 		}
 		if (arr.length === 0) {
@@ -332,7 +337,7 @@ export default function(){
 		}
 
 		return new Constructor(function executor(resolve,reject){
-			if (!isFunction(resolve) || !isFunction(reject)) {
+			if (typeof resolve != "function" || typeof reject != "function") {
 				throw TypeError("Not a function");
 			}
 
@@ -351,12 +356,12 @@ export default function(){
 		var Constructor = this;
 
 		// spec mandated checks
-		if (!isArray(arr)) {
+		if (ToString.call(arr) != "[object Array]") {
 			return Constructor.reject(TypeError("Not an array"));
 		}
 
 		return new Constructor(function executor(resolve,reject){
-			if (!isFunction(resolve) || !isFunction(reject)) {
+			if (typeof resolve != "function" || typeof reject != "function") {
 				throw TypeError("Not a function");
 			}
 
@@ -367,4 +372,4 @@ export default function(){
 	});
 
 	return Promise;
-};
+});

@@ -3,7 +3,7 @@
  */
 import {hasDataAttribute,setDataAttribute,getDataAttribute,removeDataAttribute} from '../dom/attribute.js'
 
-export default function (imageContainer) {
+export default function loadImage(imageContainer) {
 
     //var imageVersion = getImageVersion();
 
@@ -12,18 +12,19 @@ export default function (imageContainer) {
     }
 
     setDataAttribute(imageContainer,"img", "loading");
-    var img = imageContainer.children[0];
+    var img = (function() {
+        for (var nodes = imageContainer.children, n, i = 0, l = nodes.length; i < l; ++i)
+            if (n = nodes[i], 1 === n.nodeType) return n;
+        return null;
+    })();
     if (img) {
         var imgSRC = getDataAttribute(img,"src");
         if (imgSRC) {
-            var imageElement = new Image();
-            setDataAttribute(imageElement,"src","");
-            imageContainer.appendChild(imageElement);
-            imageElement.onload = function () {
-                removeDataAttribute(imageElement,"src");
+            img.onload = function () {
+                removeDataAttribute(img,"src");
                 setDataAttribute(imageContainer,"img", "loaded");
             };
-            imageElement.src = imgSRC;
+            img.src = imgSRC;
         }
     }
 }
