@@ -1,7 +1,6 @@
-/* icons with png datauris, px sized */
+/* icons with png urls, px sized */
 @import 'config';
-@import 'icons/png';
-
+@import 'icons/fallback';
 [class*="icon-"] {
   background-repeat: no-repeat;
   background-position:center center;
@@ -11,6 +10,7 @@ i[class*="icon-"] {
   height:1em;
   vertical-align:text-top;
 }
+
 .icon-olli {
   background-image: url($icon-olli-url);
   width: $icon-olli-width;
@@ -50,4 +50,40 @@ i[class*="icon-"] {
   background-repeat: no-repeat;
   background-position:center center;
   background-image: url($icon-background-url);
+}
+.social-icon span {
+  @include screenShow();
+}
+@import 'icons/svg';
+@supports (display:block) {
+  .header-logo {
+    background:none;
+    background-color:divider($colors);
+    border-radius: 32px;
+    @include card(2);
+  }
+  .social-icon span {
+    @include screenHide();
+  }
+  .icon-olli {
+    background-image: url($icon-olli-url);
+  }
+  .icon-cool {
+    background-image: url($icon-cool-url);
+  }
+  .icon-github {
+    background-image: url($icon-github-url);
+  }
+  .icon-codepen {
+    background-image: url($icon-codepen-url);
+  }
+  .icon-facebook {
+    background-image: url($icon-facebook-url);
+  }
+  .icon-twitter {
+    background-image: url($icon-twitter-url);
+  }
+  .icon-invader {
+    background-image: url($icon-invader-url);
+  }
 }

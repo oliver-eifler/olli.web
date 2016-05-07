@@ -141,7 +141,6 @@ small {font-size:.75em;}
 }
 .header-logo {
   margin:0 .5em;
-  padding:.5em 1em;
 }
 .header-text {
   margin:.5em 0 0 0;
@@ -289,6 +288,21 @@ img[data-src],iframe[data-src] {
 */
 .social-icon span {
   @include screenHide();
+}
+
+.avatar {
+  display:inline-block;
+  margin:.5em 1em;
+  position:relative;
+  width: px2em($icon-olli-f3-width);
+  height: px2em($icon-olli-f3-height);
+}
+.avatar > * {
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
 }
 
 .footer-container {

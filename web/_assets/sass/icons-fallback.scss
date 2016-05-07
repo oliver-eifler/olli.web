@@ -13,9 +13,9 @@ i[class*="icon-"] {
 }
 
 .icon-olli {
-  background-image: url($icon-olli-alt-url);
-  width: $icon-olli-alt-width;
-  height: $icon-olli-alt-height;
+  background-image: url($icon-olli-url);
+  width: $icon-olli-width;
+  height: $icon-olli-height;
 }
 .icon-cool {
   background-image: url($icon-cool-url);
@@ -51,8 +51,8 @@ i[class*="icon-"] {
   width: $icon-invader-width;
   height: $icon-invader-height;
 }
-.avatar {
-  margin:0;
-  width: $icon-olli-alt-width;
-  height: $icon-olli-alt-height;
+.header-logo {
+  background-repeat: no-repeat;
+  background-position:center center;
+  background-image: url($icon-background-url);
 }

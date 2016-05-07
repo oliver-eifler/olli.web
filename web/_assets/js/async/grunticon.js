@@ -36,7 +36,7 @@ var grunticon = function (css, onload) {
         var stylesheet=loadCSS("bundle/"+href, function () {
             doc.documentElement.className += " oi oi-" + method;
             stylesheet.setAttribute("data-oi-method",method);
-            onload();
+            onload(method,stylesheet);
         });
     };
 

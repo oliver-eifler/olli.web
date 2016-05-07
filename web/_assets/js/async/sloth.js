@@ -4,10 +4,12 @@
  * @overview This module offers a utility to lazy load whatever you want on whatever action.
  * @copyright 2014, SpilGames
  */
-import {win,doc} from '../globals';
+import {win, doc} from '../globals';
 
-export default (function(navigator) {
-    var windowHeight = win.innerHeight || doc.documentElement.clientHeight,
+export default (function (navigator) {
+    var windowHeight,
+        onscroll = (navigator.userAgent.match(/webkit/i) && navigator.userAgent.match(/mobile/i)) ? "touchmove" : "scroll",
+        onresize = "resize",
     // When resizing or scrolling, hundreds to thousands events can be send.
     // Instead of executing the listeners on every single event, we only
     // execute the logic every X miliseconds the configured values are
@@ -19,6 +21,7 @@ export default (function(navigator) {
         listeners = {},
         listenersDone = 0,
         listenerCount = 0,
+
 
         addEventListener = (function () {
             var overwrite;
@@ -49,10 +52,13 @@ export default (function(navigator) {
 
             return overwrite;
         })(),
+        updateHeight = function() {
+            windowHeight = win.innerHeight || doc.documentElement.clientHeight;
+        },
 
         isInViewport = function (el) {
             var rect = el.getBoundingClientRect();
-            return !(rect.bottom < 0 || rect.top > windowHeight);
+            return (rect.bottom >= 0 && rect.top <= windowHeight);
         },
     /*
      function isElementOutViewport (el) {
@@ -64,7 +70,6 @@ export default (function(navigator) {
             if (listenerCount < 1) {
                 return;
             }
-
             var listenerIndex,
                 listener;
 
@@ -75,15 +80,24 @@ export default (function(navigator) {
                     if (!listener.handled && isInViewport(listener.elem)) {
                         listenersDone += 1;
                         listener.handled = true;
+                        if (DEBUG) {
+                            console.log("Element ",listener.elem);
+                            console.log("Viewport ",windowHeight);
+                            var rect=listener.elem.getBoundingClientRect();
+                            console.log("ClientRect ",rect);
+                            console.log("Parent ",listener.elem.parentNode.getBoundingClientRect());
+                            console.log("rect.bottom >= 0:"+(rect.bottom >= 0)+" rect.top <= windowHeight:"+(rect.top <= windowHeight));
+                        }
 
                         listener.onready(listener.elem);
+                        listener = null;
                     }
                 }
             }
 
             if (listenersDone === listenerCount) {
-                removeEventListener('scroll', onScrollHandler, win);
-                removeEventListener('resize', resetWindowHeight, win);
+                removeEventListener(onscroll, onScrollHandler, win);
+                removeEventListener(onresize, resetWindowHeight, win);
                 scrollHandlerSet = false;
                 resizeHandlerSet = false;
                 listenerCount = 0;
@@ -102,43 +116,50 @@ export default (function(navigator) {
         },
 
         resetWindowHeight = function () {
+            /*
             if (null === resizeTimeout) {
                 resizeTimeout = win.setTimeout(function () {
-                    windowHeight = win.innerHeight || doc.documentElement.clientHeight;
-                    resizeTimeout = null;
-                    // Check if something became visible after the resize.
+                    updateHeight();
                     onScrollHandler();
+                    resizeTimeout = null;
                 }, 100);
             }
-        };
+            */
+            updateHeight();
+            onScrollHandler();
+        },
 
-    return function Sloth(element, listener) {
-        listenerCount += 1;
-        listeners[listenerCount] = {
-            elem: element,
-            onready: listener
-        };
+        add = function add(element, listener) {
+            listenerCount += 1;
+            listeners[listenerCount] = {
+                elem: element,
+                onready: listener
+            };
 
-        if (false === resizeHandlerSet) {
-            addEventListener('resize', resetWindowHeight, win);
-            resizeHandlerSet = true;
-        }
-
-        if (false === scrollHandlerSet) {
-            if (navigator.userAgent.match(/webkit/i) && navigator.userAgent.match(/mobile/i)) {
-                // iPad, iPhone, Android etc.
-                addEventListener('touchmove', onScrollHandler, win);
-            } else {
-                addEventListener('scroll', onScrollHandler, win);
+            if (false === resizeHandlerSet) {
+                addEventListener(onresize, resetWindowHeight, win);
+                resizeHandlerSet = true;
             }
 
-            scrollHandlerSet = true;
-        }
-
-        // Directly check if the element is visible once added.
-        onScrollHandler();
-
-        return element;
-    };
+            if (false === scrollHandlerSet) {
+                updateHeight();
+                addEventListener(onscroll, onScrollHandler, win);
+                scrollHandlerSet = true;
+            }
+            onScrollHandler();
+            // Directly check if the element is visible once added.
+            return element;
+        },
+        reset = function reset() {
+            listenersDone = listenerCount = 0;
+            removeEventListener(onscroll, onScrollHandler, win);
+            removeEventListener(onresize, resetWindowHeight, win);
+            scrollHandlerSet = false;
+            resizeHandlerSet = false;
+            cancelTimeout(scrollTimeout);
+            resizeTimeout = scrollTimeout = null;
+            listeners = {};
+        };
+    return {add: add, reset: reset};
 
 })(win.navigator);

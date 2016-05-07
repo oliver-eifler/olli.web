@@ -6,10 +6,10 @@ import {doc, win} from './globals'
 import grunticon from './async/grunticon.js'
 import embedSVG from './async/grunticon.embed.js';
 
-import loadImage from './async/loadimage.js'
+//import loadImage from './async/loadimage.js'
+import loadDataSrc from './async/loaddatasrc.js'
 import Sloth from './async/sloth.js'
 import loadJS from './async/loadJS.js'
-import findByClassName from './dom/findbyclassname.js'
 import {hasDataAttribute, setDataAttribute} from './dom/attribute.js'
 
 //Document.ready
@@ -30,15 +30,23 @@ function ready(fn) {
 };
 
 
-//LayzLoad Images on Scroll using Sloth (Faultier)
+//LayzLoad Images data-src on Scroll using Sloth (Faultier)
 function updateSloth() {
-    var i,
-        images = findByClassName(doc, 'sloth');
-    for (i = 0; i < images.length; i++) {
-        var image = images[i];
-        if (!hasDataAttribute(image, "sloth")) {
-            setDataAttribute(image, "sloth", "true");
-            Sloth(image, loadImage);
+    var i,l,node,
+        nodes = doc.getElementsByTagName('img');
+    for (i = 0,l=nodes.length; i < l; i++) {
+        node = nodes[i];
+        if (!hasDataAttribute(node, "sloth") && hasDataAttribute(node,"src")) {
+            setDataAttribute(node, "sloth", "true");
+            Sloth.add(node, loadDataSrc);
+        }
+    }
+    nodes = doc.getElementsByTagName('iframe');
+    for (i = 0,l=nodes.length; i < l; i++) {
+        node = nodes[i];
+        if (!hasDataAttribute(node, "sloth") && hasDataAttribute(node,"src")) {
+            setDataAttribute(node, "sloth", "true");
+            Sloth.add(node, loadDataSrc);
         }
     }
 }
@@ -47,11 +55,12 @@ lib.grunticon = grunticon;
 lib.embedSVG = embedSVG;
 lib.sloth = Sloth;
 lib.updateSloth = updateSloth;
-lib.loadImage = loadImage;
+lib.loadDataSrc = loadDataSrc;
 // wait until body is defined before injecting links/scripts. This ensures a non-blocking load in IE11.
-grunticon(["css/icons-svg.css", "css/icons-png.css", "css/icons-fallback.css"], function () {
+grunticon(["css/icons-svg.css", "css/icons-png.css", "css/icons-fallback.css"], function (method,stylesheet) {
         ready(function () {
-            embedSVG();
+            
+            method == "svg" && embedSVG(stylesheet);
             updateSloth();
         });
     }
@@ -61,6 +70,7 @@ if (win.history && win.history.pushState) {
     if (!win.Promise)
         js.push("js/promise.js");
 
+    js.push("js/history.js");
     js.push("js/page.js");
 
     ready(function () {

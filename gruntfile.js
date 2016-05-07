@@ -53,6 +53,13 @@ module.exports = function (grunt) {
                 },
                 'dest':'<%= dir.build %>/js/promise.js',
                 'src' :'<%= dir.assets %>/js/promise.js' // Only one source file is permitted
+            },
+            jsHistory: {
+                options: {
+                    format: 'es6'
+                },
+                'dest':'<%= dir.build %>/js/history.js',
+                'src' :'<%= dir.assets %>/js/history.js' // Only one source file is permitted
             }
         },
         uglify: {
@@ -66,7 +73,8 @@ module.exports = function (grunt) {
                         global_defs: {
                         'DEBUG': false
                         },
-                        dead_code: true}
+                        dead_code: true
+                    }
                 },
                 files: [
                     {

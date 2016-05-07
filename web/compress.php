@@ -16,6 +16,7 @@ if( ! function_exists('curl_init') ) {
 check('http://'.$_SERVER["SERVER_NAME"]);
 check('http://'.$_SERVER["SERVER_NAME"].'/css/icons-fallback.css');
 check('http://'.$_SERVER["SERVER_NAME"].'/css/icons-png.css');
+check('http://'.$_SERVER["SERVER_NAME"].'/css/icons-svg.css');
 check('http://'.$_SERVER["SERVER_NAME"].'/bundle/js/promise.js,js/page.js');
 function check($uri)
 {

@@ -6,7 +6,7 @@
     <meta name='format-detection' content='telephone=no'/>
     <title>oliver-eifler.info</title>
     <style><?php include('css/layout.css');?></style>
-    <noscript><link href="bundle/css/icons-nojs.css" rel="stylesheet"></noscript>
+    <noscript><link href="bundle/css/icons-fallback.css" rel="stylesheet"></noscript>
     <script>var olli={};</script>
     <script src='bundle/js/async.js' async></script>
 </head>
@@ -14,8 +14,13 @@
 <div class="flex-header panel">
     <header>
         <a class="header" href='#'>
-            <div class="header-logo" aria-hidden="true">
-                <div data-grunticon-embed class="icon-olli avatar"></div>
+            <div class="header-logo">
+            <span class="avatar">
+            <div data-grunticon-embed class="icon-olli"></div>
+            <div data-grunticon-embed class="icon-olli-s2"></div>
+            <div data-grunticon-embed class="icon-olli-s3"></div>
+            <div data-grunticon-embed class="icon-olli-s4"></div>
+            </span>
             </div>
             <div class="header-text">
                 <h1>Oliver Jean Eifler</h1>

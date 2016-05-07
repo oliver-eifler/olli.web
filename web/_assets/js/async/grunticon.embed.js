@@ -75,10 +75,8 @@ export default (function(){
 		return filteredElems;
 	};
 
-	return function embedSVG(){
-			var ss = doc.styleSheets,l=ss.length,i;
-			for (i=0;i<l;i++)
-				embedIcons( getIcons(ss[i].ownerNode) );
+	return function embedSVG(stylesheet){
+				embedIcons( getIcons(stylesheet));
 	};
 
 })();
