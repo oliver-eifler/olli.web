@@ -40,6 +40,9 @@ module.exports = function (grunt) {
             },
             */
             jsAsync: {
+                options: {
+                    moduleName: 'olli'
+                },
                 'dest':'<%= dir.build %>/js/async.js',
                 'src' :'<%= dir.assets %>/js/async.js' // Only one source file is permitted
             },
@@ -145,6 +148,7 @@ module.exports = function (grunt) {
                 options: {
                     processors: [
                         require('pixrem')(), // rem to pixel the result
+                        require('css-mqpacker')(), // rem to pixel the result
                         require('cssnano')() // minify the result
                     ]
                 },

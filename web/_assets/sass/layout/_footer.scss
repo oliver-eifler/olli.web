@@ -1,0 +1,22 @@
+/* Footer */
+@import '../config';
+
+.footer-container {
+  background:mix(hilight($colors),base($colors),opacity(divider($colors))*100%);/*Real Color for background*/
+}
+.footer {
+  margin: 0 auto;
+  font-family: $monospaceFont;
+  padding:0.25em 0.25em 0 .25em;
+  & > * {margin:0 .5em;line-height:1.5;}
+}
+
+.licence {
+  margin-bottom:1em;
+}
+.legende {
+  padding: 0 .5em;
+  border-top:1px solid;
+  color:info($colors);
+  text-align:right;
+}

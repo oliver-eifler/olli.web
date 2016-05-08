@@ -127,9 +127,9 @@ export default (function (navigator) {
             */
             updateHeight();
             onScrollHandler();
-        },
+        };
 
-        add = function add(element, listener) {
+        function add(element, listener) {
             listenerCount += 1;
             listeners[listenerCount] = {
                 elem: element,
@@ -149,8 +149,8 @@ export default (function (navigator) {
             onScrollHandler();
             // Directly check if the element is visible once added.
             return element;
-        },
-        reset = function reset() {
+        };
+        function reset() {
             listenersDone = listenerCount = 0;
             removeEventListener(onscroll, onScrollHandler, win);
             removeEventListener(onresize, resetWindowHeight, win);

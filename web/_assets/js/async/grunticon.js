@@ -2,7 +2,7 @@
 import {win,doc} from '../globals.js';
 import loadCSS from '../async/ajaxCSS.js';
 
-var grunticon = function (css, onload) {
+var grunticon=function(css, onload) {
     // expects a css array with 3 items representing CSS paths to datasvg, datapng, urlpng
     if (!css || css.length !== 3) {
         return;
@@ -42,4 +42,5 @@ var grunticon = function (css, onload) {
 
     img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
 };
+grunticon.loadCSS = loadCSS;
 export default grunticon;

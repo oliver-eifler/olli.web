@@ -1,13 +1,7 @@
 @import 'lib/functions';
 @import 'lib/theme';
+@import 'lib/mixin';
 
-@function scut-strip-unit (
-  $num
-) {
-
-  @return $num / ($num * 0 + 1);
-
-}
 
 $baseFontSize: 16; // in pixels. This would result in 16px on desktop
 $baseLineHeight: 1.5; // how large the line height is as a multiple of font size
@@ -58,18 +52,3 @@ $sansSerifFont: Verdana, Geneva, sans-serif;
 $serifFont: Georgia, Georgia, Times, Times New Roman, serif;
 
 
-@mixin screenHide {
-  position: absolute;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-}
-
-@mixin screenShow($position: static) {
-  position: $position;
-  height: auto;
-  width: auto;
-  overflow: visible;
-  clip: auto;
-}

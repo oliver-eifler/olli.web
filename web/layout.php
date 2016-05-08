@@ -7,7 +7,6 @@
     <title>oliver-eifler.info</title>
     <style><?php include('css/layout.css');?></style>
     <noscript><link href="bundle/css/icons-nojs.css" rel="stylesheet"></noscript>
-    <script>var olli={};</script>
     <script src='bundle/js/async.js' async></script>
 </head>
 <body class="flex">

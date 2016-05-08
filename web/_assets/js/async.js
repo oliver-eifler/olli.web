@@ -1,12 +1,11 @@
 /**
  * Created by darkwolf on 12.03.2016.
  */
-import lib from 'olli'
 import {doc, win} from './globals'
-import grunticon from './async/grunticon.js'
-import embedSVG from './async/grunticon.embed.js';
 
-//import loadImage from './async/loadimage.js'
+import grunticon from './async/grunticon.js'
+import {getIcons,embedIcons} from './async/grunticon.embed.js';
+
 import loadDataSrc from './async/loaddatasrc.js'
 import Sloth from './async/sloth.js'
 import loadJS from './async/loadJS.js'
@@ -50,17 +49,11 @@ function updateSloth() {
         }
     }
 }
-lib.ready = ready;
-lib.grunticon = grunticon;
-lib.embedSVG = embedSVG;
-lib.sloth = Sloth;
-lib.updateSloth = updateSloth;
-lib.loadDataSrc = loadDataSrc;
 // wait until body is defined before injecting links/scripts. This ensures a non-blocking load in IE11.
 grunticon(["css/icons-svg.css", "css/icons-png.css", "css/icons-fallback.css"], function (method,stylesheet) {
         ready(function () {
             
-            method == "svg" && embedSVG(stylesheet);
+            method == "svg" && embedIcons(getIcons(stylesheet));
             updateSloth();
         });
     }
@@ -77,3 +70,12 @@ if (win.history && win.history.pushState) {
         loadJS("bundle/" + js.join(","));
     });
 }
+grunticon.embedIcons = embedIcons;
+grunticon.getIcons = getIcons;
+grunticon.ready = ready;
+grunticon.loadJS = loadJS;
+grunticon.sloth = Sloth;
+grunticon.updateSloth = updateSloth;
+grunticon.loadDataSrc = loadDataSrc;
+
+export default grunticon;

@@ -1,0 +1,109 @@
+/* Basic Layout */
+@import '../config';
+
+html {
+  background-color: #444;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: $sansSerifFont;
+  font-size: $baseFontSize / 16 * 100%;
+  // Make everything look a little nicer in webkit
+  -webkit-font-smoothing: antialiased;
+
+  position: relative;
+  margin: 0;
+  padding: 0;
+  color: #000;
+  color: text($colors);
+  background-color: base($colors);
+}
+
+@media only screen and (max-width: 320px) {
+  @-ms-viewport {
+    width: 320px;
+  }
+  @viewport {
+    width: 320px;
+  }
+}
+
+/*USed for font-resize*/
+h1, h2, h3, h4, h5, h6 {
+  font-family: $serifFont;
+  color: hilight($colors);
+}
+
+a {
+  color: $color-link;
+  text-decoration: none;
+  &:visited {
+    color: $color-link-visited;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color-link-hover !important;
+  }
+}
+
+small {
+  font-size: .75em;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-smart {
+  text-align: center;
+  & > * {
+    display: inline-block;
+    text-align: left;
+  }
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.flex-header, .flex-footer {
+  flex-shrink: 0;
+}
+
+.flex-content {
+  flex: 1 0 auto; /* min-height = content; */
+}
+/* Bumper for Hero-header, Footer, etc.*/
+.bumper {
+  position:relative;
+}
+@media (min-width: $wideLayoutWidth) {
+  .bumper:after {
+    content: "";
+    position:absolute;
+    display:block;
+    width:4em;
+    height:100%;
+    left:100%;
+    top:0;
+    background-color:inherit;
+    border-radius: 0 2em 2em 0;
+  }
+}

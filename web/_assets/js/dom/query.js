@@ -1,0 +1,40 @@
+/**
+ * Created by darkwolf on 08.05.2016.
+ */
+/*
+ * query
+ * Abstraction to querySelectorAll for increased 
+ * performance and greater usability
+ * @param {String} selector
+ * @param {Element} context (optional)
+ * @return {Array}
+ */
+
+(function(win){
+    'use strict';
+
+    var simpleRe = /^(#?[\w-]+|\.[\w-.]+)$/,
+        periodRe = /\./g,
+        slice = [].slice;
+
+    win.query = function(selector, context){
+        context = context || document;
+        // Redirect call to the more performant function 
+        // if it's a simple selector and return an array
+        // for easier usage
+        if(simpleRe.test(selector)){
+            switch(selector[0]){
+                case '#':
+                    return [document.getElementById(selector.substr(1))];
+                case '.':
+                    return slice.call(context.getElementsByClassName(selector.substr(1).replace(periodRe, ' ')));
+                default:
+                    return slice.call(context.getElementsByTagName(selector));
+            }
+        }
+        // If not a simple selector, query the DOM as usual 
+        // and return an array for easier usage
+        return slice.call(context.querySelectorAll(selector));
+    };
+
+})(this);

@@ -1,0 +1,52 @@
+/* content */
+@import '../config';
+@import '../layout/boxen';
+
+/*Content*/
+.content-container {
+  padding-bottom:$baseLineHeight*3em - ($pageMargin/2);
+}
+.content-width {
+  margin: 0 auto;
+  max-width: $pageWidth+$pageMargin;
+  position:relative;
+  background: base($colors);
+}
+@media (min-width: 320px) {
+  .content-width {
+    padding: $pageMargin/2;
+    border-radius:$pageMargin/2;
+    :first-child {
+      margin-top:0;
+    }
+    @include card(2);
+  }
+}
+
+@media (min-width: $pageWidth+$pageMargin) {
+  .content-width {
+    margin: 0 auto;
+  }
+}
+
+/* Hero Header */
+$hero-colors: getColors($color-brand);
+
+.hero-container {
+  //max-width:$wideLayoutWidth;
+  margin:0 auto;
+  padding: $leading $pageMargin/2 6*$leading $pageMargin/2;
+  background-color:base($hero-colors);
+  margin-bottom:-6*$leading + 1rem;
+}
+.hero {
+  max-width:$wideLayoutWidth;
+  margin:0 auto;
+  :first-child {margin-top:0;}
+  color: text-contrast($color-brand);
+  h1,h2,h3 {
+    color: text-contrast($color-brand);
+  }
+}
+
+

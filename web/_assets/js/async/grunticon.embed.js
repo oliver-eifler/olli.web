@@ -1,11 +1,10 @@
 import {doc} from '../globals.js';
 
-export default (function(){
 	var selectorPlaceholder = "grunticon:";
 
 	// get the SVG link
 	// this function can rip the svg markup from the css so we can embed it anywhere
-	var getIcons = function(stylesheet){
+	export function getIcons(stylesheet){
 		// get grunticon stylesheet by its href
 		var icons = {},
 			svgss,
@@ -33,7 +32,7 @@ export default (function(){
 
 	// embed an icon of a particular name ("icon-foo") in all elements with that icon class
 	// and remove its background image
-	var embedIcons = function(icons){
+	export function embedIcons(icons){
 		var selectedElems, filteredElems, embedAttr, selector;
 
 		// attr to specify svg embedding
@@ -75,8 +74,3 @@ export default (function(){
 		return filteredElems;
 	};
 
-	return function embedSVG(stylesheet){
-				embedIcons( getIcons(stylesheet));
-	};
-
-})();

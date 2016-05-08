@@ -1,4 +1,6 @@
-/*! Typebase.scss v0.1.0 | MIT License */
+/* Typebase.scss v0.1.0 | MIT License */
+@import '../_config';
+
 .baseline {
   background-image: linear-gradient(to top, #00f 1px, transparent 1px);
   background-size: 100% $leading;
