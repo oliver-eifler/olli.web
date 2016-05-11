@@ -18,7 +18,8 @@ $pageWidth: 40em;
 $pageMargin: 1em;
 
 $wideLayoutWidth: $pageWidth+$panelWidth;
-
+$zoomWidth: 80em;
+$zoomFactor: 1.25;
 //Colors
 $color-page: #fffffa;
 $colors: getColors($color-page);

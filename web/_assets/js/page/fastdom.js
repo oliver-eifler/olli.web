@@ -21,7 +21,7 @@ export default (function() {
  *
  * @return {Function}
  */
-var debug = 0 ? console.log.bind(console, '[fastdom]') : function() {};
+var debug = DEBUG ? console.log.bind(console, '[fastdom]') : function() {};
 
 /**
  * Initialize a `FastDom`.
@@ -33,7 +33,7 @@ function FastDom() {
   self.reads = [];
   self.writes = [];
   self.raf = raf.bind(win); // test hook
-  debug('initialized', self);
+  DEBUG && debug('initialized', self);
 }
 
 FastDom.prototype = {
@@ -47,7 +47,7 @@ FastDom.prototype = {
    * @public
    */
   measure: function(fn, ctx) {
-    debug('measure');
+    DEBUG && debug('measure');
     var task = { fn: fn, ctx: ctx };
     this.reads.push(task);
     scheduleFlush(this);
@@ -63,7 +63,7 @@ FastDom.prototype = {
    * @public
    */
   mutate: function(fn, ctx) {
-    debug('mutate');
+    DEBUG && debug('mutate');
     var task = { fn: fn, ctx: ctx };
     this.writes.push(task);
     scheduleFlush(this);
@@ -78,7 +78,7 @@ FastDom.prototype = {
    * @public
    */
   clear: function(task) {
-    debug('clear', task);
+    DEBUG && debug('clear', task);
     return remove(this.reads, task) || remove(this.writes, task);
   },
 
@@ -117,7 +117,7 @@ FastDom.prototype = {
    * @return {FastDom}
    */
   extend: function(props) {
-    debug('extend', props);
+    DEBUG && debug('extend', props);
     if (typeof props != 'object') throw new Error('expected object');
 
     var child = Object.create(this);
@@ -146,7 +146,7 @@ function scheduleFlush(fastdom) {
   if (!fastdom.scheduled) {
     fastdom.scheduled = true;
     fastdom.raf(flush.bind(null, fastdom));
-    debug('flush scheduled');
+    DEBUG && debug('flush scheduled');
   }
 }
 
@@ -160,16 +160,16 @@ function scheduleFlush(fastdom) {
  * @private
  */
 function flush(fastdom) {
-  debug('flush');
+  DEBUG && debug('flush');
 
   var writes = fastdom.writes;
   var reads = fastdom.reads;
   var error;
 
   try {
-    debug('flushing reads', reads.length);
+    DEBUG && debug('flushing reads', reads.length);
     runTasks(reads);
-    debug('flushing writes', writes.length);
+    DEBUG && debug('flushing writes', writes.length);
     runTasks(writes);
   } catch (e) { error = e; }
 
@@ -179,7 +179,7 @@ function flush(fastdom) {
   if (reads.length || writes.length) scheduleFlush(fastdom);
 
   if (error) {
-    debug('task errored', error.message);
+    DEBUG && debug('task errored', error.message);
     if (fastdom.catch) fastdom.catch(error);
     else throw error;
   }
@@ -194,7 +194,7 @@ function flush(fastdom) {
  * @private
  */
 function runTasks(tasks) {
-  debug('run tasks');
+  DEBUG && debug('run tasks');
   var task; while (task = tasks.shift()) task.fn.call(task.ctx);
 }
 

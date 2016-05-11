@@ -20,11 +20,12 @@ export default function loadImage(imageContainer) {
     if (img) {
         var imgSRC = getDataAttribute(img,"src");
         if (imgSRC) {
-            img.onload = function () {
+            var image = new Image();
+            image.onload = function () {
                 removeDataAttribute(img,"src");
                 setDataAttribute(imageContainer,"img", "loaded");
             };
-            img.src = imgSRC;
+            imgage.src = imgSRC;
         }
     }
 }

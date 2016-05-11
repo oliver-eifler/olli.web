@@ -36,7 +36,7 @@ import {doc} from '../globals.js';
 		var selectedElems, filteredElems, embedAttr, selector;
 
 		// attr to specify svg embedding
-		embedAttr = "data-grunticon-embed";
+		embedAttr = "data-icon-embed";
 
 		for( var iconName in icons ){
 			selector = iconName.slice(selectorPlaceholder.length);
@@ -68,6 +68,13 @@ import {doc} from '../globals.js';
 				filteredElems[ i ].innerHTML = icons[ iconName ];
 				filteredElems[ i ].style.backgroundImage = "none";
 				filteredElems[ i ].removeAttribute( embedAttr );
+				/* Make Users with deactivated styles happy and hide svg icons*/
+				var svg=filteredElems[i].firstChild;
+				if (svg.viewBox) {
+					//var box = svg.viewBox.baseVal || {width:0};
+					//svg.setAttribute("width", ""+(box.width)+"");
+					svg.setAttribute("width", "0");
+				}
 			}
 		}
 

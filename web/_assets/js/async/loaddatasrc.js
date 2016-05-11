@@ -13,15 +13,14 @@ export default function loadDataSrc(node) {
 
     setDataAttribute(node,"status", "loading");
     var src = getDataAttribute(node,"src");
-        if (src) {
-            node.onload = function () {
-                removeDataAttribute(node,"src");
-                setDataAttribute(node,"status", "loaded");
-                /*force refresh on IE < 9 */
-                if (document.documentMode && document.documentMode < 9)
-                    node.className = node.className;
-            };
-            node.src = src;
-        }
+    if (src) {
+        node.onload = function () {
+            removeDataAttribute(node,"src");
+            setDataAttribute(node,"status", "loaded");
+            if (document.documentMode && document.documentMode < 9)
+                node.className = node.className;
+        };
+        node.src = src;
+    }
 }
 

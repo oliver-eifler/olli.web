@@ -10,6 +10,19 @@ html {
   box-sizing: inherit;
 }
 
+$bp-small: 48em; // 768px
+$bp-medium: 64em; // 1024px
+$bp-large: 85.375em; // 1366px
+$bp-xlarge: 120em; // 1920px
+$bp-xxlarge: 160em; // 2560px
+
+// Media Queries
+$mq-small: "(min-width: #{$bp-small})";
+$mq-medium: "(min-width: #{$bp-medium})";
+$mq-large: "(min-width: #{$bp-large})";
+$mq-xlarge: "(min-width: #{$bp-xlarge})";
+$mq-xxlarge: "(min-width: #{$bp-xxlarge})";
+
 body {
   font-family: $sansSerifFont;
   font-size: $baseFontSize / 16 * 100%;
@@ -22,6 +35,25 @@ body {
   color: #000;
   color: text($colors);
   background-color: base($colors);
+  /*
+  @media #{$mq-xlarge} {
+    font-size: ($baseFontSize*1.5)/16*100%;
+  }
+
+  @media #{$mq-xxlarge} {
+    font-size: ($baseFontSize*2.0)/16*100%;
+  }
+  */
+}
+@media only screen and (min-width: 100em) {
+  html {
+    font-size: 1vw;
+  }
+}
+@media only screen and (min-width:20em) and (max-width: 25em) {
+  html {
+    font-size: 4vw;
+  }
 }
 
 @media only screen and (max-width: 320px) {
@@ -30,6 +62,9 @@ body {
   }
   @viewport {
     width: 320px;
+  }
+  html {
+    font-size: 12.8/16*100%;
   }
 }
 

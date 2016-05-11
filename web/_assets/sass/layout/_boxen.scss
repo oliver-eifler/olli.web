@@ -27,7 +27,26 @@ img[data-src],iframe[data-src] {
   z-index:-1;
   opacity: 0;
 }
-.title {
+.caption {
+  position:absolute;
+  left:0;
+  top:50%;
+  width:100%;
+  transform: translateY(-50%);
+  text-align:center;
+  & > * {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+    margin: .5em;
+    padding: .5em;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    line-height:1.25;
+  }
+}
+/*
+.caption {
   position:absolute;
   left:0;
   top:0;
@@ -53,3 +72,4 @@ img[data-src],iframe[data-src] {
     line-height:1.5em;
   }
 }
+*/

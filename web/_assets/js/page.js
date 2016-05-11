@@ -63,11 +63,27 @@ function adjustVerticalRythmn(parent) {
         }
     }
 };
-
+function adjustFontSize() {
+    return false;
+    var fontSize=win.innerWidth/100;
+    if (fontSize < 16)
+        fontSize=16;
+    
+    fontSize = parseInt(fontSize*6.25/*/16*100*/);
+    if (fontSize != curFontSize) {
+        curFontSize = fontSize; 
+        fastdom.mutate(function () {
+            html.style.fontSize = "" + fontSize+ "%";
+        });
+        return true;
+    }
+    return false;
+}
 /* Start Page */
 /*PAGE SETUP*/
 var content = _$(".content");
 var contentWidth = content.clientWidth;
+var curFontSize = 100; /*fontsize in percent 100%=16px*/
 
 adjustVerticalRythmn(content);
 
@@ -86,7 +102,6 @@ FontSizeObserver.bind("page", function () {
     adjustVerticalRythmn(content);
 });
 ResizeObserver.bind("rythmn", function () {
-
     fastdom.measure(function () {
         var width = content.clientWidth;
         if (width != contentWidth) {
