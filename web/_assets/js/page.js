@@ -1,90 +1,21 @@
-import lib from 'olli'
-import {doc,win,html} from './globals'
+import {doc,olli,win,html} from './globals'
+import fastdom from "./page/fastdom.js";
+import XHR from './page/better-xhr.js';
+import {$,$$} from './dom/query'
 import ActionObserver from './page/action-observer.js';
 import FontSizeObserver from './page/fontsize-observer.js';
 import ResizeObserver from './page/resize-observer.js';
-import fastdom from "./page/fastdom.js";
 
-import XHR from './page/better-xhr.js';
+/* Page functions */
+import adjustVerticalRythmn from "./page/verticalrythmn.js";
+import adjustFontSize from "./page/fontsize.js";
 
-function gaussRound(num, decimalPlaces) {
-    var d = decimalPlaces || 0,
-        m = Math.pow(10, d),
-        n = +(d ? num * m : num).toFixed(8),
-        i = Math.floor(n), f = n - i,
-        e = 1e-8,
-        r = (f > 0.5 - e && f < 0.5 + e) ?
-            ((i % 2 == 0) ? i : i + 1) : Math.round(n);
-    return d ? r / m : r;
-}
-function _$(selector, el) {
-    if (!el) {
-        el = document;
-    }
-    return el.querySelector(selector);
-};
-function _$$(selector, el) {
-    if (!el) {
-        el = document;
-    }
-    return Array.prototype.slice.call(el.querySelectorAll(selector));
-};
-
-
-function nextTopMargin(element) {
-    var node = element.nextElementSibling,
-        top = 0;
-    if (node) {
-        var styles = win.getComputedStyle(node);
-        top = parseFloat(styles.marginTop) || 0;
-    }
-    return top;
-
-}
-function rythmnMargin(element, lineHeight) {
-    fastdom.measure(function () {
-        var rect = element.getBoundingClientRect()
-            ,height = rect.bottom - rect.top
-            ,leftover = height % lineHeight
-        /* add siblings top margin to avoid margin collapse */
-            ,m = leftover >= 0.05 ? (lineHeight - leftover) + nextTopMargin(element) : 0;
-        fastdom.mutate(function () {
-            element.style.marginBottom = "" + m + "px";
-        });
-    })
-};
-function adjustVerticalRythmn(parent) {
-    var lineHeight = parseFloat(win.getComputedStyle(parent, ':after').height) || 24,
-        childs = parent.children,
-        i, node;
-    for (i = 0; i < childs.length, node = childs[i]; i++) {
-        if (node.hasAttribute("data-reflow")) {
-            rythmnMargin(node, lineHeight);
-        }
-    }
-};
-function adjustFontSize() {
-    return false;
-    var fontSize=win.innerWidth/100;
-    if (fontSize < 16)
-        fontSize=16;
-    
-    fontSize = parseInt(fontSize*6.25/*/16*100*/);
-    if (fontSize != curFontSize) {
-        curFontSize = fontSize; 
-        fastdom.mutate(function () {
-            html.style.fontSize = "" + fontSize+ "%";
-        });
-        return true;
-    }
-    return false;
-}
 /* Start Page */
 /*PAGE SETUP*/
-var content = _$(".content");
+var content = $(".content");
 var contentWidth = content.clientWidth;
-var curFontSize = 100; /*fontsize in percent 100%=16px*/
 
+/*!adjustFontSize() && */
 adjustVerticalRythmn(content);
 
 /*
@@ -102,6 +33,7 @@ FontSizeObserver.bind("page", function () {
     adjustVerticalRythmn(content);
 });
 ResizeObserver.bind("rythmn", function () {
+    /*!adjustFontSize() && */
     fastdom.measure(function () {
         var width = content.clientWidth;
         if (width != contentWidth) {

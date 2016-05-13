@@ -10,15 +10,13 @@
  * @return {Array}
  */
 
-(function(win){
-    'use strict';
-
     var simpleRe = /^(#?[\w-]+|\.[\w-.]+)$/,
         periodRe = /\./g,
-        slice = [].slice;
-
-    win.query = function(selector, context){
+        slice = [].slice,
+        query = function(all,selector, context){
         context = context || document;
+        if (!all)
+            return context.querySelector(selector);
         // Redirect call to the more performant function 
         // if it's a simple selector and return an array
         // for easier usage
@@ -35,6 +33,6 @@
         // If not a simple selector, query the DOM as usual 
         // and return an array for easier usage
         return slice.call(context.querySelectorAll(selector));
-    };
-
-})(this);
+    }
+export var $ = query.bind(null,false);
+export var $$ = query.bind(null,true);

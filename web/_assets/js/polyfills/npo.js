@@ -2,7 +2,6 @@
     v0.8.0-a (c) Kyle Simpson
     MIT License: http://getify.mit-license.org
 */
-
 (function UMD(name,context,definition){
 	// special form of UMD for polyfilling across evironments
 	context[name] = context[name] || definition();
@@ -13,7 +12,6 @@
 })("Promise",this,function DEF(){
 	/*jshint validthis:true */
 	"use strict";
-
 	var builtInProp, cycle, scheduling_queue,
 		ToString = Object.prototype.toString,
 		timer = (typeof setImmediate != "undefined") ?

@@ -25,10 +25,7 @@ module.exports = function (grunt) {
         rollup: {
             options: {
                 format: 'iife',
-                banner: '<%= banner %>',
-                globals: {
-                    olli: 'olli'
-                }
+                banner: '<%= banner %>'
             },
             /*
             jsInline: {
@@ -92,9 +89,9 @@ module.exports = function (grunt) {
             dev: {
                 options: {
                     mangle:false,
-                    compress: false,
+                    compress:false,
                     beautify: true,
-                    banner: '<%= banner %>\nvar DEBUG = true;\n'
+                    banner: '<%= banner %>\n/** @const */var DEBUG = true;\n'
                 },
                 files: [
                     {

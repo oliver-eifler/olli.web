@@ -51,16 +51,15 @@
 <div class="content-container baseline">
     <div class="hero-container bumper">
         <div class="hero">
-            <div class="text-smart">
-            <h1>Oliver Jean Eifler</h1>
-        <h3 class="hug">Programmierer. Techniker. Künstler.</h3>
-                </div>
-        <p>Um was geht's eigentlich</p>
+            <h1 class="text-smart"><span>Oliver Jean Eifler</span></h1>
+            <h3 class="text-smart hug"><span>Programmierer. Techniker. Künstler.</span></h3>
+            <p>Um was geht's eigentlich</p>
         </div>
     </div>
     <div class="content content-width">
-        <div data-reflow class="pic" style="padding-bottom:<?=1149*100/1920?>%;">
-            <img data-src="images/welpe.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==">
+        <div data-reflow class="box pic" style="padding-bottom:<?=1149*100/1920?>%;">
+            <iframe scrolling='no' data-src='images/welpe.jpg' data-type="img" allowtransparency='true'></iframe>
+            <!--img data-src="images/welpe.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="-->
             <noscript><img src="images/welpe.jpg"></noscript>
             <div class="caption">
                 <span>Picture: a nice pic of my dog</span>
@@ -76,10 +75,10 @@
             See the Pen <a href='http://codepen.io/olli/pen/qEKMZm/'>Olli's canvas spinner animation</a> by Oliver Jean Eifler  (<a href='http://codepen.io/olli'>@olli</a>) on <a href='http://codepen.io'>CodePen</a>.
             </span></div>
         </div-->
-
         <figure class='center' data-reflow style="display:block;max-width:560px;width:100%;">
-            <div class="pic" style="padding-bottom:<?=840*100/560?>%;">
-                <img data-src="images/faultier.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==">
+            <div class="box pic" style="padding-bottom:<?=840*100/560?>%;">
+                <iframe scrolling='no' data-src='images/faultier.jpg' data-type="img" allowtransparency='true'></iframe>
+                <!--img data-src="images/faultier.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="-->
                 <noscript><img src="images/faultier.jpg"></noscript>
                 <div class="caption">
                     <span>Picture: just relaxing</span>
@@ -95,20 +94,20 @@
             Living one immortal day.
         </p>
         <p>To know that is Wisdom. To use it is the Art.</p>
-        <div data-reflow class="pic" style="padding-bottom:<?=250*100/640?>%;">
-            <img data-src="http://lorempixel.com/640/250/?v=<?=rand(1,99)?>" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==">
+        <div data-reflow class="box pic" style="padding-bottom:<?=250*100/640?>%;">
+            <iframe scrolling='no' data-src="http://lorempixel.com/640/250/?v=<?=rand(1,99)?>" data-type="img" allowtransparency='true'></iframe>
             <noscript><img src="http://lorempixel.com/640/250/?v=<?=rand(1,99)?>"></noscript>
         </div>
-        <div data-reflow class="pic" style="padding-bottom:<?=480*100/640?>%;">
-            <img data-src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==">
+        <div data-reflow class="box pic" style="padding-bottom:<?=480*100/640?>%;">
+            <iframe scrolling='no' data-src='http://lorempixel.com/640/480/?v=<?=rand(1,99)?>' data-type="img" allowtransparency='true'></iframe>
             <noscript><img src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>"></noscript>
         </div>
-        <div data-reflow class="pic" style="padding-bottom:<?=480*100/640?>%;">
-            <img data-src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==">
+        <div data-reflow class="box pic" style="padding-bottom:<?=480*100/640?>%;">
+            <iframe scrolling='no' data-src='http://lorempixel.com/640/480/?v=<?=rand(1,99)?>' data-type="img" allowtransparency='true'></iframe>
             <noscript><img src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>"></noscript>
         </div>
-        <div data-reflow class="pic" style="padding-bottom:<?=480*100/640?>%;">
-            <img data-src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==">
+        <div data-reflow class="box pic" style="padding-bottom:<?=480*100/640?>%;">
+            <iframe scrolling='no' data-src='http://lorempixel.com/640/480/?v=<?=rand(1,99)?>' data-type="img" allowtransparency='true'></iframe>
             <noscript><img src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>"></noscript>
         </div>
     </div>

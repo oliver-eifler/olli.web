@@ -45,7 +45,7 @@ function updateSloth() {
         node = nodes[i];
         if (!hasDataAttribute(node, "sloth") && hasDataAttribute(node,"src")) {
             setDataAttribute(node, "sloth", "true");
-            Sloth.add(node, loadDataSrc);
+                Sloth.add(node, loadDataSrc);
         }
     }
 }
