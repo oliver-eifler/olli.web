@@ -3,7 +3,7 @@
  */
 import {doc} from '../globals.js'
 import {hasDataAttribute,setDataAttribute,getDataAttribute,removeDataAttribute} from '../dom/attribute.js'
-var imgtmpl = "<!DOCTYPE html><html><head><style>body{margin:0;border:none;padding:0;background:transparent}img{width:100%;height:100%}</style></head>";
+var imgtmpl = "<!DOCTYPE html><html><head><style>html,body{margin:0;border:none;padding:0;background:transparent}img{width:100%;}</style></head>";
 imgtmpl+="<body><img src=\"{src}\" onload=\"window.frameElement.callme();\"></body></html>";
 //var hasSrcDoc = !!("srcdoc" in document.createElement("iframe"));
 

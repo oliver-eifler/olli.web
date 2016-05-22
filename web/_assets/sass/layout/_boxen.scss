@@ -4,19 +4,23 @@
 .box {
   position: relative;
   display: block;
-  height: 0;
   width: 100%;
   background: mix(hilight($colors), base($colors), opacity(divider($colors))*100%);
-  overflow: hidden;
 }
-.box img,.box iframe {
+.box-dummy {
+  display:block;
+  width:100%;
+  height:0;
+  z-index: -1;
+}
+.box-embed {
   position: absolute;
-  z-index: 9;
+  z-index: 10;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
-  opacity: 1;
+  //opacity: 1;
   transition: opacity 1s;
 }
 
@@ -24,12 +28,11 @@ iframe {
   overflow: hidden;
   border: none;
 }
-
-.pen iframe {
+.pen>iframe {
   border-bottom: 1px solid #000;
 }
 
-img[data-src], iframe[data-src] {
+img[data-src],iframe[data-src] {
   z-index: -1;
   opacity: 0;
 }
@@ -41,7 +44,8 @@ img[data-src], iframe[data-src] {
   width: 100%;
   transform: translateY(-50%);
   text-align: center;
-  & > * {
+}
+.caption-text {
     display: inline-block;
     vertical-align: middle;
     text-align: left;
@@ -50,5 +54,4 @@ img[data-src], iframe[data-src] {
     border-top: 1px solid;
     border-bottom: 1px solid;
     line-height: 1.25;
-  }
 }

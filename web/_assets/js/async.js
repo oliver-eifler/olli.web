@@ -4,7 +4,7 @@
 import {doc, win} from './globals'
 
 import grunticon from './async/grunticon.js'
-import {getIcons,embedIcons} from './async/grunticon.embed.js';
+import {getIcons, embedIcons} from './async/grunticon.embed.js';
 
 import loadDataSrc from './async/loaddatasrc.js'
 import Sloth from './async/sloth.js'
@@ -31,28 +31,25 @@ function ready(fn) {
 
 //LayzLoad Images data-src on Scroll using Sloth (Faultier)
 function updateSloth() {
-    var i,l,node,
-        nodes = doc.getElementsByTagName('img');
-    for (i = 0,l=nodes.length; i < l; i++) {
-        node = nodes[i];
-        if (!hasDataAttribute(node, "sloth") && hasDataAttribute(node,"src")) {
-            setDataAttribute(node, "sloth", "true");
-            Sloth.add(node, loadDataSrc);
-        }
-    }
-    nodes = doc.getElementsByTagName('iframe');
-    for (i = 0,l=nodes.length; i < l; i++) {
-        node = nodes[i];
-        if (!hasDataAttribute(node, "sloth") && hasDataAttribute(node,"src")) {
-            setDataAttribute(node, "sloth", "true");
+    process("img");
+    process("iframe");
+
+    function process(selector) {
+        var i, l, node,
+            nodes = doc.getElementsByTagName(selector);
+        for (i = 0, l = nodes.length; i < l; i++) {
+            node = nodes[i];
+            if (!hasDataAttribute(node, "sloth") && hasDataAttribute(node, "src")) {
+                setDataAttribute(node, "sloth", "true");
                 Sloth.add(node, loadDataSrc);
+            }
         }
     }
 }
 // wait until body is defined before injecting links/scripts. This ensures a non-blocking load in IE11.
-grunticon(["css/icons-svg.css", "css/icons-png.css", "css/icons-fallback.css"], function (method,stylesheet) {
+grunticon(["css/icons-svg.css", "css/icons-png.css", "css/icons-fallback.css"], function (method, stylesheet) {
         ready(function () {
-            
+
             method == "svg" && embedIcons(getIcons(stylesheet));
             updateSloth();
         });

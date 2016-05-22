@@ -1,149 +1,133 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=yes'/>
-    <meta name='format-detection' content='telephone=no'/>
-    <title>oliver-eifler.info</title>
-    <style><?php include('css/layout.css');?></style>
-    <noscript><link href="bundle/css/icons-nojs.css" rel="stylesheet"></noscript>
-    <script src='bundle/js/async.js' async></script>
-</head>
-<body class="flex">
-<div class="flex-header panel">
-    <header>
-        <a class="header" href='#'>
-            <div class="header-logo" aria-hidden="true">
-                <div data-icon-embed class="icon-olli avatar"></div>
-            </div>
-            <div class="header-text">
-                <h1>Oliver Jean Eifler</h1>
-                <small>Programmierer Techniker Künstler</small>
-            </div>
-        </a>
-    </header>
-    <aside>
-        <nav role="navigation">
-            <div class="navigation">
-                <div class="links">
-                    <div class="links-cat">
-                        <a href="#Home" data-observe="ajax">Home</a>
-                        <a href="#Articles" data-observe="ajax">Articles</a>
-                        <a href="#Misc" data-observe="ajax">Misc</a>
-                    </div>
-                    <div class="links-cat">
-                        <a href="#About">About</a>
-                        <a href="#Contact">Contact</a>
-                    </div>
-                </div>
-                <div class="social">
-                    <a href="#" class="social-icon" title="Olli on GitHub"><div data-icon-embed class="icon-github" aria-hidden="true"></div><span>GitHub</span></a>
-                    <a href="#" class="social-icon" title="Olli on Codepen"><div data-icon-embed class="icon-codepen" aria-hidden="true"></div><span>CodePen</span></a>
-                    <a href="#" class="social-icon" title="Olli on Twitter"><div data-icon-embed class="icon-twitter" aria-hidden="true"></div><span>Twitter</span></a>
-                    <a href="#" class="social-icon" title="Olli on Facebook"><div data-icon-embed class="icon-facebook" aria-hidden="true"></div><span>Facebook</span></a>
-                </div>
-            </div>
-
-        </nav>
-    </aside>
-</div>
-<article class="flex-content">
-<div class="content-container baseline">
-    <div class="hero-container bumper">
-        <div class="hero">
-            <h1 class="text-smart"><span>Oliver Jean Eifler</span></h1>
-            <h3 class="text-smart hug"><span>Programmierer. Techniker. Künstler.</span></h3>
-            <p>Um was geht's eigentlich</p>
-        </div>
-    </div>
-    <div class="content content-width">
-        <div data-reflow class="box pic" style="padding-bottom:<?=1149*100/1920?>%;">
-            <iframe scrolling='no' data-src='images/welpe.jpg' data-type="img" allowtransparency='true'></iframe>
-            <!--img data-src="images/welpe.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="-->
-            <noscript><img src="images/welpe.jpg"></noscript>
-            <div class="caption">
-                <span>Picture: a nice pic of my dog</span>
-            </div>
-        </div>
-        <p><i data-icon-embed class='icon-invader'></i> Erinnerungen, <a href='#'>Prophezeiungen</a>, Fantasiegespinste und <a href='#'>Liebe</a>, Vergangenheit, Zukunft und der Augenblick des Traums dazwischen -&nbsp;sie alle schaffen ein Land, das einen einzigen, unsterblichen Tag lang existiert.</p>
-        <p>Das zu wissen, ist <a href='#'>Weisheit</a>. Das zu nutzen, ist <a href='#'><strong>'Kunst'</strong></a>. <i data-icon-embed class='icon-invader'></i></p>
-
-        <!--div data-reflow class="pen" style="height:300px">
-            <iframe scrolling='no' data-src='//codepen.io/olli/embed/qEKMZm/?height=300&theme-id=0&default-tab=result&embed-version=2'
-                    allowtransparency='true' allowfullscreen='true'></iframe>
-            <div class="title"><span>
-            See the Pen <a href='http://codepen.io/olli/pen/qEKMZm/'>Olli's canvas spinner animation</a> by Oliver Jean Eifler  (<a href='http://codepen.io/olli'>@olli</a>) on <a href='http://codepen.io'>CodePen</a>.
-            </span></div>
-        </div-->
-        <figure class='center' data-reflow style="display:block;max-width:560px;width:100%;">
-            <div class="box pic" style="padding-bottom:<?=840*100/560?>%;">
-                <iframe scrolling='no' data-src='images/faultier.jpg' data-type="img" allowtransparency='true'></iframe>
-                <!--img data-src="images/faultier.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="-->
-                <noscript><img src="images/faultier.jpg"></noscript>
-                <div class="caption">
-                    <span>Picture: just relaxing</span>
-                </div>
-            </div>
-            <figcaption><cite>Depression</cite>. By: Darren Harris</figcaption>
-        </figure>
-        <p>
-            Memory, prophecy, and fantasy—
-            The past, the future, and
-            The dreaming moment between—
-            Are all in one country,
-            Living one immortal day.
-        </p>
-        <p>To know that is Wisdom. To use it is the Art.</p>
-        <div data-reflow class="box pic" style="padding-bottom:<?=250*100/640?>%;">
-            <iframe scrolling='no' data-src="http://lorempixel.com/640/250/?v=<?=rand(1,99)?>" data-type="img" allowtransparency='true'></iframe>
-            <noscript><img src="http://lorempixel.com/640/250/?v=<?=rand(1,99)?>"></noscript>
-        </div>
-        <div data-reflow class="box pic" style="padding-bottom:<?=480*100/640?>%;">
-            <iframe scrolling='no' data-src='http://lorempixel.com/640/480/?v=<?=rand(1,99)?>' data-type="img" allowtransparency='true'></iframe>
-            <noscript><img src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>"></noscript>
-        </div>
-        <div data-reflow class="box pic" style="padding-bottom:<?=480*100/640?>%;">
-            <iframe scrolling='no' data-src='http://lorempixel.com/640/480/?v=<?=rand(1,99)?>' data-type="img" allowtransparency='true'></iframe>
-            <noscript><img src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>"></noscript>
-        </div>
-        <div data-reflow class="box pic" style="padding-bottom:<?=480*100/640?>%;">
-            <iframe scrolling='no' data-src='http://lorempixel.com/640/480/?v=<?=rand(1,99)?>' data-type="img" allowtransparency='true'></iframe>
-            <noscript><img src="http://lorempixel.com/640/480/?v=<?=rand(1,99)?>"></noscript>
-        </div>
-    </div>
-</div>
-</article>
-<?=SiteFooter();?>
-<!--script>
-    function downloadJSAtOnload() {
-        var element = document.createElement("script");
-        element.src = "bundle/js/async.js";
-        document.body.appendChild(element);
-    }
-    window.onload = downloadJSAtOnload;
-</script-->
-</body>
-</html>
-
 <?php
+echo HTML();
+exit;
+
+function HTML()
+{
+
+    $html = "<!DOCTYPE html><html lang='en'><head>";
+    $html .= "<meta charset='UTF-8'>";
+    $html .= "<meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=yes'/>";
+    $html .= "<meta name='format-detection' content='telephone=no'/>";
+    $html .= "<title>oliver-eifler.info</title>";
+    $html .= Styles() . Scripts();
+    $html .= "</head>";
+    $html .= htmlBody();
+    $html .= "</html>";
+    return $html;
+}
+
+function Styles()
+{
+    $html = "<style>";
+    $html .= file_get_contents("css/layout.css");
+    $html .= "</style>";
+    $html .= "<noscript>";
+    $html .= "<link href='bundle/css/icons-nojs.css' rel='stylesheet'>";
+    $html .= "</noscript>";
+    return $html;
+}
+
+function Scripts()
+{
+    $html = "<script src='bundle/js/async.js' async></script>";
+    return $html;
+}
+
+function htmlBody()
+{
+    $html = "";
+    $html .= "<body class='flex'>";
+
+    $html .= "<div class='flex-header panel'>" . SiteHeader() . "</div>";
+    $html .= "<article class='flex-content'>" . SiteArticle() . "</article>";
+    $html .= "<footer class='flex-footer'>" . SiteFooter() . "</footer>";
+
+    $html .= "</body>";
+
+    return $html;
+}
+
+function SiteArticle()
+{
+    $html = file_get_contents("pages/test.html");
+    
+    $html = preg_replace_callback('#{=(.*?)}#',
+        "tmpleval", $html);
+    
+    return $html;
+}
+function tmpleval($matches) {
+    $t="";
+    $code = $matches[1];
+    $t = eval("return (".$code.");");
+    return $t;
+}
+
+function SiteHeader()
+{
+    $html = "";
+    $html .= "<header>";
+    $html .= "<a class=\"header\" href='#'>";
+    $html .= "<div class=\"header-logo\" aria-hidden=\"true\">";
+    $html .= "<div data-icon-embed class=\"icon-olli avatar\"></div>";
+    $html .= "</div>";
+    $html .= "<div class=\"header-text\">";
+    $html .= "<h1>Oliver Jean Eifler</h1>";
+    $html .= "<small>Programmierer Techniker Künstler</small>";
+    $html .= "</div>";
+    $html .= "</a>";
+    $html .= "</header>";
+    $html .= "<aside>";
+    $html .= "<nav role=\"navigation\">";
+    $html .= "<div class=\"navigation\">";
+    $html .= "<div class=\"links\">";
+    $html .= "<div class=\"links-cat\">";
+    $html .= "<a href=\"#Home\" data-observe=\"ajax\">Home</a>";
+    $html .= "<a href=\"#Articles\" data-observe=\"ajax\">Articles</a>";
+    $html .= "<a href=\"#Misc\" data-observe=\"ajax\">Misc</a>";
+    $html .= "</div>";
+    $html .= "<div class=\"links-cat\">";
+    $html .= "<a href=\"#About\">About</a>";
+    $html .= "<a href=\"#Contact\">Contact</a>";
+    $html .= "</div>";
+    $html .= "</div>";
+    $html .= "<div class=\"social\">";
+    $html .= "<a href=\"#\" class=\"social-icon\" title=\"Olli on GitHub\">";
+    $html .= "<div data-icon-embed class=\"icon-github\" aria-hidden=\"true\"></div>";
+    $html .= "<span>GitHub</span></a>";
+    $html .= "<a href=\"#\" class=\"social-icon\" title=\"Olli on Codepen\">";
+    $html .= "<div data-icon-embed class=\"icon-codepen\" aria-hidden=\"true\"></div>";
+    $html .= "<span>CodePen</span></a>";
+    $html .= "<a href=\"#\" class=\"social-icon\" title=\"Olli on Twitter\">";
+    $html .= "<div data-icon-embed class=\"icon-twitter\" aria-hidden=\"true\"></div>";
+    $html .= "<span>Twitter</span></a>";
+    $html .= "<a href=\"#\" class=\"social-icon\" title=\"Olli on Facebook\">";
+    $html .= "<div data-icon-embed class=\"icon-facebook\" aria-hidden=\"true\"></div>";
+    $html .= "<span>Facebook</span></a>";
+    $html .= "</div>";
+    $html .= "</div>";
+    $html .= "</nav>";
+    $html .= "</aside>";
+    return $html;
+}
+
 function SiteFooter()
 {
     $fromYear = 2015;
     $thisYear = (int)date('Y');
     $Year = $fromYear . (($fromYear != $thisYear) ? '-' . $thisYear : '');
     $html = "";
-    $html .= "<footer class='flex-footer'>";
     $html .= "<div class='footer-container bumper'>";
     $html .= "<div class='footer'>";
     $html .= "<p class='text-smart licence'><small>";
     $html .= "Except as otherwise noted, the content of this page is licensed under the <a href='#'>Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href='#'>Apache 2.0 License</a>.";
     $html .= "</small></p>";
     $html .= "<p><i data-icon-embed class='icon-invader'></i> For internal use only</p>";
-    $html .= "<p>".$_SERVER['SERVER_NAME'] . " is created and maintained ".$Year." with care* by <i data-icon-embed class='icon-cool'></i> <a href='http://www.oliver-eifler.info'>Oliver Jean Eifler</a></p>";
+    $html .= "<p>" . $_SERVER['SERVER_NAME'] . " is created and maintained " . $Year . " with care* by <i data-icon-embed class='icon-cool'></i> <a href='http://www.oliver-eifler.info'>Oliver Jean Eifler</a></p>";
     $html .= "<p class='text-smart legende'><small>*Not recommended for or tested with IE 9- or any other legacy browser</small></p>";
     $html .= "</div>";
     $html .= "</div>";
-    $html .= "</footer>";
 
     return $html;
 }
