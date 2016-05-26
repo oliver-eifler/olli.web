@@ -25,6 +25,7 @@ function Styles()
     $html .= "<noscript>";
     $html .= "<link href='bundle/css/icons-nojs.css' rel='stylesheet'>";
     $html .= "</noscript>";
+    $html .= "<link rel='stylesheet' type='text/css' href='bundle/css/print.css' media='print'>";
     return $html;
 }
 
