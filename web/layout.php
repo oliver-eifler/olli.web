@@ -1,15 +1,18 @@
 <?php
+$page = json_decode(file_get_contents("pages/test.html.json"));
 echo HTML();
 exit;
 
 function HTML()
 {
-
+    global $page;
     $html = "<!DOCTYPE html><html lang='en'><head>";
     $html .= "<meta charset='UTF-8'>";
     $html .= "<meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=yes'/>";
     $html .= "<meta name='format-detection' content='telephone=no'/>";
-    $html .= "<title>oliver-eifler.info</title>";
+    $html .= "<title>".$page->title."</title>";
+    $html .= "<link rel='icon' href='favicon.png'>";
+    $html .= "<link rel='apple-touch-icon' href='favicon.png'>";
     $html .= Styles() . Scripts();
     $html .= "</head>";
     $html .= htmlBody();
@@ -25,7 +28,7 @@ function Styles()
     $html .= "<noscript>";
     $html .= "<link href='bundle/css/icons-nojs.css' rel='stylesheet'>";
     $html .= "</noscript>";
-    $html .= "<link rel='stylesheet' type='text/css' href='bundle/css/print.css' media='print'>";
+    //$html .= "<link rel='stylesheet' type='text/css' href='bundle/css/print.css' media='print'>";
     return $html;
 }
 
@@ -40,9 +43,9 @@ function htmlBody()
     $html = "";
     $html .= "<body class='flex'>";
 
-    $html .= "<div class='flex-header panel'>" . SiteHeader() . "</div>";
-    $html .= "<article class='flex-content'>" . SiteArticle() . "</article>";
-    $html .= "<footer class='flex-footer'>" . SiteFooter() . "</footer>";
+    $html .= "<div class='flex-row panel'>" . SiteHeader() . "</div>";
+    $html .= "<article class='flex-grow'>" . SiteArticle() . "</article>";
+    $html .= "<footer  class='flex-row'>" . SiteFooter() . "</footer>";
 
     $html .= "</body>";
 
@@ -51,10 +54,11 @@ function htmlBody()
 
 function SiteArticle()
 {
-    $html = file_get_contents("pages/test.html");
+    global $page;
+    //$html = file_get_contents("pages/test.html");
     
     $html = preg_replace_callback('#{=(.*?)}#',
-        "tmpleval", $html);
+        "tmpleval", $page->content);
     
     return $html;
 }

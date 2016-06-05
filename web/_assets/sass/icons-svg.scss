@@ -13,6 +13,8 @@
 i[class*="icon-"] {
   width:1em;
   height:1em;
+//  position:relative;
+  top:.25em;
 }
 .icon-olli {
   background-image: url($icon-olli-url);

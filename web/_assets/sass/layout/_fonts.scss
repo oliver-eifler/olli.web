@@ -1,0 +1,33 @@
+@import '../config';
+
+@font-face {
+  font-family: 'myfont';
+  src: url('css/fonts/OpenSans-Regular-webfont.woff') format('woff'),
+  url('css/fonts/OpenSans-Regular-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'myfont';
+  src: url('css/fonts/OpenSans-Bold-webfont.woff') format('woff'),
+  url('css/fonts/OpenSans-Bold-webfont.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'myfont';
+  src: url('css/fonts/OpenSans-Italic-webfont.woff') format('woff'),
+  url('css/fonts/OpenSans-Italic-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'myfont';
+  src: url('css/fonts/OpenSans-BoldItalic-webfont.woff') format('woff'),
+  url('css/fonts/OpenSans-BoldItalic-webfont.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+.myfont .content-container {
+  font-family: $myFont;
+}

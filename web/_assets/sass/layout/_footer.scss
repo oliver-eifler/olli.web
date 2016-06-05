@@ -7,10 +7,12 @@
 .footer {
   margin: 0 auto;
   font-family: $monospaceFont;
-  padding:0.25em 0.25em 0 .25em;
-  & > * {margin:0 .5em;line-height:1.5;}
+  padding:0.25em;
+  & > * {margin:0 .5em;}
 }
-
+.licence, .legende {
+  line-height:1.2;
+}
 .licence {
   margin-bottom:1em;
 }

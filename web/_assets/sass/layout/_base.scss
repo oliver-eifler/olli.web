@@ -22,18 +22,17 @@ body {
   color: text($colors);
   background-color: base($colors);
 }
-/*
-@media only screen and (min-width: px2em(1600)) {
+@media only screen and (max-width: 480px) {
+  html {
+    font-size: 12/16*100%;
+  }
+}
+@media only screen and (min-width: 100em) {
   html {
     font-size: 1vw;
   }
 }
-@media only screen and (min-width:px2em(321px)) and (max-width: px2em(480px)) {
-  html {
-    font-size: 4vw;
-  }
-}
-*/
+
 @media only screen and (max-width: 320px) {
   @-ms-viewport {
     width: 320px;
@@ -41,11 +40,6 @@ body {
   @viewport {
     width: 320px;
   }
-  /*
-  html {
-    font-size: 12.8/16*100%;
-  }
-  */
 }
 
 /*USed for font-resize*/
@@ -97,12 +91,10 @@ small {
   flex-direction: column;
   min-height: 100vh;
 }
-
-.flex-header, .flex-footer {
-  flex-shrink: 0;
+.flex-row {
+  flex: 0 0 auto; /* min-height = content; */
 }
-
-.flex-content {
+.flex-grow {
   flex: 1 0 auto; /* min-height = content; */
 }
 /* Bumper for Hero-header, Footer, etc.*/

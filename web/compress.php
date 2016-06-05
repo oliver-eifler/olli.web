@@ -14,10 +14,8 @@ if( ! function_exists('curl_init') ) {
 	die('This script must be invoked via a web browser.');
 }
 check('http://'.$_SERVER["SERVER_NAME"]);
-check('http://'.$_SERVER["SERVER_NAME"].'/css/icons-fallback.css');
-check('http://'.$_SERVER["SERVER_NAME"].'/css/icons-png.css');
-check('http://'.$_SERVER["SERVER_NAME"].'/css/icons-svg.css');
-check('http://'.$_SERVER["SERVER_NAME"].'/bundle/js/promise.js,js/page.js');
+check('http://'.$_SERVER["SERVER_NAME"].'/js/async.js');
+check('http://'.$_SERVER["SERVER_NAME"].'/js/page.js');
 function check($uri)
 {
 	// prepare cURL

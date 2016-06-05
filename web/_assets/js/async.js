@@ -46,7 +46,7 @@ function updateSloth() {
         }
     }
 }
-// wait until body is defined before injecting links/scripts. This ensures a non-blocking load in IE11.
+//loadJS("bundle/js/fonts.js");
 grunticon(["css/icons-svg.css", "css/icons-png.css", "css/icons-fallback.css"], function (method, stylesheet) {
         ready(function () {
 
@@ -60,7 +60,7 @@ if (win.history && win.history.pushState) {
     if (!win.Promise)
         js.push("js/promise.js");
 
-    js.push("js/history.js");
+    //js.push("js/history.js");
     js.push("js/page.js");
 
     ready(function () {

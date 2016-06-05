@@ -50,9 +50,13 @@ ol {
 }
 
 blockquote {
+  font-style: italic;
   line-height: $leading;
-  margin-top: $leading;
-  margin-bottom: $leading;
+  margin: $leading;
+  padding: 0 0 0 .5em;
+  border-left: .25em solid divider($colors);
+  p:first-letter {font-size:110%;}
+  span {display:inline-block;}
 }
 
 /* Headings */

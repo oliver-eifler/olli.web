@@ -4,6 +4,7 @@
 @import 'config';
 @import 'icons/png';
 
+//@import 'layout/fonts';
 @import 'layout/base';
 @import 'layout/typo';
 @import 'layout/content';
@@ -54,17 +55,6 @@
 }
 
 .header {
-  h1,small {
-    color:$color-brand !important;
-  }
-  line-height: 1 !important;
-  h1 {
-    font-size: 2em;
-    line-height: 1;
-    margin: 0;
-    padding: 0;
-    font-variant: small-caps;
-  }
   & > div {
     display:inline-block;
     vertical-align: middle;
@@ -82,7 +72,19 @@
 }
 .header-text {
   margin:.5em 0 0 0;
+  color:$color-brand !important;
+  h1 {
+    font-size:2em;
+    font-variant: small-caps;
+    line-height:1;
+    margin:0;
+    color:$color-brand !important;
+  }
 }
+
+
+
+
 /* Header Links */
 .links {
   padding-top:1em;
