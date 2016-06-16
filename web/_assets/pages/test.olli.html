@@ -1,53 +1,43 @@
 ---
+template: web/_assets/pages/template/article.html
 title: Oliver Jean Eifler
+subtitle: Programmierer. Techniker. Künstler.
+description: Um was geht's eigentlich
 ---
-<div class="content-container baseline">
-    <div class="hero-container bumper">
-        <div class="hero">
-            <h1 class="text-smart"><span><%= data.title %></span></h1>
-            <h3 class="text-smart hug"><span>Programmierer. Techniker. Künstler.</span></h3>
-            <p>Um was geht's eigentlich</p>
-            <p>
-                <small><em><%= moment(data.modified).format("LL") %></em></small>
-            </p>
-        </div>
-    </div>
-    <div class="content content-width">
-        <olli-img class="center" data-reflow frame src="images/welpe.jpg">Picture: a nice pic of my dog</olli-img>
-        <blockquote>
-            <p>Erinnerungen, <a href='#'>Prophezeiungen</a>, Fantasiegespinste <span>und <a href='#'>Liebe</a> - </span>
-                Vergangenheit, Zukunft und der Augenblick <span>des Traums dazwischen - </span>
-                Sie alle schaffen ein Land, das einen einzigen, unsterblichen Tag lang existiert.</p>
-            <p>Das zu wissen, ist <a href='#'>Weisheit</a>. Das zu nutzen, ist <a href='#'><strong>'Kunst'</strong></a>.
-            </p>
-        </blockquote>
-        <!--div data-reflow class="pen" style="height:300px">
-            <iframe scrolling='no' data-src='//codepen.io/olli/embed/qEKMZm/?height=300&theme-id=0&default-tab=result&embed-version=2'
-                    allowtransparency='true' allowfullscreen='true'></iframe>
-            <div class="title"><span>
-            See the Pen <a href='http://codepen.io/olli/pen/qEKMZm/'>Olli's canvas spinner animation</a> by Oliver Jean Eifler  (<a href='http://codepen.io/olli'>@olli</a>) on <a href='http://codepen.io'>CodePen</a>.
-            </span></div>
-        </div-->
-        <figure data-reflow>
-            <olli-img class="center" frame src="images/faultier.jpg"></olli-img>
-            <figcaption style="display:block;max-width:400px;margin:0 auto"><cite>Depression</cite>. By: Darren Harris
-            </figcaption>
-        </figure>
-        <blockquote>
-            <p>
-                Memory, prophecy, fantasy and <span>love - </span>
-                The past, the future, and the dreaming moment <span>between - </span>
-                Are all in one country, Living one immortal day.
-            </p>
-            <p>To know that is Wisdom. To use it is Art.</p>
-        </blockquote>
-        <olli-img class="center" data-reflow frame src="http://lorempixel.com/320/250/?v={= rand(1, 99) }" width="320"
-                  height="250"></olli-img>
-        <olli-img class="center" data-reflow frame src="http://lorempixel.com/640/480/?v={= rand(1, 99) }" width="640"
-                  height="480"></olli-img>
-        <olli-img class="center" data-reflow frame src="http://lorempixel.com/640/480/?v={= rand(1, 99) }" width="640"
-                  height="480"></olli-img>
-        <olli-img class="center" data-reflow frame src="http://lorempixel.com/320/480/?v={= rand(1, 99) }" width="320"
-                  height="480"></olli-img>
-    </div>
-</div>
+<olli-img class="center" data-reflow frame src="images/welpe.jpg">Picture: a nice pic of my dog</olli-img>
+<blockquote>
+    <p>
+    <div>Erinnerungen, <a href='#'>Prophezeiungen</a>, Fantasiegespinste und <a href='#'>Liebe</a></div>
+    <div>Vergangenheit, Zukunft und der Augenblick des Traums dazwischen</div>
+    <div class="sli">Sie alle schaffen ein Land, das einen einzigen, unsterblichen Tag lang existiert.</div>
+    </p>
+    <p>Das zu wissen, ist <a href='#'>Weisheit</a>. Das zu nutzen, ist <a href='#'><strong>'Kunst'</strong></a>.</p>
+</blockquote>
+<!--div data-reflow class="pen" style="height:300px">
+    <iframe scrolling='no' data-src='//codepen.io/olli/embed/qEKMZm/?height=300&theme-id=0&default-tab=result&embed-version=2'
+            allowtransparency='true' allowfullscreen='true'></iframe>
+    <div class="title"><span>
+    See the Pen <a href='http://codepen.io/olli/pen/qEKMZm/'>Olli's canvas spinner animation</a> by Oliver Jean Eifler  (<a href='http://codepen.io/olli'>@olli</a>) on <a href='http://codepen.io'>CodePen</a>.
+    </span></div>
+</div-->
+<figure data-reflow>
+    <olli-img class="center" frame src="images/faultier.jpg"></olli-img>
+    <figcaption style="display:block;max-width:400px;margin:0 auto"><cite>Depression</cite>. By: Darren Harris
+    </figcaption>
+</figure>
+<blockquote>
+    <p>
+    <div>Memory, prophecy, fantasy and love</div>
+    <div>The past, the future, and the dreaming moment between</div>
+    <div class="sli">Are all in one country, Living one immortal day.</div>
+    </p>
+    <p>To know that is Wisdom. To use it is Art.</p>
+</blockquote>
+<olli-img class="center" data-reflow frame src="http://lorempixel.com/320/250/?v=<?= rand(1, 99) ?>" width="320"
+          height="250"></olli-img>
+<olli-img class="center" data-reflow frame src="http://lorempixel.com/640/480/?v=<?= rand(1, 99) ?>" width="640"
+          height="480"></olli-img>
+<olli-img class="center" data-reflow frame src="http://lorempixel.com/640/480/?v=<?= rand(1, 99) ?>" width="640"
+          height="480"></olli-img>
+<olli-img class="center" data-reflow frame src="http://lorempixel.com/320/480/?v=<?= rand(1, 99) ?>" width="320"
+          height="480"></olli-img>

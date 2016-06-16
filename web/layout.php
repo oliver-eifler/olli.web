@@ -1,11 +1,18 @@
 <?php
-$page = json_decode(file_get_contents("pages/test.html.json"));
+require_once('php/class/basepage.class.php');
+require_once('php/class/mixin.class.php');
+//loading page
+loadPage("pages/test.php");
 echo HTML();
 exit;
-
+function loadPage($file)
+{
+    $page = BasePage::GetInstance();
+    include($file);
+}
 function HTML()
 {
-    global $page;
+    $page = BasePage::GetInstance();
     $html = "<!DOCTYPE html><html lang='en'><head>";
     $html .= "<meta charset='UTF-8'>";
     $html .= "<meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=yes'/>";
@@ -54,13 +61,8 @@ function htmlBody()
 
 function SiteArticle()
 {
-    global $page;
-    //$html = file_get_contents("pages/test.html");
-    
-    $html = preg_replace_callback('#{=(.*?)}#',
-        "tmpleval", $page->content);
-    
-    return $html;
+    $page = BasePage::GetInstance();
+    return $page->html;
 }
 function tmpleval($matches) {
     $t="";
@@ -90,7 +92,7 @@ function SiteHeader()
     $html .= "<div class=\"links-cat\">";
     $html .= "<a href=\"#Home\" data-observe=\"ajax\">Home</a>";
     $html .= "<a href=\"#Articles\" data-observe=\"ajax\">Articles</a>";
-    $html .= "<a href=\"#Misc\" data-observe=\"ajax\">Misc</a>";
+    $html .= "<a href=\"#Gallery\" data-observe=\"ajax\">Gallery</a>";
     $html .= "</div>";
     $html .= "<div class=\"links-cat\">";
     $html .= "<a href=\"#About\">About</a>";

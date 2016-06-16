@@ -7,4 +7,4 @@ var doc = new webgen("web/_assets/pages/test.olli.html", {
     plugins: {"minify": {}, "image": {forceFrame:true,imagePath: "web/"}}
 });
 doc.process();
-doc.save("web/pages/test.html");
+doc.save("web/pages/test.php");
