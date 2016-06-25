@@ -29,6 +29,11 @@ module.exports = function (grunt) {
                     format: 'iife',
                     banner: '<%= banner %>'
                 },
+                jsKickstart: {
+                    options: {format:'es6'},
+                    'dest':'<%= dir.build %>/js/kickstart.js',
+                    'src' :'<%= dir.assets %>/js/kickstart.js' // Only one source file is permitted
+                },
                 jsAsync: {
                     options: {
                         moduleName: 'olli'
@@ -61,6 +66,7 @@ module.exports = function (grunt) {
                         }
                     },
                     files: {
+                        '<%= dir.release %>/js/kickstart.js': ['<%= dir.build %>/js/kickstart.js'],
                         '<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
                         '<%= dir.release %>/js/page.js': ['<%= dir.components %>/native.history.js', '<%= dir.build %>/js/page.js'],
                         '<%= dir.release %>/js/promise.js': ['<%= dir.components %>/promise.js']
@@ -74,6 +80,7 @@ module.exports = function (grunt) {
                         banner: '<%= banner %>\n/** @const */var DEBUG = true;\n'
                     },
                     files: {
+                        '<%= dir.release %>/js/kickstart.js': ['<%= dir.build %>/js/kickstart.js'],
                         '<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
                         '<%= dir.release %>/js/page.js': ['<%= dir.components %>/native.history.js', '<%= dir.build %>/js/page.js'],
                         '<%= dir.release %>/js/promise.js': ['<%= dir.components %>/promise.js']                    }

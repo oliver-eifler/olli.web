@@ -53,11 +53,10 @@ blockquote {
   font-style: italic;
   line-height: $leading;
   margin: $leading;
-  padding: .75em;
-  border-left: .75em solid divider($colors);
+  padding: $leading/2;
+  border-left: $leading/2 solid divider($colors);
   box-shadow: 2px 2px 15px divider($colors);
   span {display:inline-block;}
-  p:first-letter {font-size:125%;}
 }
 //simulated list item
 .sli {

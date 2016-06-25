@@ -2,18 +2,18 @@
 @import '../config';
 @import '../layout/boxen';
 
-/*Content*/
-.content-container {
+.page {
   padding-bottom:$baseLineHeight*3em - ($pageMargin/2);
 }
-.content-width {
+/*Content*/
+.content {
   margin: 0 auto;
-  max-width: $pageWidth+$pageMargin;
   position:relative;
   background: base($colors);
+
 }
 @media (min-width: 320px) {
-  .content-width {
+  .content {
     padding: $pageMargin/2;
     border-radius:$pageMargin/2;
     :first-child {
@@ -23,11 +23,6 @@
   }
 }
 
-@media (min-width: $pageWidth+$pageMargin) {
-  .content-width {
-    margin: 0 auto;
-  }
-}
 
 /* Hero Header */
 $hero-colors: getColors($color-brand);

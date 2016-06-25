@@ -28,7 +28,7 @@ export default (function () {
     function getNode() {
         if (!fontnode) {
             fontnode = doc.createElement("div");
-            fontnode.style.cssText = "position:absolute;width:1rem;height:1rem;left;-1rem;top:-1rem;";
+            fontnode.style.cssText = "position:absolute;width:1em;height:1em;left:-1em;top:-1em;";
             if (transitionStyle)
                 fontnode.style[transitionStyle] = "font-size 1ms linear";
             html.getElementsByTagName("body")[0].appendChild(fontnode);

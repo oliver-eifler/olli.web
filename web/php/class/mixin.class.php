@@ -26,39 +26,62 @@ class Mixin
     private function __clone()
     {
     }
-
-    public static function HumanTime($time)
-    {
-        $now = new DateTime();
-        $diff = $time->diff($now);
-        $days = (int)$diff->format("%r%a");
-        if ($days == 0)
-            return "Today";
-        if ($days == 1)
-            return "Yesterday";
-        $fmt = "l, F jS";
-        if ($now->format("Y") != $time->format("Y"))
-            $fmt .= " Y";
-        return $time->format($fmt);
+    public static function printDate(DateTime $dateTime) {
+        return $dateTime->format("j F, Y");
     }
-    public static function PageTime($created="",$modified="") {
-        if ($created == "")
+
+
+    public static function prettyDate(DateTime $dateTime, DateTime $reference = null)
+    {
+        // If not provided, set $reference to the current DateTime
+        if (!$reference) {
+            $reference = new DateTime(NULL, new DateTimeZone($dateTime->getTimezone()->getName()));
+        }
+
+        // Get the date corresponding to the $dateTime
+        $date = $dateTime->format('Y/m/d');
+
+        // Today
+        if ($reference->format('Y/m/d') == $date) {
+            return "Today";
+        }
+
+        $yesterday = clone $reference;
+        $yesterday->modify('- 1 day');
+
+        $tomorrow = clone $reference;
+        $tomorrow->modify('+ 1 day');
+
+        if ($yesterday->format('Y/m/d') == $date) {
+            return 'Yesterday';
+        } else if ($tomorrow->format('Y/m/d') == $date) {
+            return 'Tomorrow';
+        }
+
+        $fmt = "j F";
+        if ($dateTime->format("Y") != $reference->format("Y"))
+            $fmt .= ", Y";
+        return $dateTime->format($fmt);
+    }
+
+    public static function PageTime($created=0,$modified=0) {
+        if (empty($created))
             return "";
-        if ($modified == "")
-            return "created: ".self::HumanTime($created);
-        $c = new DateTime($created);
-        $m = new DateTime($modified);
-        $diff = $c->diff($m);
-        $days = (int)$diff->format("%r%a");
-        $str = "created: ".self::HumanTime($c);
-        if ($days > 0)
-            $str .= " - modified: ".self::HumanTime($m);
+        $c = new DateTime();
+        $c->setTimestamp($created);
+        $str = "published: <time datetime='".$c->format("c")."'>" . self::printDate($c)."</time>";
+
+        if (!empty($modified)) {
+            $m = new DateTime();
+            $m->setTimestamp($modified);
+            if ($c->format('Y/m/d') != $m->format('Y/m/d'))
+                $str .= " - modified: <time datetime='".$m->format("c")."'>"  . self::printDate($m)."</time>";
+        }
         return $str;
 
 
 
 
     }
-
 
 }

@@ -1,8 +1,25 @@
 <?php
+require_once('php/util/path.inc.php');
 require_once('php/class/basepage.class.php');
 require_once('php/class/mixin.class.php');
+
+require_once('php/layout/components.php');
 //loading page
-loadPage("pages/test.php");
+$request_url = get_request_url();
+$parts = parse_url($request_url);
+$request_uri = strtolower($parts['path']);
+/* Normalize Path */
+$path = remove_ext($request_uri);
+
+if (empty($path) || $path == "/" || $path=="/index" || $path=="/start") {
+    $path="/home"; //later: check short urls ;)
+}
+if (file_exists("pages".$path.".php"))
+    loadPage("pages".$path.".php");
+else {
+    loadPage("pages/error.php");
+    header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
+}
 echo HTML();
 exit;
 function loadPage($file)
@@ -33,7 +50,7 @@ function Styles()
     $html .= file_get_contents("css/layout.css");
     $html .= "</style>";
     $html .= "<noscript>";
-    $html .= "<link href='bundle/css/icons-nojs.css' rel='stylesheet'>";
+    $html .= "<link href='bundle/css/icons-fallback.css' rel='stylesheet'>";
     $html .= "</noscript>";
     //$html .= "<link rel='stylesheet' type='text/css' href='bundle/css/print.css' media='print'>";
     return $html;
@@ -41,17 +58,34 @@ function Styles()
 
 function Scripts()
 {
+    /*
+    $html = "<script id='kickstart' data-js='bundle/js/asyncx.js' data-fb='bundle/css/icons-fallback.css'>";
+    $html .= file_get_contents("js/kickstart.js");
+    $html .= "</script>";
+    */
     $html = "<script src='bundle/js/async.js' async></script>";
     return $html;
 }
 
 function htmlBody()
 {
+    $request_url = get_request_url();
+    $parts = parse_url($request_url);
+    $request_uri = strtolower($parts['path']);
+    /* Normalize Path */
+    $path = remove_ext($request_uri);
+
     $html = "";
     $html .= "<body class='flex'>";
-
+    $html .= "<div class='flex-row'>";
+    $html .=    "<p>url: ".$request_url."<br>";
+    $html .=    "uri: ".$request_uri."<br>";
+    $html .=    "Path: ".$path."</p>";
+    $html .= "</div>";
     $html .= "<div class='flex-row panel'>" . SiteHeader() . "</div>";
-    $html .= "<article class='flex-grow'>" . SiteArticle() . "</article>";
+    $html .= "<article class='flex-grow'>";
+    $html .=    "<div id='page' class='page baseline'>" . SiteArticle() . "</div>";
+    $html .= "</article>";
     $html .= "<footer  class='flex-row'>" . SiteFooter() . "</footer>";
 
     $html .= "</body>";
@@ -75,7 +109,7 @@ function SiteHeader()
 {
     $html = "";
     $html .= "<header>";
-    $html .= "<a class=\"header\" href='#'>";
+    $html .= "<a class=\"header\" href='/'>";
     $html .= "<div class=\"header-logo\" aria-hidden=\"true\">";
     $html .= "<div data-icon-embed class=\"icon-olli avatar\"></div>";
     $html .= "</div>";
@@ -88,31 +122,12 @@ function SiteHeader()
     $html .= "<aside>";
     $html .= "<nav role=\"navigation\">";
     $html .= "<div class=\"navigation\">";
-    $html .= "<div class=\"links\">";
-    $html .= "<div class=\"links-cat\">";
-    $html .= "<a href=\"#Home\" data-observe=\"ajax\">Home</a>";
-    $html .= "<a href=\"#Articles\" data-observe=\"ajax\">Articles</a>";
-    $html .= "<a href=\"#Gallery\" data-observe=\"ajax\">Gallery</a>";
-    $html .= "</div>";
-    $html .= "<div class=\"links-cat\">";
-    $html .= "<a href=\"#About\">About</a>";
-    $html .= "<a href=\"#Contact\">Contact</a>";
-    $html .= "</div>";
-    $html .= "</div>";
-    $html .= "<div class=\"social\">";
-    $html .= "<a href=\"#\" class=\"social-icon\" title=\"Olli on GitHub\">";
-    $html .= "<div data-icon-embed class=\"icon-github\" aria-hidden=\"true\"></div>";
-    $html .= "<span>GitHub</span></a>";
-    $html .= "<a href=\"#\" class=\"social-icon\" title=\"Olli on Codepen\">";
-    $html .= "<div data-icon-embed class=\"icon-codepen\" aria-hidden=\"true\"></div>";
-    $html .= "<span>CodePen</span></a>";
-    $html .= "<a href=\"#\" class=\"social-icon\" title=\"Olli on Twitter\">";
-    $html .= "<div data-icon-embed class=\"icon-twitter\" aria-hidden=\"true\"></div>";
-    $html .= "<span>Twitter</span></a>";
-    $html .= "<a href=\"#\" class=\"social-icon\" title=\"Olli on Facebook\">";
-    $html .= "<div data-icon-embed class=\"icon-facebook\" aria-hidden=\"true\"></div>";
-    $html .= "<span>Facebook</span></a>";
-    $html .= "</div>";
+
+    $html .= Components::printMainMenu();
+
+    $html .= Components::printSocialMenu();
+
+
     $html .= "</div>";
     $html .= "</nav>";
     $html .= "</aside>";

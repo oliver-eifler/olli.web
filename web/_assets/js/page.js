@@ -7,6 +7,7 @@ import FontSizeObserver from './page/fontsize-observer.js';
 import ResizeObserver from './page/resize-observer.js';
 
 /* Page functions */
+import prettyDate from './util/prettyDate.js';
 import adjustVerticalRythmn from "./page/verticalrythmn.js";
 import adjustFontSize from "./page/fontsize.js";
 
@@ -15,6 +16,17 @@ import adjustFontSize from "./page/fontsize.js";
 var content = $(".content");
 var contentWidth = content.clientWidth;
 
+
+$$("time").forEach(function(node) {
+   if (node.hasAttributes('datetime')) {
+       
+       node.innerHTML = prettyDate(new Date(node.getAttribute('datetime')));
+   }
+    
+    
+    
+    
+}); 
 /*!adjustFontSize() && */
 adjustVerticalRythmn(content);
 
@@ -24,11 +36,13 @@ adjustVerticalRythmn(content);
  p2[0].abort();
  var p3=XHR.get("images/welpe.jpg").then(function(s){console.log("3 Loaded")}).catch(function(err){console.log("4 Error: "+err.message);}).then(function() {console.log("3 finished")});
  */
+/*
 ActionObserver.bind("ajax", function (event, element) {
     event.stopPropagation();
     event.preventDefault();
     console.log("Ajax: " + this.href);
 });
+*/
 FontSizeObserver.bind("page", function () {
     adjustVerticalRythmn(content);
 });
