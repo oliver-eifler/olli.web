@@ -4,7 +4,7 @@
 */
 require_once('php/class/registry.class.php');
 
-class BasePage extends _registry
+class PageData extends _registry
 {
     protected static $instance = NULL;
     public static function getInstance()
