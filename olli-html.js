@@ -8,3 +8,10 @@ var doc = new webgen("web/_assets/pages/test.olli.html", {
 });
 doc.process();
 doc.save("web/pages/home.php");
+
+doc = new webgen("web/_assets/pages/404.html", {
+    cheerio: {decodeEntities: false},
+    plugins: {"minify": {}}
+});
+doc.process();
+doc.save("web/pages/404.php");

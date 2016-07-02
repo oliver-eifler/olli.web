@@ -12,8 +12,19 @@ class Site extends BaseSite
 
     protected function init($path)
     {
+        $render = function($tpl){
+            ob_start();
+            include $tpl;
+            $this->html = ob_get_contents();
+            ob_end_clean();
+        };
+
+        $render = $render->bindTo($this->pagedata, $this->pagedata);
+        $render($path);
+        /*
         $page = $this->pagedata;
         include($path);
+        */
         return $this;
     }
     public function renderHTML()

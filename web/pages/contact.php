@@ -1,22 +1,26 @@
 <?php
-$created = $page->created = filectime(__FILE__);
-$modified = $page->modified = filemtime(__FILE__);
+$this->created = filectime(__FILE__);
+$this->modified = filemtime(__FILE__);
+$this->title = "Contact me";
+$this->subtitle = "Kontaktformular.";
+$this->description = "Um was geht's eigentlich";
+function hallo() {
+    echo "<h2>Hallo</h2>";
 
-$title = $page->title = "Contact me";
-$subtitle = $page->subtitle = "Kontaktformular.";
-$description = $page->description = "Um was geht's eigentlich";
-ob_start();
+}
+
+
 ?>
     <div class="hero-container bumper">
-        <div class="hero"><h1 class="text-smart"><span><?= $title ?></span></h1>
-            <h3 class="text-smart hug"><span><?= $subtitle ?></span></h3>
-            <p><?= $description ?></p>
+        <div class="hero"><h1 class="text-smart"><span><?= $this->title ?></span></h1>
+            <h3 class="text-smart hug"><span><?= $this->subtitle ?></span></h3>
+            <p><?= $this->description ?></p>
             <p>
-                <small><em><?= Mixin::PageTime($created, $modified) ?></em></small>
+                <small><em><?= Mixin::PageTime($this->created, $this->modified) ?></em></small>
             </p>
         </div></div>
     <div class="content article">
-    </div> <?php
-$page->html = ob_get_contents();
-ob_end_clean();
-?>
+        <?php hallo(); ?>
+        <p><?= $this->request_uri ?></p>
+        <p><?= $this->request_url ?></p>
+    </div>

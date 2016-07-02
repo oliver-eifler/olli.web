@@ -25,6 +25,11 @@ class Components
     private function __clone()
     {
     }
+    public static function inlineCSS($path) 
+    {
+            $html = "<style>".file_get_contents($path)."</style>";
+        return $html;
+    }
     public static function printMainMenu()
     {
         $html = "";

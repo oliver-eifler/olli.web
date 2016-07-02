@@ -1,0 +1,56 @@
+/*
+base style for blan pages (404,...)
+*/
+@import 'config';
+
+html {
+  display: table;
+  width:100%;
+  height:100%;
+
+  background-color: #444;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  font-family: $sansSerifFont;
+  font-size: $baseFontSize / 16 * 100%;
+  // Make everything look a little nicer in webkit
+  -webkit-font-smoothing: antialiased;
+
+  display: table-cell;
+  vertical-align: middle;
+  margin: 0 auto;
+  padding: 0;
+  color: #000;
+  color: text($colors);
+  background-color: base($colors);
+}
+h1 {
+  font-size: 1 * $scale * 1rem;
+  font-family: $serifFont;
+  color: hilight($colors);
+}
+p,h1 {
+  line-height: $leading;
+  margin-top: $leading;
+  margin-bottom: 0;
+}
+
+
+a {
+  color: $color-link;
+  text-decoration: none;
+  &:visited {
+    color: $color-link-visited;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color-link-hover !important;
+  }
+}
+

@@ -65,16 +65,3 @@ require_once("php/".$class.".php");
 //ToDo: Check for AJAX Request
 (new $class($path))->renderHTML();
 exit;
-
-function loadPage($path) 
-{
-    
-    
-    
-    
-    
-    
-    
-    
-    
-}

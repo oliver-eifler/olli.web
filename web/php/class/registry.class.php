@@ -9,7 +9,7 @@
  * @author Oliver Jean Eifler <oliver.eifler@gmx.de>
  * @license http://www.opensource.org/licenses/mit-license.php MIT License
  */
-class _registry implements ArrayAccess, Countable, IteratorAggregate
+class _registry /*implements ArrayAccess, Countable, IteratorAggregate*/
 {
    /**
     * @var object Instance of registry class
