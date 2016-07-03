@@ -44,10 +44,6 @@ i[class*="icon-"] {
   width: $icon-twitter-width;
   height: $icon-twitter-height;
 }
-.social-icon span {
-  @include screenShow();
-}
-
 .icon-invader {
   background-image: url($icon-invader-url);
   width: $icon-invader-width;
@@ -57,4 +53,7 @@ i[class*="icon-"] {
   background-repeat: no-repeat;
   background-position:center center;
   background-image: url($icon-background-url);
+}
+.noimg {
+  @include screenShow();
 }

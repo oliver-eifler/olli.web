@@ -6,21 +6,22 @@
 .error {
   margin: $leading 1em;
   text-align: center;
-  h1 {
-    color: #800;
-    font-size: 2 * $scale * 1rem;
-    line-height: 2 * $leading;
-  }
-  .links {
-    padding-top: 1em;
-    text-transform: uppercase;
-    display:inline-block;
-    a {
-      padding: 0 .75em;
-      margin: .5em;
-    }
-  }
-  .links-cat {
-    display: inline-block;
-  }
+}
+
+.error-big {
+  color: #800;
+  font-size: 2 * $scale * 1rem;
+  line-height: 2 * $leading;
+}
+.links-cat {
+  list-style: none outside none;
+}
+.links-cat,.links-item {
+  padding:0;
+  display: inline-block;
+  margin:0;
+}
+.links-link {
+  display: inline-block;
+  padding: 0 .75em;
 }

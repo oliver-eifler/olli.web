@@ -3,7 +3,6 @@
 */
 @import 'config';
 @import 'icons/png';
-
 //@import 'layout/fonts';
 @import 'layout/base';
 @import 'layout/typo';
@@ -12,22 +11,23 @@
 
 /* PAGE RESPONIBLE LAYOUT */
 .panel {
-  position:relative;
-  display:block;
-  padding:1em;
-  padding-bottom:0;
-  margin-bottom:1em;
-  text-align:center;
+  position: relative;
+  display: block;
+  padding: 1em;
+  padding-bottom: 0;
+  margin-bottom: 1em;
+  text-align: center;
 }
+
 @media (min-width: $wideLayoutWidth) {
   //Header-Container
   .panel {
     position: absolute;
     right: 0;
-    top:0;
+    top: 0;
     width: $panelWidth;
-    text-align:right;
-    padding-left:4em;
+    text-align: right;
+    padding-left: 4em;
   }
   //Footer-container,.
   .footer-container {
@@ -39,6 +39,7 @@
     margin-right: $panelWidth - $pageMargin;
   }
 }
+
 @media (min-width: $wideLayoutWidth) and (min-height: $panelHeight) {
   //Header-Container
   .panel {
@@ -47,17 +48,10 @@
 }
 
 /* HEADER */
-
-/*All Links inside Panel/Header-Container*/
-.panel a {
-  display:inline-block;
-  color:$color-extra;
-  &:visited {color:$color-extra;}
-}
-
 .header {
+  display: block;
   & > div {
-    display:inline-block;
+    display: inline-block;
     vertical-align: middle;
   }
   &:before {
@@ -67,81 +61,101 @@
     height: 100%;
   }
 }
+
 .header-logo {
-  margin:0 .5em;
-  padding:.5em 1em;
+  margin: 0 .5em;
+  padding: .5em 1em;
 }
+
 .header-text {
-  margin:.5em 0 0 0;
-  color:$color-brand !important;
-  line-height:1;
-  h1 {
-    font-size:2em;
-    font-variant: small-caps;
-    line-height:1;
-    margin:0;
-    color:$color-brand !important;
-  }
+  color: $color-brand !important;
+  margin: .5em 0 0 0;
+  line-height: 1em;
 }
 
-
-
-
-/* Header Links */
-.links {
-  padding-top:1em;
-  text-transform: uppercase;
-  a {
-    padding:0 .75em;
-    margin:.5em;
-  }
+.header-text-big {
+  font-size: 2em;
+  font-variant: small-caps;
+  line-height: 1;
+  margin: 0;
+  color: inherit;
 }
-.links-cat {display:inline-block;}
 
 @media (min-width: $wideLayoutWidth) {
   .header-logo {
-    margin:0;
+    margin: 0;
+    display: block;
   }
-  .panel .links {
-    a {
-      display:block;
-      padding:.25em 0;
-      margin:0;
-    }
-  }
-  .panel .links-cat {display:block;}
 }
-/*Social Icons*/
-.social {
-  padding-top:1em;
-  line-height:1;
-}
-.social-icon {
-  margin:0 .25em;
-  text-align:center;
-  div {
-    opacity: opacity(icon($colors));
-    transition: .5s opacity;
-  }
-  div:hover {
-    opacity:1;
-  }
-  span {
-    display:block;
-    font-size:.8em;
-    @include screenHide();
-  }
 
+/* Panel Links */
+.mm-cat,.sm-cat {
+  list-style: none outside none;
 }
-@media (min-width: $wideLayoutWidth) {
-  .social-icon {
-    margin: 0 0 0 .5em;
+.mm-cat,.mm-item, .sm-cat,.sm-item {
+  padding:0;
+  display: inline-block;
+  margin:0;
+  zoom: 1;
+  *display: inline;
+}
+
+/*Panel Links: MainMenu*/
+.mm {
+  padding-top: 1em;
+}
+.mm-link {
+  display: inline-block;
+  text-transform: uppercase;
+  padding: 0 .75em;
+  line-height:2;
+  color: $color-extra;
+  &:visited {
+    color: $color-extra;
   }
-  .social > .social-icon:first-child {
+}
+
+@media (min-width: $wideLayoutWidth) {
+  .mm-link {
+    //display: block;
+    padding: 0;
+  }
+  .mm-cat,.mm-item {
+    display: block;
+  }
+}
+
+/*Panel Links: Social Menu*/
+.sm {
+  padding-top: 1em;
+  margin: -.25em;
+}
+.sm-item {
+  padding:.25em;
+}
+.sm-link {
+  text-align: center;
+}
+.sm-icon {
+  opacity: opacity(icon($colors));
+  transition: .5s opacity;
+  &:hover {
+    opacity: 1;
+  }
+}
+.sm-text {
+  display: block;
+  font-size: .8em;
+}
+/*
+@media (min-width: $wideLayoutWidth) {
+  .sm-item {
+    margin: .25em 0 .25em .5em;
+  }
+  .sm-item:first-child {
     margin-left: 0;
   }
 }
-
-
+*/
 @import 'layout/footer';
 

@@ -60,6 +60,9 @@ a {
   &:active {
     color: $color-link-hover !important;
   }
+  &:focus {
+    outline: 1px dotted;
+  }
 }
 
 small {
@@ -107,11 +110,14 @@ small {
     content: "";
     position:absolute;
     display:block;
-    width:3em;
+    width:2.5em;
     height:100%;
     left:100%;
     top:0;
     background-color:inherit;
     border-radius: 0 2em 2em 0;
   }
+}
+.noimg {
+  @include screenHide();
 }

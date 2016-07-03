@@ -99,28 +99,23 @@ class Site extends BaseSite
     protected function SiteHeader()
     {
         $html = "";
-        $html .= "<header>";
-        $html .= "<a class=\"header\" href='/'>";
-        $html .= "<div class=\"header-logo\" aria-hidden=\"true\">";
-        $html .= "<div data-icon-embed class=\"icon-olli avatar\"></div>";
+        $html .= "<header role='banner'>";
+        $html .= "<a class='header' href='/'>";
+        $html .= "<div class='header-logo' aria-hidden='true'>";
+        $html .= "<div data-icon-embed class='icon-olli avatar'></div>";
         $html .= "</div>";
-        $html .= "<div class=\"header-text\">";
-        $html .= "<h1>Oliver Jean Eifler</h1>";
-        $html .= "<small>Programmierer Techniker Künstler</small>";
+        $html .= "<div class='header-text'>";
+        $html .= "<h1 class='header-text-big'>Oliver Jean Eifler</h1>";
+        $html .= "<div><small>Programmierer Techniker Künstler</small></div>";
         $html .= "</div>";
         $html .= "</a>";
         $html .= "</header>";
+        
         $html .= "<aside>";
-        $html .= "<nav role=\"navigation\">";
-        $html .= "<div class=\"navigation\">";
-
-        $html .= Components::printMainMenu();
-
-        $html .= Components::printSocialMenu();
-
-
-        $html .= "</div>";
-        $html .= "</nav>";
+        $html .=    "<nav role='navigation'>";
+        $html .=        Components::printMainMenu();
+        $html .=        Components::printSocialMenu();
+        $html .=    "</nav>";
         $html .= "</aside>";
         return $html;
     }
