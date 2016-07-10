@@ -1,11 +1,6 @@
 <?php
 require_once('php/class/basesite.class.php');
-require_once('php/class/mixin.class.php');
-require_once('php/layout/components.php');
-/* Static Getter */
-function getSite($path="") {
-    return new Site404($path);
-}
+require_once('php/components.php');
 
 class Site404 extends BaseSite
 {
@@ -39,18 +34,13 @@ class Site404 extends BaseSite
     {
         $page = $this->pagedata;
         $html = "<!DOCTYPE html><html lang='en'><head>";
-        $html .= "<meta charset='UTF-8'>";
-        $html .= "<meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=yes'/>";
-        $html .= "<meta name='format-detection' content='telephone=no'/>";
-        $html .= "<title>Error: ".$page->title."</title>";
-        $html .= "<link rel='icon' href='favicon.png'>";
-        $html .= "<link rel='apple-touch-icon' href='favicon.png'>";
 
-        $html .= Components::inlineCSS("css/blank.css");
+        $html .= Component::get("MetaData");
+        $html .= Component::get("inlineCSS","css/blank.css");
 
         $html .= "</head>";
         $html .= "<body>";
-        $html .= $page->html;
+        $html .= Component::get("Content");
         $html .= "</body>";
         $html .= "</html>";
         return $html;

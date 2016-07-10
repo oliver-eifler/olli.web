@@ -1,11 +1,6 @@
 <?php
 require_once('php/class/basesite.class.php');
-require_once('php/class/mixin.class.php');
-require_once('php/layout/components.php');
-/* Static Getter */
-function getSite($path="") {
-    return new Site($path);
-}
+require_once('php/components.php');
 
 class Site extends BaseSite
 {
@@ -21,10 +16,7 @@ class Site extends BaseSite
 
         $render = $render->bindTo($this->pagedata, $this->pagedata);
         $render($path);
-        /*
-        $page = $this->pagedata;
-        include($path);
-        */
+
         return $this;
     }
     public function renderHTML()
@@ -41,38 +33,28 @@ class Site extends BaseSite
     {
         $page = $this->pagedata;
         $html = "<!DOCTYPE html><html lang='en'><head>";
-        $html .= "<meta charset='UTF-8'>";
-        $html .= "<meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=yes'/>";
-        $html .= "<meta name='format-detection' content='telephone=no'/>";
-        $html .= "<title>" . $page->title . "</title>";
-        $html .= "<link rel='icon' href='favicon.png'>";
-        $html .= "<link rel='apple-touch-icon' href='favicon.png'>";
-        $html .= $this->Styles() . $this->Scripts();
+
+            $html .= Component::get("MetaData");
+            $html .= Component::get("inlineCSS","css/layout.css");
+
+            $html .= $this->Styles() . $this->Scripts();
+
         $html .= "</head>";
-        $html .= $this->htmlBody();
+            $html .= $this->htmlBody();
         $html .= "</html>";
         return $html;
     }
 
     protected function Styles()
     {
-        $html = "<style>";
-        $html .= file_get_contents("css/layout.css");
-        $html .= "</style>";
-        $html .= "<noscript>";
+        $html = "<noscript>";
         $html .= "<link href='bundle/css/icons-fallback.css' rel='stylesheet'>";
         $html .= "</noscript>";
-        //$html .= "<link rel='stylesheet' type='text/css' href='bundle/css/print.css' media='print'>";
         return $html;
     }
 
     protected function Scripts()
     {
-        /*
-        $html = "<script id='kickstart' data-js='bundle/js/asyncx.js' data-fb='bundle/css/icons-fallback.css'>";
-        $html .= file_get_contents("js/kickstart.js");
-        $html .= "</script>";
-        */
         $html = "<script src='bundle/js/async.js' async></script>";
         return $html;
     }
@@ -81,64 +63,29 @@ class Site extends BaseSite
     {
         $html = "";
         $html .= "<body class='flex'>";
-        $html .= "<div class='flex-row panel'>" . $this->SiteHeader() . "</div>";
+        //$html .= "<div class='flex-row panel'>" . $this->SiteHeader() . "</div>";
+        $html .= "<div class='flex-row panel'>" . Component::get("Banner") . "</div>";
+
         $html .= "<article class='flex-grow'>";
-        $html .= "<div id='page' class='page baseline'>" . $this->SiteArticle() . "</div>";
+        $html .= "<div id='page' class='page baseline'>" . Component::get("Content") . "</div>";
         $html .= "</article>";
-        $html .= "<footer  class='flex-row'>" . $this->SiteFooter() . "</footer>";
+
+        //$html .= "<footer  class='flex-row'>" . $this->SiteFooter() . "</footer>";
+        $html .= "<footer  class='flex-row'>" . Component::get("Footer") . "</footer>";
+        /*DEBUG
+        $html .= "<div class='flex-row'>";
+
+        $html .= "<h2>Components:</h2>";
+        $html .= "<ul>";
+        $list = Component::getComponents();
+        foreach ($list as $component)
+            $html.="<li>".$component."</li>";
+        $html .= "<ul>";
+
+        $html .= "</div>";
+        /*DEBUG END*/
         $html .= "</body>";
         return $html;
     }
-
-    protected function SiteArticle()
-    {
-        $page = $this->pagedata;
-        return $page->html;
-    }
-
-    protected function SiteHeader()
-    {
-        $html = "";
-        $html .= "<header role='banner'>";
-        $html .= "<a class='header' href='/'>";
-        $html .= "<div class='header-logo' aria-hidden='true'>";
-        $html .= "<div data-icon-embed class='icon-olli avatar'></div>";
-        $html .= "</div>";
-        $html .= "<div class='header-text'>";
-        $html .= "<h1 class='header-text-big'>Oliver Jean Eifler</h1>";
-        $html .= "<div><small>Programmierer Techniker Künstler</small></div>";
-        $html .= "</div>";
-        $html .= "</a>";
-        $html .= "</header>";
-        
-        $html .= "<aside>";
-        $html .=    "<nav role='navigation'>";
-        $html .=        Components::printMainMenu();
-        $html .=        Components::printSocialMenu();
-        $html .=    "</nav>";
-        $html .= "</aside>";
-        return $html;
-    }
-
-    protected function SiteFooter()
-    {
-        $fromYear = 2015;
-        $thisYear = (int)date('Y');
-        $Year = $fromYear . (($fromYear != $thisYear) ? '-' . $thisYear : '');
-        $html = "";
-        $html .= "<div class='footer-container bumper'>";
-        $html .= "<div class='footer'>";
-        $html .= "<p class='text-smart licence'><small>";
-        $html .= "Except as otherwise noted, the content of this page is licensed under the <a href='#'>Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href='#'>Apache 2.0 License</a>.";
-        $html .= "</small></p>";
-        $html .= "<p><i data-icon-embed class='icon-invader'></i> For internal use only</p>";
-        $html .= "<p>" . $_SERVER['SERVER_NAME'] . " is created and maintained " . $Year . " with care* by <i data-icon-embed class='icon-cool'></i> <a href='http://www.oliver-eifler.info'>Oliver Jean Eifler</a></p>";
-        $html .= "<p class='text-smart legende'><small>*Not recommended for or tested with IE 9- or any other legacy browser</small></p>";
-        $html .= "</div>";
-        $html .= "</div>";
-
-        return $html;
-    }
-
 }
 ?>

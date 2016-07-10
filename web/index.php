@@ -8,6 +8,9 @@
  */
 session_cache_limiter("public"); //This stop php default no-cache
 /* the magic starts here */
+define('ROOT', __DIR__);
+
+require_once('php/config.php');
 require_once('php/router.php');
 ?>
 
