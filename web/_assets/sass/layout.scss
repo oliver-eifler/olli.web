@@ -8,6 +8,7 @@
 @import 'layout/typo';
 @import 'layout/content';
 @import 'layout/article';
+@import 'layout/contact';
 
 /* PAGE RESPONIBLE LAYOUT */
 .panel {
@@ -36,7 +37,7 @@
   //Content-container,.
   .page {
     min-height: $panelHeight;
-    margin-right: $panelWidth - $pageMargin;
+    margin-right: $panelWidth;
   }
 }
 

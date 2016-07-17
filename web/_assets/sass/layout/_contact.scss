@@ -1,0 +1,53 @@
+@import '../config';
+.contact {
+  max-width: 30em+$pageMargin;
+}
+.form {
+  margin:0 auto;
+  background: base($colors);
+}
+.form-ctrl {
+  font-size: 1em;
+  font-family: $sansSerifFont;
+  line-height: 1.5;
+  padding: 0 .25em;
+  margin: 0 0 -1px 0;
+  width:100%;
+  border-radius: 0;
+  border: 1px solid info($colors);
+  box-shadow: none;
+}
+.form-ctrl:focus {
+  border-color: $color-link;
+}
+.form-label {
+  font-size:80%;
+  line-height:1.5;
+  text-transform: uppercase;
+  display:block;
+  color: info($colors);
+}
+.form-row,.form-col {
+  padding:0 $pageMargin/2;
+}
+.form-row {
+  margin-top:$leading;
+}
+.form-row:first-child {
+  margin-top:0;
+
+}
+
+.form-group {
+  padding:0;
+  margin-bottom:-$leading;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+.form-col {
+  flex: 0 0 auto;
+  padding-bottom:$leading;
+  width:100%;
+  max-width:15em;
+}

@@ -5,15 +5,20 @@
 .page {
   padding-bottom:$baseLineHeight*3em - ($pageMargin/2);
 }
+.content,.hero-content {
+  max-width:$wideLayoutWidth;
+  margin:0 auto;
+}
 /*Content*/
 .content {
-  margin: 0 auto;
+  margin-top: 1rem;
   position:relative;
   background: base($colors);
 
 }
 @media (min-width: 320px) {
   .content {
+    width:98%;
     padding: $pageMargin/2;
     border-radius:$pageMargin/2;
     :first-child {
@@ -23,25 +28,25 @@
   }
 }
 
-
 /* Hero Header */
 $hero-colors: getColors($color-brand);
 
-.hero-container {
-  //max-width:$wideLayoutWidth;
-  margin:0 auto;
-  padding: $leading $pageMargin/2 6*$leading $pageMargin/2;
-  background-color:base($hero-colors);
-  margin-bottom:-6*$leading + 1rem;
-}
 .hero {
-  max-width:$wideLayoutWidth;
-  margin:0 auto;
+  //max-width:$wideLayoutWidth;
+  margin:0;
+  padding: $leading $pageMargin/2 6*$leading $pageMargin/2;
+  margin-bottom: -6*$leading;
+}
+.hero-content {
   :first-child {margin-top:0;}
+}
+.hero--brand {
+  background-color:base($hero-colors);
   color: text-contrast($color-brand);
   h1,h2,h3 {
     color: text-contrast($color-brand);
   }
+
 }
 
 
