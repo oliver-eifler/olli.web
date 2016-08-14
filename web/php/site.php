@@ -12,13 +12,15 @@ class Site extends BaseSite
             include $tpl;
             $this->html = ob_get_contents();
             ob_end_clean();
+            if ($this->minify === true)
+                $this->html = preg_replace('/\v(?:[\v\h]+)/', '', $this->html);
         };
 
         $render = $render->bindTo($this->pagedata, $this->pagedata);
         $render($path);
-
         return $this;
     }
+
     public function renderHTML()
     {
         echo $this->HTML();
@@ -34,10 +36,11 @@ class Site extends BaseSite
         $page = $this->pagedata;
         $html = "<!DOCTYPE html><html lang='en'><head>";
 
-            $html .= Component::get("MetaData");
-            $html .= Component::get("inlineCSS","css/layout.css");
-
-            $html .= $this->Styles() . $this->Scripts();
+        $html .= Component::get("MetaData");
+        //$html.= "<style>@namespace svg url(\"http://www.w3.org/2000/svg\");.svg-hide{display:none;visibility:hidden}svg|g.svg-hide{display:inline-block;visibility:visible}</style>";
+        $html .= Component::get("inlineCSS","css/layout.css");
+        $html .= $this->Inline();
+        //$html .= $this->Styles() . $this->Scripts();
 
         $html .= "</head>";
             $html .= $this->htmlBody();
@@ -45,6 +48,17 @@ class Site extends BaseSite
         return $html;
     }
 
+
+    protected function Inline()
+    {
+        $css = "bundle/css/forms.css";
+        $html = "<script>" . file_get_contents("js/inline.js"). ";window.loadCSS('".$css."');</script>";
+        $html .= "<noscript>";
+        $html .= "<link href='".$css."' rel='stylesheet'>";
+        $html .= "</noscript>";
+
+        return $html;
+    }
     protected function Styles()
     {
         $html = "<noscript>";
@@ -63,15 +77,18 @@ class Site extends BaseSite
     {
         $html = "";
         $html .= "<body class='flex'>";
+        /* inline svg symbols (above the fold)*/
+        //$html.= file_get_contents("./images/inline.svg");
+
         //$html .= "<div class='flex-row panel'>" . $this->SiteHeader() . "</div>";
         $html .= "<div class='flex-row panel'>" . Component::get("Banner") . "</div>";
 
-        $html .= "<article class='flex-grow'>";
+        $html .= "<article class='flex-row'>";
         $html .= "<div id='page' class='page baseline'>" . Component::get("Content") . "</div>";
         $html .= "</article>";
 
         //$html .= "<footer  class='flex-row'>" . $this->SiteFooter() . "</footer>";
-        $html .= "<footer  class='flex-row'>" . Component::get("Footer") . "</footer>";
+        $html .= "<footer  class='flex-row flex-foot'>" . Component::get("Footer") . "</footer>";
         /*DEBUG
         $html .= "<div class='flex-row'>";
 
@@ -84,6 +101,8 @@ class Site extends BaseSite
 
         $html .= "</div>";
         /*DEBUG END*/
+        //$html .= $this->Inline();
+        $html .= "<script defer src='bundle/js/svgxuse.min.js'></script>";
         $html .= "</body>";
         return $html;
     }

@@ -1,14 +1,30 @@
+.svg-hide {
+  display: none;
+  visibility: hidden
+}
+
+svg/*namespace*/
+|g.svg-hide {
+  display: inline-block;
+  visibility: visible
+}
+svg/*namespace*/
+|use.svg-hide {
+  display: inline-block;
+  visibility: visible
+}
+
 /*
  Layout
 */
 @import 'config';
-@import 'icons/png';
+//@import 'icons/png';
 //@import 'layout/fonts';
+@import 'components/icons';
 @import 'layout/base';
 @import 'layout/typo';
 @import 'layout/content';
 @import 'layout/article';
-@import 'layout/contact';
 
 /* PAGE RESPONIBLE LAYOUT */
 .panel {
@@ -62,24 +78,25 @@
     height: 100%;
   }
 }
-
+a.header,.header-text-big {
+  color: $color-brand !important;
+}
 .header-logo {
   margin: 0 .5em;
   padding: .5em 1em;
 }
 
 .header-text {
-  color: $color-brand !important;
+  font-size: 1em;
   margin: .5em 0 0 0;
-  line-height: 1em;
+  line-height: 1;
 }
 
 .header-text-big {
   font-size: 2em;
   font-variant: small-caps;
-  line-height: 1;
   margin: 0;
-  color: inherit;
+  line-height: 1;
 }
 
 @media (min-width: $wideLayoutWidth) {
@@ -90,13 +107,14 @@
 }
 
 /* Panel Links */
-.mm-cat,.sm-cat {
+.mm-cat, .sm-cat {
   list-style: none outside none;
 }
-.mm-cat,.mm-item, .sm-cat,.sm-item {
-  padding:0;
+
+.mm-cat, .mm-item, .sm-cat, .sm-item {
+  padding: 0;
   display: inline-block;
-  margin:0;
+  margin: 0;
   zoom: 1;
   *display: inline;
 }
@@ -105,11 +123,12 @@
 .mm {
   padding-top: 1em;
 }
+
 .mm-link {
   display: inline-block;
   text-transform: uppercase;
   padding: 0 .75em;
-  line-height:2;
+  line-height: 2;
   color: $color-extra;
   &:visited {
     color: $color-extra;
@@ -121,7 +140,7 @@
     //display: block;
     padding: 0;
   }
-  .mm-cat,.mm-item {
+  .mm-cat, .mm-item {
     display: block;
   }
 }
@@ -130,24 +149,41 @@
 .sm {
   padding-top: 1em;
   margin: -.25em;
-}
-.sm-item {
-  padding:.25em;
-}
-.sm-link {
-  text-align: center;
-}
-.sm-icon {
-  opacity: opacity(icon($colors));
-  transition: .5s opacity;
-  &:hover {
-    opacity: 1;
+  & .icon {
+    top:0;
+    width: 2em;
+    height: 2em;
+    opacity: opacity(icon($colors));
+    transition: .5s opacity;
+    &:hover {
+      opacity: 1;
+    }
   }
 }
-.sm-text {
-  display: block;
-  font-size: .8em;
+.sm-link {
+  display:inline-block;
+  zoom:1;
 }
+/* icon vendor color */
+.sm .icon-github {
+  fill: $color-github;
+}
+.sm .icon-codepen {
+  fill: $color-codepen;
+}
+.sm .icon-twitter {
+  fill: $color-twitter;
+}
+.sm .icon-facebook {
+  fill: $color-facebook;
+}
+
+
+
+.sm-item {
+  padding: .25em;
+}
+
 /*
 @media (min-width: $wideLayoutWidth) {
   .sm-item {

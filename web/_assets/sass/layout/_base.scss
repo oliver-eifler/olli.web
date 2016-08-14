@@ -2,7 +2,7 @@
 @import '../config';
 
 html {
-  background-color: #444;
+  background-color: base($colors);
   box-sizing: border-box;
 }
 
@@ -20,7 +20,7 @@ body {
   padding: 0;
   color: #000;
   color: text($colors);
-  background-color: base($colors);
+  background-color: inherit;
 }
 /*
 @media only screen and (max-width: 480px) {
@@ -89,17 +89,22 @@ small {
     text-align: left;
   }
 }
-
 .flex {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
 }
 .flex-row {
-  flex: 0 0 auto; /* min-height = content; */
+    flex: 0 0 auto;
 }
+/* damn ie 10+: it jumps using flex-grow and a form inside ;(
 .flex-grow {
-  flex: 1 0 auto; /* min-height = content; */
+  flex: 1 0 auto;
+}
+*/
+/* we simply align the footer to the bottom of the flex container*/
+.flex-foot {
+  margin-top:auto;
 }
 /* Bumper for Hero-header, Footer, etc.*/
 .bumper {

@@ -3,6 +3,7 @@ $this->created = filectime(__FILE__);
 $this->modified = filemtime(__FILE__);
 $this->title = "Contact";
 $this->description = "Um was geht's eigentlich";
+$this->minify = true;
 ?>
 <div class="hero">
     <div class="hero-content">
@@ -12,28 +13,38 @@ $this->description = "Um was geht's eigentlich";
     </div>
 </div>
 <div class="content contact">
-<form id="contactform" class="form">
-<div class="form-row form-group">
-    <div class="form-col">
-        <label class="form-label" for="name">Name:</label>
-        <input class="form-ctrl" type="text" name="name" placeholder="John Smith" />
-    </div>
-    <div class="form-col">
-        <label class="form-label" for="email">eMail:</label>
-        <input class="form-ctrl" type="text" name="email" placeholder="john.smith@earth.com" />
-    </div>
-</div>
-    <div class="form-row">
-        <label class="form-label" for="subject">Subject:</label>
-        <input class="form-ctrl" type="text" name="subject" placeholder="Your Subject..." />
-    </div>
-    <div  class="form-row">
-        <label class="form-label" for="message">Message:</label>
-        <textarea class="form-ctrl" rows="5" cols="50" type="text" id="message" name="message" placeholder="Your Message..." ></textarea>
-    </div>
-    <div class="form-row">
-    <button type="submit">Send Message</button>
-    </div>
+<form id='contactform' class='form'>
+    <fieldset class="form-group formGrid">
+        <div class='form-item'>
+        <label class='form-label' for='name'>Name:</label>
+        <input class='form-ctrl' type='text' name='name' placeholder='John Smith' />
+        </div>
+        <div class='form-item'>
+        <label class='form-label' for='email'>eMail:</label>
+        <input class='form-ctrl' type='email' name='email' placeholder='john.smith@earth.com' />
+        </div>
+    </fieldset>
+    <fieldset class="form-group">
+        <div class='form-item'>
+        <label class='form-label' for='subject'>Subject:</label>
+        <input class='form-ctrl' type='text' name='subject' placeholder='Your Subject...' />
+        </div>
+        <div class='form-item'>
+        <label class='form-label' for='message'>Message:</label>
+        <textarea class='form-ctrl' rows='5' cols='50' type='text' id='message' name='message' placeholder='Your Message...' ></textarea>
+        </div>
+    </fieldset>
+    <fieldset class="form-group formFooter">
+        <div class='form-info'>
+            Bla Bla Bla
+        </div>
+        <div class='form-item FormFooter-push'>
+            <button class='button' type='reset'>Reset</button>
+        </div>
+        <div class='form-item'>
+            <button class='button button-primary' type='submit'><?= file_get_contents(RES."/cool.svg") ?>Submit</button>
+        </div>
+    </fieldset>
 </form>
 
 

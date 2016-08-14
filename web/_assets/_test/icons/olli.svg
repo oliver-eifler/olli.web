@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="80" height="80" viewBox="0 0 52 44">
+<!--[if gt IE 8]><!--><svg style="display:none">
 <defs>
     <g id="o1">
     <path stroke="#000" stroke-width="2" d="m20 27h-2v-4-4h8 8v4 4h-2-2v-1-1h-4-4v1 1h-2zm-8-2h-2v-1-1h-2-2v-2-2h2 2v2 2h2 2v1 1h-2zm28 0h-2v-1-1h2 2v-2-2h2 2v2 2h-2-2v1 1h-2zm-20-8h-2v-2-2h2 2v2 2h-2zm12 0h-2v-2-2h2 2v2 2h-2zm-6 12h-4v-2-2h4 4v2 2h-4zm0 4h-8v-1-1h-4-4v-1-1h-2-2v-1-1h-2-2v-8-8h2 2v2 2h4 4v1 1h12 12v-1-1h4 4v-2-2h2 2v8 8h-2-2v1 1h-2-2v1 1h-4-4v1 1h-8zm0-4h4v-1-1h2 2v-1-1h4 4v-1-1h2 2v-2-2h-20-20v2 2h2 2v1 1h4 4v1 1h2 2v1 1h4zm-14-20h-2v-1-1h2 2v-1-1h4 4v1 1h4 4v-1-1h4 4v1 1h2 2v1 1h-2-2v-1-1h-4-4v1 1h-4-4v-1-1h-4-4v1 1h-2zm4 16h-2v-1-1h-2-2v-2-2h4 4v3 3h-2zm20 0h-2v-3-3h4 4v2 2h-2-2v1 1h-2zm-20-8h-2v-4-4h4 4v2 2h-2-2v2 2h-2zm20 0h-2v-2-2h-2-2v-2-2h4 4v4 4h-2z"/>
@@ -24,8 +22,17 @@
         <path fill="#f00" d="m26 33h-4v-1-1h-2-2v-1-1h2 2v-1-1h4 4v1 1h2 2v1 1h-2-2v1 1h-4z"/>
     </g>
 </defs>
-    <use xlink:href="#o3" class="olli-f1" opacity="1"/>
-    <use xlink:href="#o2" class="olli-f2" opacity="0"/>
-    <use xlink:href="#o1" class="olli-f3" opacity="0"/>
-    <use xlink:href="#o2" class="olli-f4" opacity="0"/>
 </svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="80" height="80" viewBox="0 0 52 44" class="icon icon-olli avatar">
+<switch>
+    <g class="svg-hide">
+        <use xlink:href="#o3" class="olli-f1" opacity="1"/>
+        <use xlink:href="#o2" class="olli-f2" opacity="0"/>
+        <use xlink:href="#o1" class="olli-f3" opacity="0"/>
+        <use xlink:href="#o2" class="olli-f4" opacity="0"/>
+    </g>
+    <foreignObject width="0"><!--<![endif]-->
+        <div class="nosvg nosvg-olli"></div>
+        <!--[if gt IE 8]><!--></foreignObject>
+</switch>
+</svg><!--<![endif]-->

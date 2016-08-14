@@ -9,6 +9,10 @@
   font-family: $monospaceFont;
   padding:0.25em;
   & > * {margin:0 .5em;}
+  & .icon {
+    margin-right:.5em;
+    top:.25em;
+  }
 }
 .licence, .legende {
   line-height:1.2;

@@ -1,0 +1,61 @@
+@import 'config';
+@import 'components/normalize/form';
+@import 'components/forms';
+@import 'components/buttons';
+
+$form-space: 1em;
+$form-border: .25em;
+
+.form {
+  padding-bottom:$form-space;
+}
+.form-ctrl {
+  width:100%;
+}
+input.form-ctrl {
+  line-height:2.5em;
+  height:2.5em;
+  padding:0 0.5em;
+}
+.form-group {
+  display:block;
+  padding: 0 $form-border;
+  margin: -$form-border;
+}
+.form-group + .form-group {
+  padding-top: $form-space;
+}
+.form-item,.form-info {
+  display:block;
+  padding: $form-border;
+  text-align:left;
+}
+@media only screen and (min-width: 20em) {
+  .formGrid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & > .form-item {
+      flex: 1 1 auto;
+    }
+  }
+}
+.formFooter {
+  text-align:right;
+  & > .form-item {
+    display: inline-block;
+  }
+}
+@media only screen and (min-width: 30em) {
+  .formFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & > .form-item {
+      flex: 0 1 auto;
+    }
+    & > .form-info {
+      flex: 1 1 auto;
+    }
+  }
+}

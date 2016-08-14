@@ -14,165 +14,190 @@ module.exports = function (grunt) {
             assets: 'web/_assets',
             components: 'web/_assets/js/components'
         },
-        //copy files
-        copy: {
-            icons: {
+/* SVG ICON STUFF */
+        svg2png: {
+            iconpng: {
+                // specify files in array format with multiple src-dest mapping
                 files: [
-                    {expand: true, cwd: '<%= dir.build %>/icons', src: ['**/*.png'], dest: '<%= dir.release %>/css'},
-                    /*{expand: true,cwd: '<%= dir.build %>/icons',src: ['*.js'],dest: '<%= dir.release %>/js'},*/
-                    {expand: true, cwd: '<%= dir.build %>/icons', src: ['*.scss'], dest: '<%= dir.assets %>/sass/icons'}
+                    // rasterize all SVG files in "img" and its subdirectories to "img/png"
+                    { cwd: '<%= dir.assets %>/svg/icons/', src: ['**/*.svg'], dest: '<%= dir.build %>/icons/' }
                 ]
+            }
+        },
+        svgstore: {
+            iconsvg : {
+                options: {prefix:"icon-",includeTitleElement:false},
+                files: {
+                    '<%= dir.release %>/images/icons.svg': ['<%= dir.build %>/icons/*.svg'],
+                },
             },
+        },
+/* IMAGE STUFF */
+        imagemin: {                          // Task
+            iconpng: {                         // Another target
+                options: {                       // Target options
+                    optimizationLevel: 3
+                },
+                files: [{
+                    expand: true,                  // Enable dynamic expansion
+                    cwd: '<%= dir.build %>/icons/',                   // Src matches are relative to this path
+                    src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+                    dest: '<%= dir.release %>/images/icons/'                  // Destination path prefix
+                }]
             },
-            rollup: {
+            iconsvg: {                         // Another target
+                options: {                       // Target options
+                    optimizationLevel: 1,
+                    svgoPlugins: [
+                        {removeDimensions: true},
+                        {removeMetadata: true},
+                        {removeComments: true},
+                        {convertPathData: true},
+                        {removeUselessStrokeAndFill: false},
+                        {
+                            removeHiddenElems: {
+                                displayNone: false,
+                                opacity0: false
+                            }
+                        }]
+                },
+                files: [{
+                    expand: true,                  // Enable dynamic expansion
+                    cwd: '<%= dir.assets %>/svg/icons/', src: ['**/*.svg'], dest: '<%= dir.build %>/icons/'                }]
+            }
+        },
+/* JAVASCRIPT STUFF */
+        rollup: {
+            options: {
+                format: 'iife',
+                banner: '<%= banner %>'
+            },
+            jsInline: {
+                options: {format: 'es'},
+                'dest': '<%= dir.build %>/js/inline.js',
+                'src': '<%= dir.assets %>/js/inline.js' // Only one source file is permitted
+            },
+            jsAsync: {
                 options: {
-                    format: 'iife',
-                    banner: '<%= banner %>'
+                    moduleName: 'olli'
                 },
-                jsKickstart: {
-                    options: {format:'es6'},
-                    'dest':'<%= dir.build %>/js/kickstart.js',
-                    'src' :'<%= dir.assets %>/js/kickstart.js' // Only one source file is permitted
-                },
-                jsAsync: {
-                    options: {
-                        moduleName: 'olli'
-                    },
-                    'dest': '<%= dir.build %>/js/async.js',
-                    'src': '<%= dir.assets %>/js/async.js' // Only one source file is permitted
-                },
-                jsPage: {
-                    'dest': '<%= dir.build %>/js/page.js',
-                    'src': '<%= dir.assets %>/js/page.js' // Only one source file is permitted
-                }/*,
-                 jsFonts: {
-                 options: {format:'es6'},
-                 'dest':'<%= dir.build %>/js/fonts.js',
-                 'src' :'<%= dir.assets %>/js/fonts.js' // Only one source file is permitted
-                 }*/
+                'dest': '<%= dir.build %>/js/async.js',
+                'src': '<%= dir.assets %>/js/async.js' // Only one source file is permitted
             },
-            uglify: {
+            jsPage: {
+                'dest': '<%= dir.build %>/js/page.js',
+                'src': '<%= dir.assets %>/js/page.js' // Only one source file is permitted
+            }/*,
+             jsFonts: {
+             options: {format:'es6'},
+             'dest':'<%= dir.build %>/js/fonts.js',
+             'src' :'<%= dir.assets %>/js/fonts.js' // Only one source file is permitted
+             }*/
+        },
+        uglify: {
+            options: {
+                //banner: '<%= banner %>'
+            },
+            dist: {
                 options: {
-                    //banner: '<%= banner %>'
-                },
-                dist: {
-                    options: {
-                        compress: {
-                            drop_console: true,
-                            global_defs: {
-                                'DEBUG': false
-                            },
-                            dead_code: true
-                        }
-                    },
-                    files: {
-                        '<%= dir.release %>/js/kickstart.js': ['<%= dir.build %>/js/kickstart.js'],
-                        '<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
-                        '<%= dir.release %>/js/page.js': ['<%= dir.components %>/native.history.js', '<%= dir.build %>/js/page.js'],
-                        '<%= dir.release %>/js/promise.js': ['<%= dir.components %>/promise.js']
+                    compress: {
+                        drop_console: true,
+                        global_defs: {
+                            'DEBUG': false
+                        },
+                        dead_code: true
                     }
                 },
-                dev: {
-                    options: {
-                        mangle: false,
-                        compress: false,
-                        beautify: true,
-                        banner: '<%= banner %>\n/** @const */var DEBUG = true;\n'
-                    },
-                    files: {
-                        '<%= dir.release %>/js/kickstart.js': ['<%= dir.build %>/js/kickstart.js'],
-                        '<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
-                        '<%= dir.release %>/js/page.js': ['<%= dir.components %>/native.history.js', '<%= dir.build %>/js/page.js'],
-                        '<%= dir.release %>/js/promise.js': ['<%= dir.components %>/promise.js']                    }
-                }
-
-
-            },
-            /* Compile SASS to CSS */
-            sass: {
-                dist: {
-                    options: {
-                        style: 'expanded',
-                        sourcemap: 'none'
-                    },
-                    files: [{
-                        expand: true,
-                        cwd: '<%= dir.assets %>/sass',
-                        src: ['*.scss'],
-                        dest: '<%= dir.build %>/css',
-                        ext: '.css'
-                    }]
+                files: {
+                    '<%= dir.release %>/js/inline.js': ['<%= dir.build %>/js/inline.js'],
+                    '<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
+                    '<%= dir.release %>/js/page.js': ['<%= dir.components %>/native.history.js', '<%= dir.build %>/js/page.js'],
+                    '<%= dir.release %>/js/promise.js': ['<%= dir.components %>/promise.js']
                 }
             },
-            /*POSTCSS*/
-            postcss: {
+            dev: {
                 options: {
-                    map: false
+                    mangle: false,
+                    compress: false,
+                    beautify: true,
+                    banner: '<%= banner %>\n/** @const */var DEBUG = true;\n'
                 },
-                dev: {
-                    options: {
-                        processors: [
-                            require('pixrem')() // rem to pixel the result
-                        ]
-                    },
-                    files: [{
-                        expand: true,
-                        cwd: '<%= dir.build %>/css',
-                        src: ['*.css', '!*.min.css'],
-                        dest: '<%= dir.release %>/css',
-                        ext: '.css'
-                    }]
-                },
-                dist: {
-                    options: {
-                        processors: [
-                            require('pixrem')(), // rem to pixel the result
-                            require('css-mqpacker')(), // rem to pixel the result
-                            require('cssnano')({discardUnused: {fontFace: false}}) // minify the result
-                        ]
-                    },
-                    files: [{
-                        expand: true,
-                        cwd: '<%= dir.build %>/css',
-                        src: ['*.css', '!*.min.css'],
-                        dest: '<%= dir.release %>/css',
-                        ext: '.css'
-                    }]
-                }
-            },
-            /*GRUNTICON*/
-            ollicon: {
-                icons: {
-                    files: [{
-                        expand: true,
-                        cwd: '<%= dir.assets %>/icons/source',
-                        src: ['*.svg', '*.png'],
-                        dest: '<%= dir.build %>/icons'
-                    }],
-                    options: {
-                        cssprefix: '$icon-',
-                        datasvgcss: '_svg.scss',
-                        datapngcss: '_png.scss',
-                        urlpngcss: '_fallback.scss',
-                        pngfolder: 'icons/',
-                        enhanceSVG: false,
-                        compressPNG: true, optimizationLevel: 4
-                    }
-                }
-            },
-            watch: {
-                sass: {
-                    files: ['<%= dir.assets %>/sass/**/*.{scss,sass}'],
-                    tasks: ['sass']
-                },
-                css: {
-                    files: ['<%= dir.release %>/css/*.css'],
-                    options: {
-                        livereload: true
-                    }
+                files: {
+                    '<%= dir.release %>/js/inline.js': ['<%= dir.build %>/js/inline.js'],
+                    '<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
+                    '<%= dir.release %>/js/page.js': ['<%= dir.components %>/native.history.js', '<%= dir.build %>/js/page.js'],
+                    '<%= dir.release %>/js/promise.js': ['<%= dir.components %>/promise.js']
                 }
             }
-        });
+
+
+        },
+        /* Compile SASS to CSS */
+        sass: {
+            dist: {
+                options: {
+                    style: 'expanded',
+                    sourcemap: false
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= dir.assets %>/sass',
+                    src: ['*.scss'],
+                    dest: '<%= dir.build %>/css',
+                    ext: '.css'
+                }]
+            }
+        },
+        /*POSTCSS*/
+        postcss: {
+            options: {
+                map: false
+            },
+            dev: {
+                options: {
+                    processors: [
+                        require('pixrem')() // rem to pixel the result
+                    ]
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= dir.build %>/css',
+                    src: ['*.css', '!*.min.css'],
+                    dest: '<%= dir.release %>/css',
+                    ext: '.css'
+                }]
+            },
+            dist: {
+                options: {
+                    processors: [
+                        require('pixrem')(), // rem to pixel the result
+                        require('css-mqpacker')(), // rem to pixel the result
+                        require('cssnano')({safe: false}) // minify the result
+                    ]
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= dir.build %>/css',
+                    src: ['*.css', '!*.min.css'],
+                    dest: '<%= dir.release %>/css',
+                    ext: '.css'
+                }]
+            }
+        },
+        /*GRUNTICON*/
+        watch: {
+            sass: {
+                files: ['<%= dir.assets %>/sass/**/*.{scss,sass}'],
+                tasks: ['sass']
+            },
+            css: {
+                files: ['<%= dir.release %>/css/*.css'],
+                options: {
+                    livereload: true
+                }
+            }
+        }
+    });
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-rollup');
@@ -180,13 +205,16 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-postcss');
-    grunt.loadTasks('grunt-tasks/ollicon');
+    //svg stuff
+    grunt.loadNpmTasks('grunt-svg2png');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-svgstore');
     // Default task(s).
-    grunt.registerTask('icons', ['ollicon:icons', 'copy:icons']);
+    grunt.registerTask('icons',['imagemin:iconsvg','svgstore:iconsvg','svg2png:iconpng','imagemin:iconpng']);
     grunt.registerTask('dev-js', ['rollup', 'uglify:dev']);
     grunt.registerTask('dist-js', ['rollup', 'uglify:dist']);
     grunt.registerTask('dev-css', ['sass', 'postcss:dev']);
     grunt.registerTask('dist-css', ['sass', 'postcss:dist']);
 
-    grunt.registerTask('default', ['icons', 'dist-css', 'dist-js']);
+    grunt.registerTask('default', ['dist-css', 'dist-js']);
 };

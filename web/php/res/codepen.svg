@@ -1,0 +1,8 @@
+<!--[if gt IE 8]><!--><svg width="16" height="16" class="icon icon-codepen">
+    <switch>
+        <use class="svg-hide" xlink:href="images/icons.svg#icon-codepen"/>
+        <foreignObject width="0"><!--<![endif]-->
+            <div class="nosvg nosvg-codepen"><small>Codepen</small></div>
+            <!--[if gt IE 8]><!--></foreignObject>
+    </switch>
+</svg><!--<![endif]-->
