@@ -3,7 +3,7 @@
 @import '../layout/boxen';
 
 .page {
-  padding-bottom:$baseLineHeight*3em - ($pageMargin/2);
+  padding-bottom:$baseLineHeight*1em;
 }
 .content,.hero-content {
   max-width:$wideLayoutWidth;
@@ -11,7 +11,7 @@
 }
 /*Content*/
 .content {
-  margin-top: 1rem;
+  margin-top: 1em*$baseLineHeight;
   position:relative;
   background: base($colors);
 
@@ -21,9 +21,6 @@
     width:98%;
     padding: $pageMargin/2;
     border-radius:$pageMargin/2;
-    :first-child {
-      margin-top:0;
-    }
     @include card(2);
   }
 }
@@ -34,19 +31,20 @@ $hero-colors: getColors($color-brand);
 .hero {
   //max-width:$wideLayoutWidth;
   margin:0;
-  padding: $leading $pageMargin/2 6*$leading $pageMargin/2;
-  margin-bottom: -6*$leading;
-}
-.hero-content {
-  :first-child {margin-top:0;}
+  padding: 1em*$baseLineHeight $pageMargin/2 $baseLineHeight*6em $pageMargin/2;
+  margin-bottom: -6em*$baseLineHeight;
 }
 .hero--brand {
   background-color:base($hero-colors);
   color: text-contrast($color-brand);
-  h1,h2,h3 {
+  * {
     color: text-contrast($color-brand);
   }
 
 }
 
+.spruch {
+  padding-left:1em;
+  text-indent: -1em;
 
+}

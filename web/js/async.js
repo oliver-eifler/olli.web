@@ -1,1 +1,212 @@
-var olli=function(){"use strict";function a(a,b,c){function d(d){g.setAttribute("type","text/css"),g.setAttribute("media",c||"all"),g.setAttribute("data-src",a),g.styleSheet?g.styleSheet.cssText=d:g.appendChild(document.createTextNode(d)),f.parentNode.insertBefore(g,f.nextSibling),b()}var e=(m.body||m.getElementsByTagName("head")[0]).childNodes,f=e[e.length-1];if(a&&""!=a){var g=m.createElement("style");b=b||function(){};var h=new XMLHttpRequest;return h.open("GET",a),h.onreadystatechange=function(){if(4===h.readyState){var a=1223===h.status?204:h.status;(a>=200&&a<300||304===a)&&d(h.responseText)}},h.send(),g}}function b(a){var b,c,d,e,f,g,h={};if(b=a.sheet,!b)return h;if(c=b.cssRules?b.cssRules:b.rules,!c)return h;for(var i=0;i<c.length;i++)d=c[i].cssText,e=o+c[i].selectorText,f=d.split(");")[0].match(/US\-ASCII\,([^"']+)/),f&&f[1]&&(g=decodeURIComponent(f[1]),h[e]=g);return h}function c(a){var b,c,d,e;d="data-icon-embed";for(var f in a){e=f.slice(o.length);try{b=m.querySelectorAll(e)}catch(a){continue}c=[];for(var g=0;g<b.length;g++)null!==b[g].getAttribute(d)&&c.push(b[g]);if(c.length)for(g=0;g<c.length;g++){c[g].innerHTML=a[f],c[g].style.backgroundImage="none",c[g].removeAttribute(d);var h=c[g].firstChild;h.viewBox&&h.setAttribute("width","0")}}return c}function d(a,b){return"undefined"!=typeof a.attributes[p+b]}function e(a,b,c){return a.setAttribute(p+b,c)}function f(a,b){return a.getAttribute(p+b)}function g(a,b){return a.removeAttribute(p+b)}function h(a){if(a&&!d(a,"status")){e(a,"status","loading");var b=f(a,"src"),c=a.contentWindow?f(a,"type"):"",h=function(){g(a,"src"),e(a,"status","loaded"),m.documentMode&&m.documentMode<9&&(a.className=a.className)};b&&("img"==c?(a.callme=h,a.setAttribute("data-src",q.replace("{src}",b)),a.contentWindow.location="javascript: window.frameElement.getAttribute('data-src');"):(a.onload=h,a.src=b))}}function i(a,b){var c=(m.body||m.getElementsByTagName("head")[0]).childNodes,d=c[c.length-1],e=m.createElement("script");return e.src=a,e.async=!0,b&&"function"==typeof b&&(e.onload=b),d.parentNode.insertBefore(e,d.nextSibling),e}function j(a){if(document.attachEvent?"complete"===document.readyState:"loading"!==document.readyState)a();else{var b=!1;document.addEventListener("readystatechange",function(){b||(b=!0,a())},!1)}}function k(){function a(a){var b,c,f,g=m.getElementsByTagName(a);for(b=0,c=g.length;b<c;b++)f=g[b],!d(f,"sloth")&&d(f,"src")&&(e(f,"sloth","true"),r.add(f,h))}a("img"),a("iframe")}var l=window,m=l.document,n=function(b,c){if(b&&3===b.length){var d=l.navigator,e=l.Image;c=c||function(){};var f=!(!m.createElementNS||!m.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!m.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||l.opera&&d.userAgent.indexOf("Chrome")===-1||d.userAgent.indexOf("Series40")!==-1),g=new e;g.onerror=function(){a("bundle/"+b[2],c)},g.onload=function(){var d=1===g.width&&1===g.height,e=b[d&&f?0:d?1:2],h="png";d&&f?h="svg":d&&(h="datapng");var i=a("bundle/"+e,function(){m.documentElement.className+=" oi oi-"+h,i.setAttribute("data-oi-method",h),c(h,i)})},g.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}};n.loadCSS=a;var o="grunticon:",p="data-",q="<!DOCTYPE html><html><head><style>html,body{margin:0;border:none;padding:0;background:transparent}img{width:100%;}</style></head>";q+='<body><img src="{src}" onload="window.frameElement.callme();"></body></html>';var r=function(a){function b(a,b){return o+=1,k[o]={elem:a,onready:b},!1===i&&(p(f,v,l),i=!0),!1===j&&(r(),p(e,u,l),j=!0),u(),a}function c(){n=o=0,q(e,u,l),q(f,v,l),j=!1,i=!1,cancelTimeout(h),g=h=null,k={}}var d,e=a.userAgent.match(/webkit/i)&&a.userAgent.match(/mobile/i)?"touchmove":"scroll",f="resize",g=null,h=null,i=!1,j=!1,k={},n=0,o=0,p=function(){var a;return l.addEventListener?a=function(a,b,c){c.addEventListener(a,b,!1)}:l.attachEvent&&(a=function(a,b,c){c.attachEvent("on"+a,b)}),a}(),q=function(){var a;return l.removeEventListener?a=function(a,b,c){c.removeEventListener(a,b,!1)}:l.detachEvent&&(a=function(a,b,c){c.detachEvent("on"+a,b)}),a}(),r=function(){d=l.innerHeight||m.documentElement.clientHeight},s=function(a){var b=a.getBoundingClientRect();return b.bottom>=0&&b.top<=d},t=function(){if(!(o<1)){var a,b;for(a in k)if(k.hasOwnProperty(a)&&(b=k[a],!b.handled&&s(b.elem))){n+=1,b.handled=!0;b.onready(b.elem),b=null}n===o&&(q(e,u,l),q(f,v,l),j=!1,i=!1,o=0),h=null}},u=function(){null===h&&(h=l.setTimeout(function(){t()},50))},v=function(){r(),u()};return{add:b,reset:c}}(l.navigator);if(n(["css/icons-svg.css","css/icons-png.css","css/icons-fallback.css"],function(a,d){j(function(){"svg"==a&&c(b(d)),k()})}),l.history&&l.history.pushState){var s=[];l.Promise||s.push("js/promise.js"),s.push("js/page.js"),j(function(){i("bundle/"+s.join(","))})}return n.embedIcons=c,n.getIcons=b,n.ready=j,n.loadJS=i,n.sloth=r,n.updateSloth=k,n.loadDataSrc=h,n}();
+/*! olli.web - v0.0.2 - 2016-10-16
+* https://github.com/oliver-eifler/olli.web#readme
+* Copyright (c) 2016 Oliver Jean Eifler; MIT License */
+
+
+/** @const */var DEBUG = true;
+(function() {
+    "use strict";
+    var win = window;
+    var doc = win.document;
+    var dataAttr = "data-";
+    function hasDataAttribute(node, name) {
+        return typeof node.attributes[dataAttr + name] != "undefined";
+    }
+    function setDataAttribute(node, name, value) {
+        return node.setAttribute(dataAttr + name, value);
+    }
+    function getDataAttribute(node, name) {
+        return node.getAttribute(dataAttr + name);
+    }
+    function removeDataAttribute(node, name) {
+        return node.removeAttribute(dataAttr + name);
+    }
+    var imgtmpl = "<!DOCTYPE html><html><head><style>html,body{margin:0;border:none;padding:0;background:transparent}img{width:100%;}</style></head>";
+    imgtmpl += '<body><img src="{src}" onload="window.frameElement.callme();"></body></html>';
+    function loadDataSrc(node) {
+        if (!node || hasDataAttribute(node, "status")) {
+            return;
+        }
+        setDataAttribute(node, "status", "loading");
+        var src = getDataAttribute(node, "src"), type = node.contentWindow ? getDataAttribute(node, "type") : "";
+        var loadDone = function() {
+            removeDataAttribute(node, "src");
+            setDataAttribute(node, "status", "loaded");
+            if (doc.documentMode && doc.documentMode < 9) node.className = node.className;
+        };
+        if (src) {
+            if (type == "img") {
+                node["callme"] = loadDone;
+                node.setAttribute("data-src", imgtmpl.replace("{src}", src));
+                node.contentWindow.location = "javascript: window.frameElement.getAttribute('data-src');";
+            } else {
+                node.onload = loadDone;
+                node.src = src;
+            }
+        }
+    }
+    var Sloth = function(navigator) {
+        var windowHeight, onscroll = navigator.userAgent.match(/webkit/i) && navigator.userAgent.match(/mobile/i) ? "touchmove" : "scroll", onresize = "resize", resizeTimeout = null, scrollTimeout = null, resizeHandlerSet = false, scrollHandlerSet = false, listeners = {}, listenersDone = 0, listenerCount = 0, addEventListener = function() {
+            var overwrite;
+            if (win.addEventListener) {
+                overwrite = function(type, listener, element) {
+                    element.addEventListener(type, listener, false);
+                };
+            } else if (win.attachEvent) {
+                overwrite = function(type, listener, element) {
+                    element.attachEvent("on" + type, listener);
+                };
+            }
+            return overwrite;
+        }(), removeEventListener = function() {
+            var overwrite;
+            if (win.removeEventListener) {
+                overwrite = function(type, listener, element) {
+                    element.removeEventListener(type, listener, false);
+                };
+            } else if (win.detachEvent) {
+                overwrite = function(type, listener, element) {
+                    element.detachEvent("on" + type, listener);
+                };
+            }
+            return overwrite;
+        }(), updateHeight = function() {
+            windowHeight = win.innerHeight || doc.documentElement.clientHeight;
+        }, isInViewport = function(el) {
+            var rect = el.getBoundingClientRect();
+            return rect.bottom >= 0 && rect.top <= windowHeight;
+        }, updateListeners = function() {
+            if (listenerCount < 1) {
+                return;
+            }
+            var listenerIndex, listener;
+            for (listenerIndex in listeners) {
+                if (listeners.hasOwnProperty(listenerIndex)) {
+                    listener = listeners[listenerIndex];
+                    if (!listener.handled && isInViewport(listener.elem)) {
+                        listenersDone += 1;
+                        listener.handled = true;
+                        if (DEBUG) {
+                            console.log("Element ", listener.elem);
+                            console.log("Viewport ", windowHeight);
+                            var rect = listener.elem.getBoundingClientRect();
+                            console.log("ClientRect ", rect);
+                            console.log("Parent ", listener.elem.parentNode.getBoundingClientRect());
+                            console.log("rect.bottom >= 0:" + (rect.bottom >= 0) + " rect.top <= windowHeight:" + (rect.top <= windowHeight));
+                        }
+                        listener.onready(listener.elem);
+                        listener = null;
+                    }
+                }
+            }
+            if (listenersDone === listenerCount) {
+                removeEventListener(onscroll, onScrollHandler, win);
+                removeEventListener(onresize, resetWindowHeight, win);
+                scrollHandlerSet = false;
+                resizeHandlerSet = false;
+                listenerCount = 0;
+            }
+            scrollTimeout = null;
+        }, onScrollHandler = function() {
+            if (null === scrollTimeout) {
+                scrollTimeout = win.setTimeout(function() {
+                    updateListeners();
+                }, 50);
+            }
+        }, resetWindowHeight = function() {
+            updateHeight();
+            onScrollHandler();
+        };
+        function add(element, listener) {
+            listenerCount += 1;
+            listeners[listenerCount] = {
+                elem: element,
+                onready: listener
+            };
+            if (false === resizeHandlerSet) {
+                addEventListener(onresize, resetWindowHeight, win);
+                resizeHandlerSet = true;
+            }
+            if (false === scrollHandlerSet) {
+                updateHeight();
+                addEventListener(onscroll, onScrollHandler, win);
+                scrollHandlerSet = true;
+            }
+            onScrollHandler();
+            return element;
+        }
+        function reset() {
+            listenersDone = listenerCount = 0;
+            removeEventListener(onscroll, onScrollHandler, win);
+            removeEventListener(onresize, resetWindowHeight, win);
+            scrollHandlerSet = false;
+            resizeHandlerSet = false;
+            cancelTimeout(scrollTimeout);
+            resizeTimeout = scrollTimeout = null;
+            listeners = {};
+        }
+        return {
+            add: add,
+            reset: reset
+        };
+    }(win.navigator);
+    var isReady = doc.attachEvent ? doc.readyState === "complete" : doc.readyState !== "loading";
+    var domContentLoaded = "DOMContentLoaded";
+    var addeventlistener = "addEventListener";
+    var listener;
+    var fns = [];
+    function async(fn) {
+        setTimeout(function() {
+            fn();
+        }, 0);
+    }
+    function flush(f) {
+        isReady = true;
+        while (f = fns.shift()) async(f);
+    }
+    if (!isReady) {
+        if (doc[addeventlistener]) {
+            console.log("waiting...");
+            doc[addeventlistener](domContentLoaded, listener = function() {
+                doc.removeEventListener(domContentLoaded, listener);
+                flush();
+            }, false);
+        } else {
+            console.log("polling...");
+            (function pollDomReady() {
+                if (isReady) return;
+                if (doc.readyState === "complete") {
+                    return flush();
+                }
+                setTimeout(pollDomReady, 10);
+            })();
+        }
+    }
+    var ready = function(fn) {
+        if (typeof fn != "function") return;
+        if (isReady) return async(fn);
+        fns.push(fn);
+    };
+    function updateSloth() {
+        process("img");
+        process("iframe");
+        function process(selector) {
+            var i, l, node, nodes = doc.getElementsByTagName(selector);
+            for (i = 0, l = nodes.length; i < l; i++) {
+                node = nodes[i];
+                if (!hasDataAttribute(node, "sloth") && hasDataAttribute(node, "src")) {
+                    setDataAttribute(node, "sloth", "true");
+                    Sloth.add(node, loadDataSrc);
+                }
+            }
+        }
+    }
+    ready(function() {
+        console.log("Dom Ready");
+        updateSloth();
+    });
+    olli.ready = ready;
+    olli.sloth = Sloth;
+    olli.updateSloth = updateSloth;
+    olli.loadDataSrc = loadDataSrc;
+})();

@@ -1,54 +1,26 @@
 /**
  * Created by darkwolf on 18.06.2016.
- * Load Async Script
- * => Load fallbacks if failed due content-blockers, Network
+ * feature detection
  */
-!(function (win, doc, undefined) {
-console.log("fallback;")
-    var fallback = null,
-        datasrc = "data-src";
-        ref = doc.getElementById("kickstart"),
-        script = doc.createElement("script");
-    script.src = ref.getAttribute("data-js");
-    script.async = true;
-    script.onload = function () {
-        clearTimeout(fallback);
-    };
-    script.onerror = noscript;
-    ref.parentNode.insertBefore(script, ref.nextSibling);
-    fallback = setTimeout(noscript, 8000);
-    function ready( cb ){
-        if( doc.body ){
-            return cb();
-        }
-        setTimeout(function(){
-            ready( cb );
-        });
-    }
+import {doc, win, olli, html} from './globals'
+import loadimage from './sloth/loaddatasrc'
+import sloth from './sloth/sloth'
 
-    function noscript() {
-        clearTimeout(fallback);
-        //load CSS;
-        var ss = doc.createElement("link");
-        ss.rel = "stylesheet";
-        ss.href = ref.getAttribute("data-fb");
-        ss.media = "all";
-        ref.parentNode.insertBefore(ss, ref.nextSibling);
-        ready(function() {
-            process("iframe");
-            process("img");
-            function process(selector) {
-                var i, l, node,
-                    nodes = doc.getElementsByTagName(selector);
-                for (i = 0, l = nodes.length; i < l; i++) {
-                    node = nodes[i];
-                    if (node.attributes && typeof node.attributes[datasrc] != 'undefined') {
-                        node.setAttribute("scr", node.getAttribute(datasrc));
-                        node.removeAttribute(datasrc);
-                        node.className = node.className;
-                    }
-                }
-            }
-        });
+//feature detection
+!(function (undefined) {
+    var s = (doc.body || html).style
+        , classes = ["js"]
+        ;
+    if (s.msFlexWrap !== undefined || s.flexWrap !== undefined) {
+        classes.push("flexwrap");
+    }
+    html.className = classes.join(" ");
+})();
+//global sloth add
+win.lazy = function (node) {
+    node.onload = node.onerror = function () {
     };
-})(this, document);
+    setTimeout(function(){sloth.add(node,loadimage);},0);
+}
+olli.sloth = sloth;
+export default olli;

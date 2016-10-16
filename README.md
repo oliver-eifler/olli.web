@@ -5,7 +5,7 @@ build with: *PHP, Javascript, SASS, modified Grunticon and Grunt*
 * using async css (via xhr) and javascript loading
 * load polyfills only if needed
 * base css (above the fold) inlined
-* Embeded SVG Icons with PNG fallback (modified grunticon)
+* SVG Icons (symbol use svgx fallback)
 * animated SVG Logo with static PNG fallback
 * lazy image/frame loading
 * responsive design, font-size and typography (mobile first, scales on very big screen-width > 1600px and small screen-width < 400px)

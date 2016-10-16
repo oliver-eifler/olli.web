@@ -66,17 +66,44 @@ module.exports = function (grunt) {
                     cwd: '<%= dir.assets %>/svg/icons/', src: ['**/*.svg'], dest: '<%= dir.build %>/icons/'                }]
             }
         },
+        responsive_images: {
+            thumbs: {
+                options: {
+                    sizes: [{
+                        name: 'thumb',
+                        width: 800,
+                        quality: 20
+                    }]
+                },
+                files: [{
+                    expand: true,
+                    src: ['*.{jpg,gif,png}'],
+                    cwd: 'images/',
+                    dest: '<%= dir.release %>/images/gallery'
+                }]
+            }
+        },
 /* JAVASCRIPT STUFF */
         rollup: {
             options: {
                 format: 'iife',
                 banner: '<%= banner %>'
             },
+            /*
             jsInline: {
                 options: {format: 'es'},
                 'dest': '<%= dir.build %>/js/inline.js',
                 'src': '<%= dir.assets %>/js/inline.js' // Only one source file is permitted
             },
+            */
+            jsKickstart: {
+                options: {
+                    moduleName: 'olli'
+                },
+                'dest': '<%= dir.build %>/js/kickstart.js',
+                'src': '<%= dir.assets %>/js/kickstart.js' // Only one source file is permitted
+            },
+            /*
             jsAsync: {
                 options: {
                     moduleName: 'olli'
@@ -84,6 +111,7 @@ module.exports = function (grunt) {
                 'dest': '<%= dir.build %>/js/async.js',
                 'src': '<%= dir.assets %>/js/async.js' // Only one source file is permitted
             },
+            */
             jsPage: {
                 'dest': '<%= dir.build %>/js/page.js',
                 'src': '<%= dir.assets %>/js/page.js' // Only one source file is permitted
@@ -109,8 +137,9 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    '<%= dir.release %>/js/inline.js': ['<%= dir.build %>/js/inline.js'],
-                    '<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
+                    '<%= dir.release %>/js/kickstart.js': ['<%= dir.build %>/js/kickstart.js'],
+                    //'<%= dir.release %>/js/inline.js': ['<%= dir.build %>/js/inline.js'],
+                    //'<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
                     '<%= dir.release %>/js/page.js': ['<%= dir.components %>/native.history.js', '<%= dir.build %>/js/page.js'],
                     '<%= dir.release %>/js/promise.js': ['<%= dir.components %>/promise.js']
                 }
@@ -123,8 +152,9 @@ module.exports = function (grunt) {
                     banner: '<%= banner %>\n/** @const */var DEBUG = true;\n'
                 },
                 files: {
-                    '<%= dir.release %>/js/inline.js': ['<%= dir.build %>/js/inline.js'],
-                    '<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
+                    '<%= dir.release %>/js/kickstart.js': ['<%= dir.build %>/js/kickstart.js'],
+                    //'<%= dir.release %>/js/inline.js': ['<%= dir.build %>/js/inline.js'],
+                    //'<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
                     '<%= dir.release %>/js/page.js': ['<%= dir.components %>/native.history.js', '<%= dir.build %>/js/page.js'],
                     '<%= dir.release %>/js/promise.js': ['<%= dir.components %>/promise.js']
                 }
@@ -172,7 +202,7 @@ module.exports = function (grunt) {
                     processors: [
                         require('pixrem')(), // rem to pixel the result
                         require('css-mqpacker')(), // rem to pixel the result
-                        require('cssnano')({safe: false}) // minify the result
+                        require('cssnano')({safe: true,autoprefixer:false,normalizeURL:false}) // minify the result
                     ]
                 },
                 files: [{
@@ -205,6 +235,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-postcss');
+    //svg stuff
+    grunt.loadNpmTasks('grunt-responsive-images');
     //svg stuff
     grunt.loadNpmTasks('grunt-svg2png');
     grunt.loadNpmTasks('grunt-contrib-imagemin');

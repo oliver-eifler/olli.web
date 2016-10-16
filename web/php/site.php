@@ -34,13 +34,13 @@ class Site extends BaseSite
     protected function HTML()
     {
         $page = $this->pagedata;
-        $html = "<!DOCTYPE html><html lang='en'><head>";
+        $html = "<!DOCTYPE html><html class='no-js' lang='en'><head>";
 
         $html .= Component::get("MetaData");
-        //$html.= "<style>@namespace svg url(\"http://www.w3.org/2000/svg\");.svg-hide{display:none;visibility:hidden}svg|g.svg-hide{display:inline-block;visibility:visible}</style>";
+
+        $html .= "<script id='kickstart'>" . file_get_contents("js/kickstart.js")."</script>";
         $html .= Component::get("inlineCSS","css/layout.css");
-        $html .= $this->Inline();
-        //$html .= $this->Styles() . $this->Scripts();
+        //$html .= "<script id='async' src='bundle/js/async.js' async></script>";
 
         $html .= "</head>";
             $html .= $this->htmlBody();
@@ -48,30 +48,6 @@ class Site extends BaseSite
         return $html;
     }
 
-
-    protected function Inline()
-    {
-        $css = "bundle/css/forms.css";
-        $html = "<script>" . file_get_contents("js/inline.js"). ";window.loadCSS('".$css."');</script>";
-        $html .= "<noscript>";
-        $html .= "<link href='".$css."' rel='stylesheet'>";
-        $html .= "</noscript>";
-
-        return $html;
-    }
-    protected function Styles()
-    {
-        $html = "<noscript>";
-        $html .= "<link href='bundle/css/icons-fallback.css' rel='stylesheet'>";
-        $html .= "</noscript>";
-        return $html;
-    }
-
-    protected function Scripts()
-    {
-        $html = "<script src='bundle/js/async.js' async></script>";
-        return $html;
-    }
 
     protected function htmlBody()
     {
@@ -102,8 +78,8 @@ class Site extends BaseSite
         $html .= "</div>";
         /*DEBUG END*/
         //$html .= $this->Inline();
-        $html .= "<script defer src='bundle/js/svgxuse.min.js'></script>";
-        $html .= "</body>";
+        $html .= "<script id='svgxuse' defer src='bundle/js/svgxuse.min.js'></script>";
+         $html .= "</body>";
         return $html;
     }
 }

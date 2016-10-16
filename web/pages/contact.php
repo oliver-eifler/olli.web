@@ -5,10 +5,10 @@ $this->title = "Contact";
 $this->description = "Um was geht's eigentlich";
 $this->minify = true;
 ?>
-<div class="hero">
+<div class="hero typo">
     <div class="hero-content">
         <h1 class="text-smart"><span><?= $this->title ?></span></h1>
-        <h3 class='hug'>Fill out and submit the form below and I’ll get back to you as soon as I can.</h3>
+        <h3 class='text-smart hug'>Fill out and submit the form below and I’ll get back to you as soon as I can.</h3>
         <p><em>I’ll really try to get back to everyone, but sometimes it’s hard and I can’t guarantee anything.</em></p>
     </div>
 </div>
@@ -39,10 +39,10 @@ $this->minify = true;
             Bla Bla Bla
         </div>
         <div class='form-item FormFooter-push'>
-            <button class='button' type='reset'>Reset</button>
+            <button class='button' type='reset'><?= Component::get("icon","invader") ?>Reset</button>
         </div>
         <div class='form-item'>
-            <button class='button button-primary' type='submit'><?= file_get_contents(RES."/cool.svg") ?>Submit</button>
+            <button class='button button-primary' type='submit'><?= Component::get("icon","send") ?>Submit</button>
         </div>
     </fieldset>
 </form>

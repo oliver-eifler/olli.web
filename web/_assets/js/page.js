@@ -7,7 +7,7 @@ import FontSizeObserver from './page/fontsize-observer.js';
 import ResizeObserver from './page/resize-observer.js';
 
 /* Page functions */
-import prettyDate from './util/prettyDate.js';
+import prettyDate from './util/prettydate.js';
 import adjustVerticalRythmn from "./page/verticalrythmn.js";
 import adjustFontSize from "./page/fontsize.js";
 

@@ -3,32 +3,11 @@
  */
 import {doc, win} from './globals'
 
-import grunticon from './async/grunticon.js'
-import {getIcons, embedIcons} from './async/grunticon.embed.js';
-
 import loadDataSrc from './async/loaddatasrc.js'
 import Sloth from './async/sloth.js'
 import loadJS from './async/loadJS.js'
 import {hasDataAttribute, setDataAttribute} from './dom/attribute.js'
-
-//Document.ready
-function ready(fn) {
-    // If DOM is already ready at exec time, depends on the browser.
-    // From: https://github.com/mobify/mobifyjs/blob/526841be5509e28fc949038021799e4223479f8d/src/capture.js#L128
-    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-        fn();
-    } else {
-        var created = false;
-        document.addEventListener("readystatechange", function () {
-            if (!created) {
-                created = true;
-                fn();
-            }
-        }, false);
-    }
-};
-
-
+import ready from './dom/domready.js'
 //LayzLoad Images data-src on Scroll using Sloth (Faultier)
 function updateSloth() {
     process("img");
@@ -46,33 +25,26 @@ function updateSloth() {
         }
     }
 }
-//loadJS("bundle/js/fonts.js");
-grunticon(["css/icons-svg.css", "css/icons-png.css", "css/icons-fallback.css"], function (method, stylesheet) {
-        ready(function () {
+ready(function () {
+    console.log("Dom Ready");
+    updateSloth();
+});
+/*
+ if (win.history && win.history.pushState) {
+ var js = [];
+ if (!win.Promise)
+ js.push("js/promise.js");
 
-            method == "svg" && embedIcons(getIcons(stylesheet));
-            updateSloth();
-        });
-    }
-);
-if (win.history && win.history.pushState) {
-    var js = [];
-    if (!win.Promise)
-        js.push("js/promise.js");
+ //js.push("js/history.js");
+ js.push("js/page.js");
 
-    //js.push("js/history.js");
-    js.push("js/page.js");
-
-    ready(function () {
-        loadJS("bundle/" + js.join(","));
-    });
-}
-grunticon.embedIcons = embedIcons;
-grunticon.getIcons = getIcons;
-grunticon.ready = ready;
-grunticon.loadJS = loadJS;
-grunticon.sloth = Sloth;
-grunticon.updateSloth = updateSloth;
-grunticon.loadDataSrc = loadDataSrc;
-
-export default grunticon;
+ ready(function () {
+ loadJS("bundle/" + js.join(","));
+ });
+ }
+ */
+olli.ready = ready;
+//grunticon.loadJS = loadJS;
+olli.sloth = Sloth;
+olli.updateSloth = updateSloth;
+olli.loadDataSrc = loadDataSrc;

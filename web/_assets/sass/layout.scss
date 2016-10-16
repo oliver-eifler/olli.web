@@ -1,3 +1,8 @@
+/*
+  @namespace svg url(http://www.w3.org/2000/svg);
+  - postcss/cssnano destroys it
+  - will be added with php
+  */
 .svg-hide {
   display: none;
   visibility: hidden
@@ -21,18 +26,18 @@ svg/*namespace*/
 //@import 'icons/png';
 //@import 'layout/fonts';
 @import 'components/icons';
+@import 'components/linklist';
 @import 'layout/base';
 @import 'layout/typo';
 @import 'layout/content';
 @import 'layout/article';
+@import 'layout/gallery';
 
-/* PAGE RESPONIBLE LAYOUT */
+/* PAGE RESPONSIBLE LAYOUT */
 .panel {
   position: relative;
   display: block;
   padding: 1em;
-  padding-bottom: 0;
-  margin-bottom: 1em;
   text-align: center;
 }
 
@@ -46,6 +51,7 @@ svg/*namespace*/
     text-align: right;
     padding-left: 4em;
   }
+
   //Footer-container,.
   .footer-container {
     margin-right: $panelWidth;
@@ -67,90 +73,65 @@ svg/*namespace*/
 /* HEADER */
 .header {
   display: block;
-  & > div {
-    display: inline-block;
-    vertical-align: middle;
+  & * {
+    line-height: 1;
+    *line-height: normal;
+    color: $color-brand !important;
   }
-  &:before {
-    content: "";
-    display: inline-block;
-    vertical-align: middle;
-    height: 100%;
-  }
-}
-a.header,.header-text-big {
-  color: $color-brand !important;
 }
 .header-logo {
+  display: inline-block;
+
   margin: 0 .5em;
   padding: .5em 1em;
 }
 
 .header-text {
-  font-size: 1em;
   margin: .5em 0 0 0;
-  line-height: 1;
 }
 
 .header-text-big {
   font-size: 2em;
   font-variant: small-caps;
-  margin: 0;
-  line-height: 1;
 }
 
 @media (min-width: $wideLayoutWidth) {
   .header-logo {
     margin: 0;
-    display: block;
+    //display: block;
+  }
+  .header-text {
+    display:block;
   }
 }
-
-/* Panel Links */
-.mm-cat, .sm-cat {
-  list-style: none outside none;
+.mainmenu,.social {
+  margin: 0 -.5em;
+  padding-top: .5em;
 }
 
-.mm-cat, .mm-item, .sm-cat, .sm-item {
-  padding: 0;
-  display: inline-block;
-  margin: 0;
-  zoom: 1;
-  *display: inline;
-}
-
-/*Panel Links: MainMenu*/
-.mm {
-  padding-top: 1em;
-}
-
-.mm-link {
-  display: inline-block;
-  text-transform: uppercase;
-  padding: 0 .75em;
-  line-height: 2;
-  color: $color-extra;
-  &:visited {
+/*Panel: MainMenu*/
+.mainmenu {
+  & .ll-link {
+    text-transform: uppercase;
     color: $color-extra;
+    &:visited {
+      color: $color-extra;
+    }
   }
 }
 
 @media (min-width: $wideLayoutWidth) {
-  .mm-link {
-    //display: block;
-    padding: 0;
-  }
-  .mm-cat, .mm-item {
-    display: block;
+  .mainmenu {
+    padding-top:.75em;
+    & .ll, & .ll-item {
+      display: block;
+    }
   }
 }
 
-/*Panel Links: Social Menu*/
-.sm {
-  padding-top: 1em;
-  margin: -.25em;
+/*Panel: Social Menu*/
+.social {
   & .icon {
-    top:0;
     width: 2em;
     height: 2em;
     opacity: opacity(icon($colors));
@@ -159,40 +140,23 @@ a.header,.header-text-big {
       opacity: 1;
     }
   }
-}
-.sm-link {
-  display:inline-block;
-  zoom:1;
-}
-/* icon vendor color */
-.sm .icon-github {
-  fill: $color-github;
-}
-.sm .icon-codepen {
-  fill: $color-codepen;
-}
-.sm .icon-twitter {
-  fill: $color-twitter;
-}
-.sm .icon-facebook {
-  fill: $color-facebook;
-}
-
-
-
-.sm-item {
-  padding: .25em;
-}
-
-/*
-@media (min-width: $wideLayoutWidth) {
-  .sm-item {
-    margin: .25em 0 .25em .5em;
+    /* icon vendor color */
+    & .icon-github {
+      fill: $color-github;
+    }
+    & .icon-codepen {
+      fill: $color-codepen;
+    }
+    & .icon-twitter {
+      fill: $color-twitter;
+    }
+    & .icon-facebook {
+      fill: $color-facebook;
+    }
+    & .icon-google {
+      fill: $color-google;
+    }
   }
-  .sm-item:first-child {
-    margin-left: 0;
-  }
-}
-*/
-@import 'layout/footer';
+
+  @import 'layout/footer';
 

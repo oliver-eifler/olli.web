@@ -36,7 +36,7 @@ class Site404 extends BaseSite
         $html = "<!DOCTYPE html><html lang='en'><head>";
 
         $html .= Component::get("MetaData");
-        $html .= Component::get("inlineCSS","css/blank.css");
+        $html .= Component::get("inlineCSS","css/404.css");
 
         $html .= "</head>";
         $html .= "<body>";

@@ -2,26 +2,59 @@
  404 inliine styles
 */
 @import 'config';
+@import 'components/_linklist';
+html {
+  display: table;
+  width:100%;
+  height:100%;
+
+  background-color: #444;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  font-family: $sansSerifFont;
+  font-size: $baseFontSize / 16 * 100%;
+  // Make everything look a little nicer in webkit
+  -webkit-font-smoothing: antialiased;
+
+  display: table-cell;
+  vertical-align: middle;
+  margin: 0 auto;
+  padding: 0;
+  color: #000;
+  color: text($colors);
+  background-color: base($colors);
+}
+a {
+  color: $color-link;
+  text-decoration: none;
+  &:visited {
+    color: $color-link-visited;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color-link-hover !important;
+  }
+}
 
 .error {
-  margin: $leading 1em;
+  margin: 1em;
   text-align: center;
 }
 
 .error-big {
   color: #800;
-  font-size: 2 * $scale * 1rem;
-  line-height: 2 * $leading;
-}
-.links-cat {
-  list-style: none outside none;
-}
-.links-cat,.links-item {
-  padding:0;
-  display: inline-block;
+  font-family: $serifFont;
+  font-size: 2 * $scale * 1em;
+  line-height: 1.2;
   margin:0;
 }
-.links-link {
-  display: inline-block;
-  padding: 0 .75em;
+p {
+  margin:0;
+  margin-top:1em;
 }

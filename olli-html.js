@@ -4,7 +4,7 @@
 var webgen = require('olli.webgen');
 var doc = new webgen("web/_assets/pages/test.olli.html", {
     cheerio: {decodeEntities: false},
-    plugins: {"minify": {}, "image": {forceFrame:true,imagePath: "web/"}}
+    plugins: {"minify": {}, "image": {forceFrame:false,imagePath: "web/"}}
 });
 doc.process();
 doc.save("web/pages/home.php");

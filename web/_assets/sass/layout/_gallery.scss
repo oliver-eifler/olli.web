@@ -1,0 +1,35 @@
+@import '../config';
+
+.gallery {
+  text-align: center;
+}
+
+.flexwrap .gallery {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gallery-item {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+
+  margin: 4px;
+  background-color: mix(hilight($colors), base($colors), opacity(divider($colors))*100%);
+  position: relative;
+
+  & img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    vertical-align: bottom;
+    border: none;
+  }
+
+}
+
+.gallery-last {
+  flex-grow: 1000;
+  min-width: 25%;
+}

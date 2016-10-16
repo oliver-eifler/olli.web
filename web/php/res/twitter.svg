@@ -2,7 +2,7 @@
     <switch>
         <use class="svg-hide" xlink:href="images/icons.svg#icon-twitter"/>
         <foreignObject width="0"><!--<![endif]-->
-            <div class="nosvg nosvg-twitter"><small>Codepen</small></div>
+            <div class="nosvg nosvg-twitter"><small>Twitter</small></div>
             <!--[if gt IE 8]><!--></foreignObject>
     </switch>
 </svg><!--<![endif]-->
