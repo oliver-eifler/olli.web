@@ -1,59 +1,34 @@
 import {doc,olli,win,html} from './globals'
-import fastdom from "./page/fastdom.js";
-import XHR from './page/better-xhr.js';
-import {$,$$} from './dom/query'
-import ActionObserver from './page/action-observer.js';
-import FontSizeObserver from './page/fontsize-observer.js';
-import ResizeObserver from './page/resize-observer.js';
+import ActionObserver from './util/action-observer.js';
+import XHR from './util/better-xhr.js';
 
-/* Page functions */
-import prettyDate from './util/prettydate.js';
-import adjustVerticalRythmn from "./page/verticalrythmn.js";
-import adjustFontSize from "./page/fontsize.js";
-
-/* Start Page */
-/*PAGE SETUP*/
-var content = $(".content");
-var contentWidth = content.clientWidth;
-
-
-$$("time").forEach(function(node) {
-   if (node.hasAttributes('datetime')) {
-       
-       node.innerHTML = prettyDate(new Date(node.getAttribute('datetime')));
-   }
-    
-    
-    
-    
-}); 
-/*!adjustFontSize() && */
-adjustVerticalRythmn(content);
-
-/*
- var p1=XHR.get("images/faultier.jp").then(function(s){console.log("1 Loaded")}).catch(function(err){console.log("1 Error: "+err.message);}).then(function() {console.log("1 finished")});
- var p2=XHR.get("images/pult.jpg");p2.then(function(s){console.log("2 Loaded")}).catch(function(err){console.log("2 Error: "+err.message);}).then(function() {console.log("2 finished")});
- p2[0].abort();
- var p3=XHR.get("images/welpe.jpg").then(function(s){console.log("3 Loaded")}).catch(function(err){console.log("4 Error: "+err.message);}).then(function() {console.log("3 finished")});
- */
-/*
+function setHTML(target,html) {
+    var node = target.cloneNode(false),
+        fragment = doc.createDocumentFragment();
+    fragment.appendChild(node);
+    node.innerHTML = html;
+    target.parentNode.replaceChild(fragment,target);
+}
 ActionObserver.bind("ajax", function (event, element) {
     event.stopPropagation();
     event.preventDefault();
-    console.log("Ajax: " + this.href);
-});
-*/
-FontSizeObserver.bind("page", function () {
-    adjustVerticalRythmn(content);
-});
-ResizeObserver.bind("rythmn", function () {
-    /*!adjustFontSize() && */
-    fastdom.measure(function () {
-        var width = content.clientWidth;
-        if (width != contentWidth) {
-            adjustVerticalRythmn(content);
-            contentWidth = width;
-        }
-    });
-});
+    var url = this.href,error=false;
+    console.log("Ajax: " + url);
+    olli.sloth.reset();
+    var xhr = XHR.get(url,{data:{json:1}})
+        .then(function(pagedata) {
+            console.log("ajax "+url+" loaded");
+            var page = doc.getElementById("page");
+            setHTML(page,pagedata.content);
+//            page.innerHTML = pagedata.content;
+            doc.title = pagedata.title;
+        })
+        .catch(function(err){
+            console.log("ajax "+url+" error: "+err.message);
+            win.location = url;
+        })
+        .then(function() {console.log("ajax "+url+" finished")});
 
+    //win.location = this.href+"?json";
+});
+//var p1=XHR.get("images/faultier.jp").then(function(s){console.log("1 Loaded")}).catch(function(err){console.log("1 Error: "+err.message);}).then(function() {console.log("1 finished")});

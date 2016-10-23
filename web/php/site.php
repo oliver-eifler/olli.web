@@ -28,6 +28,14 @@ class Site extends BaseSite
     }
     public function renderJSON()
     {
+        $page = $this->pagedata;
+        $json = array();
+        $json['title'] = $page->title;
+        $json['content'] = $page->html;
+
+        header("Content-type: application/json; charset=utf-8");
+        //sleep(10000);
+        echo json_encode($json);
         return $this;
     }
 
@@ -40,7 +48,6 @@ class Site extends BaseSite
 
         $html .= "<script id='kickstart'>" . file_get_contents("js/kickstart.js")."</script>";
         $html .= Component::get("inlineCSS","css/layout.css");
-        //$html .= "<script id='async' src='bundle/js/async.js' async></script>";
 
         $html .= "</head>";
             $html .= $this->htmlBody();
@@ -78,7 +85,7 @@ class Site extends BaseSite
         $html .= "</div>";
         /*DEBUG END*/
         //$html .= $this->Inline();
-        $html .= "<script id='svgxuse' defer src='bundle/js/svgxuse.min.js'></script>";
+        $html .= "<script id='svgxuse' defer src='bundle/js/svgxuse.js'></script>";
          $html .= "</body>";
         return $html;
     }

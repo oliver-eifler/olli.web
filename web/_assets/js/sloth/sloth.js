@@ -14,10 +14,8 @@ export default (function (navigator) {
     // Instead of executing the listeners on every single event, we only
     // execute the logic every X miliseconds the configured values are
     // determined based on the research results from Ph.D. Steven C. Seow.
-        resizeTimeout = null,
-        scrollTimeout = null,
-        resizeHandlerSet = false,
-        scrollHandlerSet = false,
+        timeout = null,
+        handlersSet = false,
         listeners = {},
         listenersDone = 0,
         listenerCount = 0,
@@ -88,34 +86,24 @@ export default (function (navigator) {
 
             if (listenersDone === listenerCount) {
                 removeEventListener(onscroll, onScrollHandler, win);
-                removeEventListener(onresize, resetWindowHeight, win);
-                scrollHandlerSet = false;
-                resizeHandlerSet = false;
+                removeEventListener(onresize, onResizeHandler, win);
+                handlersSet = false;
                 listenerCount = 0;
             }
 
-            scrollTimeout = null;
+            timeout = null;
         },
 
         onScrollHandler = function () {
             // Prevent massive js execution on fast/long scrolling.
-            if (null === scrollTimeout) {
-                scrollTimeout = win.setTimeout(function () {
+            if (null === timeout) {
+                timeout = win.setTimeout(function () {
                     updateListeners();
                 }, 50);// Fairly unnoticable number.
             }
         },
 
-        resetWindowHeight = function () {
-            /*
-            if (null === resizeTimeout) {
-                resizeTimeout = win.setTimeout(function () {
-                    updateHeight();
-                    onScrollHandler();
-                    resizeTimeout = null;
-                }, 100);
-            }
-            */
+        onResizeHandler = function () {
             updateHeight();
             onScrollHandler();
         };
@@ -127,15 +115,11 @@ export default (function (navigator) {
                 onready: listener
             };
 
-            if (false === resizeHandlerSet) {
-                addEventListener(onresize, resetWindowHeight, win);
-                resizeHandlerSet = true;
-            }
-
-            if (false === scrollHandlerSet) {
+            if (false === handlersSet) {
                 updateHeight();
+                addEventListener(onresize, onResizeHandler, win);
                 addEventListener(onscroll, onScrollHandler, win);
-                scrollHandlerSet = true;
+                handlersSet = true;
             }
             onScrollHandler();
             // Directly check if the element is visible once added.
@@ -144,11 +128,10 @@ export default (function (navigator) {
         function reset() {
             listenersDone = listenerCount = 0;
             removeEventListener(onscroll, onScrollHandler, win);
-            removeEventListener(onresize, resetWindowHeight, win);
-            scrollHandlerSet = false;
-            resizeHandlerSet = false;
-            cancelTimeout(scrollTimeout);
-            resizeTimeout = scrollTimeout = null;
+            removeEventListener(onresize, onResizeHandler, win);
+            win.clearTimeout(timeout);
+            handlersSet = false;
+            timeout = null;
             listeners = {};
         };
     return {add: add, reset: reset};

@@ -50,6 +50,7 @@ if (isset($mimeTypes[$ext]) && file_exists("pages" . $request_uri)) {
 $pagedata = PageData::getInstance();
 $pagedata->request_url = $request_url;
 $pagedata->request_uri = $request_uri;
+$pagedata->request_json = (isset($_GET['json']) || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'));
 
 $path = remove_ext($request_uri);
 if (empty($path) || $path == "/" || $path=="/index" || $path=="/start") {
@@ -59,9 +60,9 @@ $pagedata->uri = $path;
 $path = "pages".$path.".php";
 
 $class = "site";
-if (!file_exists($path))
+if ($pagedata->uri=="/404" || !file_exists($path))
     $class = "site404";
 require_once("php/".$class.".php");
 //ToDo: Check for AJAX Request
-(new $class($path))->renderHTML();
+(new $class($path))->render();
 exit;

@@ -140,7 +140,9 @@ module.exports = function (grunt) {
                     '<%= dir.release %>/js/kickstart.js': ['<%= dir.build %>/js/kickstart.js'],
                     //'<%= dir.release %>/js/inline.js': ['<%= dir.build %>/js/inline.js'],
                     //'<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
-                    '<%= dir.release %>/js/page.js': ['<%= dir.components %>/native.history.js', '<%= dir.build %>/js/page.js'],
+                    '<%= dir.release %>/js/page.js': [/*'<%= dir.components %>/native.history.js',*/ '<%= dir.build %>/js/page.js'],
+                    /*polyfills*/
+                    '<%= dir.release %>/js/svgxuse.js': ['<%= dir.components %>/svgxuse.js'],
                     '<%= dir.release %>/js/promise.js': ['<%= dir.components %>/promise.js']
                 }
             },
@@ -155,7 +157,9 @@ module.exports = function (grunt) {
                     '<%= dir.release %>/js/kickstart.js': ['<%= dir.build %>/js/kickstart.js'],
                     //'<%= dir.release %>/js/inline.js': ['<%= dir.build %>/js/inline.js'],
                     //'<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
-                    '<%= dir.release %>/js/page.js': ['<%= dir.components %>/native.history.js', '<%= dir.build %>/js/page.js'],
+                    '<%= dir.release %>/js/page.js': [/*'<%= dir.components %>/native.history.js',*/ '<%= dir.build %>/js/page.js'],
+                    /*polyfills*/
+                    '<%= dir.release %>/js/svgxuse.js': ['<%= dir.components %>/svgxuse.js'],
                     '<%= dir.release %>/js/promise.js': ['<%= dir.components %>/promise.js']
                 }
             }

@@ -1,1 +1,123 @@
-!function(){"use strict";function a(a){l.push(a),1==l.length&&k()}function b(){for(;l.length;)l[0](),l.shift()}function c(a){this.a=m,this.b=void 0,this.f=[];var b=this;try{a(function(a){f(b,a)},function(a){g(b,a)})}catch(a){g(b,a)}}function d(a){return new c(function(b,c){c(a)})}function e(a){return new c(function(b){b(a)})}function f(a,b){if(a.a==m){if(b==a)throw new TypeError;var c=!1;try{var d=b&&b.then;if(null!=b&&"object"==typeof b&&"function"==typeof d)return void d.call(b,function(b){c||f(a,b),c=!0},function(b){c||g(a,b),c=!0})}catch(b){return void(c||g(a,b))}a.a=0,a.b=b,h(a)}}function g(a,b){if(a.a==m){if(b==a)throw new TypeError;a.a=1,a.b=b,h(a)}}function h(b){a(function(){if(b.a!=m)for(;b.f.length;){var a=b.f.shift(),c=a[0],d=a[1],e=a[2],a=a[3];try{0==b.a?e("function"==typeof c?c.call(void 0,b.b):b.b):1==b.a&&("function"==typeof d?e(d.call(void 0,b.b)):a(b.b))}catch(b){a(b)}}})}function i(a){return new c(function(b,c){function d(c){return function(d){g[c]=d,f+=1,f==a.length&&b(g)}}var f=0,g=[];0==a.length&&b(g);for(var h=0;h<a.length;h+=1)e(a[h]).c(d(h),c)})}function j(a){return new c(function(b,c){for(var d=0;d<a.length;d+=1)e(a[d]).c(b,c)})}var k,l=[];k=function(){setTimeout(b)};var m=2;c.prototype.g=function(a){return this.c(void 0,a)},c.prototype.c=function(a,b){var d=this;return new c(function(c,e){d.f.push([a,b,c,e]),h(d)})},window.Promise||(window.Promise=c,window.Promise.resolve=e,window.Promise.reject=d,window.Promise.race=j,window.Promise.all=i,window.Promise.prototype.then=c.prototype.c,window.Promise.prototype.catch=c.prototype.g)}();
+/*! olli.web - v0.0.2 - 2016-10-24
+* https://github.com/oliver-eifler/olli.web#readme
+* Copyright (c) 2016 Oliver Jean Eifler; MIT License */
+
+
+/** @const */var DEBUG = true;
+(function() {
+    "use strict";
+    var f, g = [];
+    function l(a) {
+        g.push(a);
+        1 == g.length && f();
+    }
+    function m() {
+        for (;g.length; ) g[0](), g.shift();
+    }
+    f = function() {
+        setTimeout(m);
+    };
+    function n(a) {
+        this.a = p;
+        this.b = void 0;
+        this.f = [];
+        var b = this;
+        try {
+            a(function(a) {
+                q(b, a);
+            }, function(a) {
+                r(b, a);
+            });
+        } catch (c) {
+            r(b, c);
+        }
+    }
+    var p = 2;
+    function t(a) {
+        return new n(function(b, c) {
+            c(a);
+        });
+    }
+    function u(a) {
+        return new n(function(b) {
+            b(a);
+        });
+    }
+    function q(a, b) {
+        if (a.a == p) {
+            if (b == a) throw new TypeError();
+            var c = !1;
+            try {
+                var d = b && b.then;
+                if (null != b && "object" == typeof b && "function" == typeof d) {
+                    d.call(b, function(b) {
+                        c || q(a, b);
+                        c = !0;
+                    }, function(b) {
+                        c || r(a, b);
+                        c = !0;
+                    });
+                    return;
+                }
+            } catch (e) {
+                c || r(a, e);
+                return;
+            }
+            a.a = 0;
+            a.b = b;
+            v(a);
+        }
+    }
+    function r(a, b) {
+        if (a.a == p) {
+            if (b == a) throw new TypeError();
+            a.a = 1;
+            a.b = b;
+            v(a);
+        }
+    }
+    function v(a) {
+        l(function() {
+            if (a.a != p) for (;a.f.length; ) {
+                var b = a.f.shift(), c = b[0], d = b[1], e = b[2], b = b[3];
+                try {
+                    0 == a.a ? "function" == typeof c ? e(c.call(void 0, a.b)) : e(a.b) : 1 == a.a && ("function" == typeof d ? e(d.call(void 0, a.b)) : b(a.b));
+                } catch (h) {
+                    b(h);
+                }
+            }
+        });
+    }
+    n.prototype.g = function(a) {
+        return this.c(void 0, a);
+    };
+    n.prototype.c = function(a, b) {
+        var c = this;
+        return new n(function(d, e) {
+            c.f.push([ a, b, d, e ]);
+            v(c);
+        });
+    };
+    function w(a) {
+        return new n(function(b, c) {
+            function d(c) {
+                return function(d) {
+                    h[c] = d;
+                    e += 1;
+                    e == a.length && b(h);
+                };
+            }
+            var e = 0, h = [];
+            0 == a.length && b(h);
+            for (var k = 0; k < a.length; k += 1) u(a[k]).c(d(k), c);
+        });
+    }
+    function x(a) {
+        return new n(function(b, c) {
+            for (var d = 0; d < a.length; d += 1) u(a[d]).c(b, c);
+        });
+    }
+    window.Promise || (window.Promise = n, window.Promise.resolve = u, window.Promise.reject = t, 
+    window.Promise.race = x, window.Promise.all = w, window.Promise.prototype.then = n.prototype.c, 
+    window.Promise.prototype["catch"] = n.prototype.g);
+})();

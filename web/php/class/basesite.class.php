@@ -23,6 +23,11 @@ class BaseSite extends _registry
 
     /*overwrite*/
     protected function init($path) {return $this;}
+    public function render() {
+        if ($this->pagedata->request_json)
+            return $this->renderJSON();
+        return $this->renderHTML();
+    }
     public function renderHTML() {return $this;}
     public function renderJSON() {return $this;}
 }

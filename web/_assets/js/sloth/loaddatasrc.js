@@ -17,13 +17,16 @@ export default function(node,undefined) {
     var src = node.getAttribute(datasource);
 
     var loadDone=function() {
+        node.onload=function(){};
         node.removeAttribute(datasource);
         node.setAttribute(status, "loaded");
         if (doc.documentMode && doc.documentMode < 9)
             node.className = node.className;
+        console.log(node.src+" loaded")
 
     };
     if (src) {
+            console.log(src+" loading")
             node.onload = loadDone;
             node.src = src;
     }

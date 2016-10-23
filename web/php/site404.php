@@ -27,6 +27,7 @@ class Site404 extends BaseSite
     }
     public function renderJSON()
     {
+        header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
         return $this;
     }
 

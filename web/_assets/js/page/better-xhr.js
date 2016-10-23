@@ -249,7 +249,7 @@ export default (function (CONTENT_TYPE, MIME_JSON, HTTP_METHODS) {
         timeout: 15000,
         cacheBurst: "_",
         charset: "UTF-8",
-        headers: {"X-Requested-With": "XMLHttpRequest"}
+        headers: {/*"X-Requested-With": "XMLHttpRequest"*/}
     };
     if (Promise) {
         // expose namespace globally

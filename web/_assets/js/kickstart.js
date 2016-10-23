@@ -3,6 +3,7 @@
  * feature detection
  */
 import {doc, win, olli, html} from './globals'
+import loadJS from './util/loadjs'
 import loadimage from './sloth/loaddatasrc'
 import sloth from './sloth/sloth'
 
@@ -20,7 +21,19 @@ import sloth from './sloth/sloth'
 win.lazy = function (node) {
     node.onload = node.onerror = function () {
     };
-    setTimeout(function(){sloth.add(node,loadimage);},0);
+    //setTimeout(function(){sloth.add(node,loadimage);},0);
+    sloth.add(node,loadimage);
+}
+if (win.history && win.history.pushState) {
+    var js = [];
+    if (!win.Promise)
+        js.push("js/promise.js");
+
+    //js.push("js/history.js");
+    js.push("js/page.js");
+
+    loadJS("bundle/" + js.join(","));
 }
 olli.sloth = sloth;
+olli.loadJS = loadJS;
 export default olli;

@@ -22,15 +22,16 @@ foreach($files as $image)
         list($width, $height, $type, $attr) = getimagesize($image);
         $w = $width*200/$height;
         $h = $height/$width*100;
-        echo "<a href='".$image."' class='gallery-item' style='width:".$w."px;flex-grow:".$w.";'>";
-            echo "<div style='padding-bottom:".$h."%'></div>";
-            echo "<img src='".$image ."' alt='".$image ."'>";
+        echo "<a href='".$image."' class='pic gallery-item' style='width:".$w."px;flex-grow:".$w.";'>";
+        echo "<div style='padding-bottom:".$h."%'></div>";
+        echo "<img src='images/icons/o3.png' data-src='".$image ."' alt='".$image ."' onerror='lazy(this)' onload='lazy(this)'>";
+        echo "<noscript><img src='".$image ."' alt='".$image ."'></noscript>";
         echo "</a>";
     } else {
         continue;
     }
 
 }
-echo "<div class='gallery-last'></div>";
+//echo "<div class='gallery-last'></div>";
 echo "</div>";
 ?>
