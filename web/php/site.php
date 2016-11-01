@@ -45,7 +45,7 @@ class Site extends BaseSite
         $html = "<!DOCTYPE html><html class='no-js' lang='en'><head>";
 
         $html .= Component::get("MetaData");
-
+        //<link rel="canonical" href="http://example.com/wordpress/seo-plugin/">
         $html .= "<script id='kickstart'>" . file_get_contents("js/kickstart.js")."</script>";
         $html .= Component::get("inlineCSS","css/layout.css");
 
@@ -60,6 +60,10 @@ class Site extends BaseSite
     {
         $html = "";
         $html .= "<body class='flex'>";
+        /*
+        $page = $this->pagedata;
+        $html .= "<p>".$page->request_url."<br>".$page->url."<p>";
+        */
         /* inline svg symbols (above the fold)*/
         //$html.= file_get_contents("./images/inline.svg");
 

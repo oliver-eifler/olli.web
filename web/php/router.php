@@ -57,6 +57,7 @@ if (empty($path) || $path == "/" || $path=="/index" || $path=="/start") {
     $path="/home"; //later: check short urls ;)
 }
 $pagedata->uri = $path;
+$pagedata->url = get_request_scheme() . '://' . $_SERVER['HTTP_HOST'] . $path;
 $path = "pages".$path.".php";
 
 $class = "site";

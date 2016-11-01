@@ -97,37 +97,67 @@ export default (function(window, CONTENT_TYPE, MIME_JSON, HTTP_METHODS) {
 
         var xhr = new XMLHttpRequest();
         var promise = new Promise(function(resolve, reject)  {
-                var handleErrorResponse = function(message)  {return function()  { reject(new Error(message)) }};
+                var handleErrorResponse = function(message)  {return function()  {reject(new Error(message)); }}
+
 
                 xhr.onabort = handleErrorResponse("abort");
                 xhr.onerror = handleErrorResponse("error");
                 xhr.ontimeout = handleErrorResponse("timeout");
-                xhr.onreadystatechange = function()  {
-                    if (xhr.readyState === 4) {
-                        // by default parse response depending on Content-Type header
-                        mimeType = mimeType || xhr.getResponseHeader(CONTENT_TYPE) || "";
+/*
+            xhr.onreadystatechange = function()  {
+                if (xhr.readyState === 4) {
+                    console.log("readyState: "+xhr.readyState);
+                    // by default parse response depending on Content-Type header
+                    // by default parse response depending on Content-Type header
+                    mimeType = mimeType || xhr.getResponseHeader(CONTENT_TYPE) || "";
 
-                        var status = xhr.status,
-                            response = xhr.responseText,
-                            // skip possible charset suffix
-                            parseResponse = mimeTypeStrategies[mimeType.split(";")[0]];
+                    var status = xhr.status,
+                        response = xhr.responseText,
+                        // skip possible charset suffix
+                        parseResponse = mimeTypeStrategies[mimeType.split(";")[0]];
 
-                        if (parseResponse) {
-                            try {
-                                // when strategy found - parse response according to it
-                                response = parseResponse(response);
-                            } catch (err) {
-                                return reject(err);
-                            }
-                        }
-
-                        if (status >= 200 && status < 300 || status === 304) {
-                            resolve(response);
-                        } else {
-                            reject(new Error(xhr.statusText));
+                    if (parseResponse) {
+                        try {
+                            // when strategy found - parse response according to it
+                            response = parseResponse(response);
+                        } catch (err) {
+                            return reject(err);
                         }
                     }
-                };
+
+                    if (status >= 200 && status < 300 || status === 304) {
+                        resolve(response);
+                    } else {
+                        reject(new Error(xhr.statusText));
+                    }
+                }
+            };
+*/
+            xhr.onload = function()  {
+                    // by default parse response depending on Content-Type header
+                    // by default parse response depending on Content-Type header
+                    var status = xhr.status;
+                    mimeType = mimeType || xhr.getResponseHeader(CONTENT_TYPE) || "";
+
+                    var status = xhr.status,
+                        response = xhr.responseText,
+                        // skip possible charset suffix
+                        parseResponse = mimeTypeStrategies[mimeType.split(";")[0]];
+
+                    if (parseResponse) {
+                        try {
+                            // when strategy found - parse response according to it
+                            response = parseResponse(response);
+                        } catch (err) {
+                            return reject(err);
+                        }
+                    }
+                if (status >= 200 && status < 300 || status === 304) {
+                    resolve(response);
+                } else {
+                    reject(new Error(xhr.statusText));
+                }
+            };
 
                 xhr.open(method, url, true);
                 xhr.timeout = config.timeout || XHR.defaults.timeout;
@@ -152,7 +182,10 @@ export default (function(window, CONTENT_TYPE, MIME_JSON, HTTP_METHODS) {
                 xhr.send(data);
             });
 
-        promise[0] = xhr;
+        promise.xhr = xhr;
+        promise.abort = function() {
+            xhr.abort();
+        };
 
         return promise;
     }
